@@ -18,14 +18,14 @@ Repositório dedicado ao versionamento do projeto de API do segundo semestre de 
 # Contexto do projeto
 
 Desenvolver uma aplicação que leia um ".csv" com respostas vindas de um formulário respondido pelos alunos a respeito do Trabalho de Graduação, retornando ao usuário um relatório.
-
 # Backlog do produto
 |**Épico**|**User Story**|**Prioridade**|**Sprint**|
-| ---------------- |---------------| :----: | :-------: |
+| :----------------: |---------------| :----: | :-------: |
 | Gerenciamento de notas e feedbacks | Eu como professor, preciso atribuir nota por cada entrega/apresentação para que consiga uma média e evolução da TG de cada aluno. | 1 | 2 |
-| Gerenciamento de notas e feedbacks | Eu como professor, preciso determinar quantas entregas até a apresentação o aluno terá, para que consiga verificar suas entregas e eu consiga tirar uma média. | 2 | 2 |
-| Gerar relatório | Eu como professor, preciso gerar um relatório de cada aluno que tenha todas informações necessárias de cada entrega/apresentação para que consiga ler todos feedbacks, notas e informações sobre o aluno. | 3 | 2 |
-| Processamento do arquivo CSV | Eu como professor, preciso carregar meu arquivo CSV para que facilite a visualização dos meus dados. | 4 | 3 |
-| Gerar relatório | Eu como professor, preciso gerar um relatório que liste todos alunos que estão aptos a defender sua apresentação para que consiga enviar os certificados aos professores. | 5 | 3 |
-| Gerar relatório | Eu como professor, preciso gerar um relatório que liste todos alunos, todas as notas de entregas e a média final de sua TG para que facilite na hora de serem lançadas e para repassar aos alunos com mais facilidade. | 6 | 4 |
-| Processamento do arquivo CSV | Eu como professor, preciso ler os dados de cada aluno de acordo com o fornecido pelo CSV e a cada atualização de notas e entregas para que possa gerir de maneira geral os alunos. | 7 | 4 |
+| Gerenciamento de notas e feedbacks | Eu como professor, preciso atribuir um feedback por cada entrega/apresentação para que registre as pendências e anotações de cada aluno de cada TG. | 2 | 2 |
+| Gerenciamento de notas e feedbacks | Eu como professor, preciso gerar um relatório de cada aluno que tenha todas informações necessárias de cada entrega/apresentação para que consiga ler todos feedbacks, notas e informações sobre o aluno. | 3 | 2 |
+| Gerar relatório | Eu como professor, preciso determinar quantas entregas até a apresentação o aluno terá, para que consiga verificar suas entregas e eu consiga tirar uma média. | 4 | 3 |
+| Processamento do arquivo CSV | Eu como professor, preciso carregar meu arquivo CSV para que facilite a visualização dos meus dados. | 5 | 3 |
+| Gerar relatório | Eu como professor, preciso gerar um relatório que liste todos alunos que estão aptos a defender sua apresentação para que consiga enviar os certificados aos professores.| 6 | 3 |
+| Gerar relatório | Eu como professor, preciso gerar um relatório que liste todos alunos, todas as notas de entregas e a média final de sua TG para que facilite na hora de serem lançadas e para repassar aos alunos com mais facilidade. | 7 | 4 |
+| Processamento do arquivo CSV | Eu como professor, preciso ler os dados de cada aluno de acordo com o fornecido pelo CSV e a cada atualização de notas e entregas para que possa gerir de maneira geral os alunos. | 8 | 4 |
