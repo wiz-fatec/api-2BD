@@ -13,6 +13,7 @@
 # IntelliJ
 out/
 .idea
+target
 # Package Files #
 *.jar
 *.war
