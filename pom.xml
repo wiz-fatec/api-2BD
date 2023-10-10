@@ -14,18 +14,16 @@
     </properties>
 
     <dependencies>
-        <!-- Apache Commons CSV -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-csv</artifactId>
             <version>1.9.0</version>
         </dependency>
 
-        <!-- JavaFX -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>15.0.1</version> <!-- Adjust the version based on your JavaFX version -->
+            <version>15.0.1</version>
         </dependency>
     </dependencies>
 </project>
