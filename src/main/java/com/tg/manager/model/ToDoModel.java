@@ -10,7 +10,6 @@ public class ToDoModel {
     private String feedback;
     private Integer note;
     private Integer idStudent;
-
     private Integer idIssue;
 
     public void addToDo(String feedbacks, Integer notes, Integer idToDo) {

@@ -1,17 +1,13 @@
 package com.tg.manager.model;
-
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 import com.tg.manager.model.connection.ConnectionDataBase;
 
 public class TeamModel {
     private Integer semester;
     private Integer year;
     private Integer idIssue;
-
     public void addTeam() {
             
         try {
