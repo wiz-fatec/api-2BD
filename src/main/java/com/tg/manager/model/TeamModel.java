@@ -18,13 +18,13 @@ public class TeamModel {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
-            String insercaoSQL = "INSERT INTO tg (halfYear, year, idTeam, idStudent, idTG) VALUES (?, ?, ?, ?, ?)";
+            String insercaoSQL = "INSERT INTO turma (halfYear, year, idTeam, idStudent, idTG) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insercaoSQL);
             preparedStatement.setInt(1, halfYear);
             preparedStatement.setInt(2, year);
             preparedStatement.setInt(3, idTeam);
             preparedStatement.setInt(4, idStudent);
-            preparedStatement.setInt(4, idTG);
+            preparedStatement.setInt(5, idTG);
             preparedStatement.executeUpdate();
             preparedStatement.close();
             connection.close();
