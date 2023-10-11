@@ -5,12 +5,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionDataBase {
-    private static final String url = "jdbc:postgresql://localhost:5432/postgres";
-    private static final String user = "username";
-    private static final String password = "password";
+    private static final String url = "jdbc:postgresql://localhost:5432/api2";
+    private static final String user = "paulo";
+    private static final String password = "adm123";
     private static Connection conn;
 
-    public static Connection getConexao(){
+    public Connection getConexao(){
         try {
             if (conn == null) {
                 Class.forName("org.postgresql.Driver");
