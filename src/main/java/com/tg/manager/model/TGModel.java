@@ -30,5 +30,4 @@ public class TGModel {
             e.printStackTrace();
         }
     }
-
 }
