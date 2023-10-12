@@ -22,10 +22,8 @@ public class HomeScreenController {
         if (file != null) {
             System.out.println("Arquivo selecionado: " + file.getAbsolutePath());
 
-            // Processa o CSV e obtém a lista de listas de strings
             List<List<String>> csvData = CSVProcessor.readCSVToListOfLists(file.getAbsolutePath());
 
-            // Imprime a lista de listas no formato desejado
             System.out.print("[");
             boolean first = true;
             for (List<String> innerList : csvData) {
