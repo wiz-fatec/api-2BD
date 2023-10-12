@@ -15,7 +15,7 @@ public class ToDoModel {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
-            String insercaoSQL = "INSERT INTO tg (feedbacks, notes, idToDo) VALUES (?, ?, ?)";
+            String insercaoSQL = "INSERT INTO entrega_aluno (feedbacks, notes, idToDo) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insercaoSQL);
             preparedStatement.setString(1, feedbacks);
             preparedStatement.setInt(2, notes);
