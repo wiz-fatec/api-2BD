@@ -8,8 +8,7 @@ public class TeamModel {
     private Integer semester;
     private Integer year;
     private Integer idIssue;
-    public void addTeam() {
-            
+    public void addTeam(Integer semester, Integer year, Integer idIssue) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -22,7 +21,6 @@ public class TeamModel {
             preparedStatement.close();
             connection.close();
             System.out.println("Dados inseridos com sucesso!");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
