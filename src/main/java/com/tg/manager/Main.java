@@ -1,8 +1,6 @@
 package com.tg.manager;
 
-
 import com.tg.manager.view.HomeScreen;
-import com.tg.manager.view.HomeScreenWithTable;
 
 import javafx.application.Application;
 
@@ -11,7 +9,6 @@ public class Main {
 
         System.out.println("Hello world!");
 
-
-        Application.launch(HomeScreenWithTable.class, args);
+        Application.launch(HomeScreen.class, args);
     }
 }

@@ -45,9 +45,22 @@ public class HomeScreenController {
                 System.out.print("]");
             }
             System.out.print("]");
+
+            // Após processar o CSV, abrir a tela HomeScreenWithTable
+            abrirTelaHomeScreenWithTable();
         }
     }
 
+    private void abrirTelaHomeScreenWithTable() {
+        HomeScreenWithTable homeScreenWithTable = new HomeScreenWithTable();
+        try {
+            homeScreenWithTable.start(new Stage());
+            // Feche a tela atual, se desejar
+            ((Stage) ButtonUploadCSV.getScene().getWindow()).close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     private File escolherArquivoCSV() {
         FileChooser fileChooser = new FileChooser();
