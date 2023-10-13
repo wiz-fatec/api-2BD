@@ -1,5 +1,4 @@
 package com.tg.manager.model;
-// Using JDBC
 import com.tg.manager.model.connection.ConnectionDataBase;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

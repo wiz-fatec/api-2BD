@@ -1,25 +1,27 @@
 package com.tg.manager.model;
 
 import com.tg.manager.model.connection.ConnectionDataBase;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ToDoModel {
     private String feedback;
-    private Integer notes;
-    private Integer idToDo;
+    private Double note;
+    private Integer idStudent;
+    private Integer idIssue;
 
-    public void addToDo(String feedbacks, Integer notes, Integer idToDo) {
-
+    public void addToDo(String feedback, Double note, Integer idStudent, Integer idIssue) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
-            String insercaoSQL = "INSERT INTO entrega_aluno (feedbacks, notes, idToDo) VALUES (?, ?, ?)";
+            String insercaoSQL = "INSERT INTO valor_entrega (nota, feedback, idaluno, identrega) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insercaoSQL);
-            preparedStatement.setString(1, feedbacks);
-            preparedStatement.setInt(2, notes);
-            preparedStatement.setInt(3, idToDo);
+            preparedStatement.setDouble(1, note);
+            preparedStatement.setString(2, feedback);
+            preparedStatement.setInt(3, idStudent);
+            preparedStatement.setInt(4, idIssue);
             preparedStatement.executeUpdate();
             preparedStatement.close();
             connection.close();
