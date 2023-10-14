@@ -55,8 +55,8 @@ public class SubmitModel {
                 String descricao = result.getString("descricao");
                 Date dataInicial = result.getDate("data_inicial");
                 Date dataFinal = result.getDate("data_final");
-                SubmitModel sm = new SubmitModel(id, description, initialDate, finalDate);
-                informationList.put(id, sm);         
+                SubmitModel sm = new SubmitModel(idSubmit, descricao, dataInicial, dataFinal);
+                informationList.put(idSubmit, sm);
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
