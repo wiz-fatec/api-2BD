@@ -1,6 +1,7 @@
 package com.tg.manager;
 
 
+import com.tg.manager.view.EntregaScreen;
 import com.tg.manager.view.HomeScreen;
 
 import javafx.application.Application;
@@ -12,5 +13,7 @@ public class Main {
 
 
         Application.launch(HomeScreen.class, args);
+        Application.launch(EntregaScreen.class, args);
+
     }
 }
