@@ -53,8 +53,8 @@ public class SubmitModel {
                 HashMap<Integer, SubmitModel> informationList = new HashMap<Integer, SubmitModel>();
                 Integer idSubmit = result.getInt("id");
                 String descricao = result.getString("descricao");
-                Date dataInicial = result.getDate("initialDate");
-                Date dataFinal = result.getDate("finalDate");
+                Date dataInicial = result.getDate("data_inicial");
+                Date dataFinal = result.getDate("data_final");
                 SubmitModel sm = new SubmitModel(id, description, initialDate, finalDate);
                 informationList.put(id, sm);         
             }
