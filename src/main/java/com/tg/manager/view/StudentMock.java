@@ -1,11 +1,11 @@
-package com.tg.manager.model;
+package com.tg.manager.view;
 
-public class StudentModel {
+public class StudentMock {
 
     private String student;
     private String institutionalEmail;
 
-    public StudentModel(String student, String institutionalEmail) {
+    public StudentMock(String student, String institutionalEmail) {
         this.student = student;
         this.institutionalEmail = institutionalEmail;
     }

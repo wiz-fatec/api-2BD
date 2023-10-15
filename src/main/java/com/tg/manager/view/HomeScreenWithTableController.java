@@ -3,7 +3,6 @@ package com.tg.manager.view;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.tg.manager.model.StudentModel;
 import com.tg.manager.utils.ButtonCell;
 
 import javafx.collections.FXCollections;
@@ -27,60 +26,60 @@ public class HomeScreenWithTableController implements Initializable {
     private Button ButtonUploadCertificate;
 
     @FXML
-    private TableColumn<StudentModel, ?> apto;
+    private TableColumn<StudentMock, ?> apto;
 
     @FXML
-    private TableColumn<StudentModel, String> institutionalEmail;
+    private TableColumn<StudentMock, String> institutionalEmail;
 
     @FXML
-    private TableColumn<StudentModel, Boolean> profileStudent;
+    private TableColumn<StudentMock, Boolean> profileStudent;
 
     @FXML
-    private TableColumn<StudentModel, Boolean> rateAndFeedback;
+    private TableColumn<StudentMock, Boolean> rateAndFeedback;
 
     @FXML
-    private TableColumn<StudentModel, Boolean> report;
+    private TableColumn<StudentMock, Boolean> report;
 
     @FXML
-    private TableColumn<StudentModel, String> student;
+    private TableColumn<StudentMock, String> student;
 
     @FXML
-    private TableView<StudentModel> table;
+    private TableView<StudentMock> table;
 
     @FXML
     void UploadCSV(ActionEvent event) {
 
     }
 
-    ObservableList<StudentModel> list = FXCollections.observableArrayList(
-        new StudentModel("Paulo Arantes", "Paulo@test.com"),
-        new StudentModel("Cauan Barbaglio", "Cauan@test.com")
+    ObservableList<StudentMock> list = FXCollections.observableArrayList(
+        new StudentMock("Paulo Arantes", "Paulo@test.com"),
+        new StudentMock("Cauan Barbaglio", "Cauan@test.com")
     );
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         
-        student.setCellValueFactory(new PropertyValueFactory<StudentModel, String>("student"));
-        institutionalEmail.setCellValueFactory(new PropertyValueFactory<StudentModel, String>("institutionalEmail"));
+        student.setCellValueFactory(new PropertyValueFactory<StudentMock, String>("student"));
+        institutionalEmail.setCellValueFactory(new PropertyValueFactory<StudentMock, String>("institutionalEmail"));
         
         rateAndFeedback.setCellFactory(col -> new ButtonCell());
         report.setCellFactory(col -> new ButtonCell());
         profileStudent.setCellFactory(col -> new ButtonCell());
 
         rateAndFeedback.setCellFactory(col -> {
-            TableCell<StudentModel, Boolean> cell = new ButtonCell();
+            TableCell<StudentMock, Boolean> cell = new ButtonCell();
             cell.setAlignment(Pos.CENTER);
             return cell;
         });
 
         report.setCellFactory(col -> {
-            TableCell<StudentModel, Boolean> cell = new ButtonCell();
+            TableCell<StudentMock, Boolean> cell = new ButtonCell();
             cell.setAlignment(Pos.CENTER);
             return cell;
         });
 
         profileStudent.setCellFactory(col -> {
-            TableCell<StudentModel, Boolean> cell = new ButtonCell();
+            TableCell<StudentMock, Boolean> cell = new ButtonCell();
             cell.setAlignment(Pos.CENTER);
             return cell;
         });

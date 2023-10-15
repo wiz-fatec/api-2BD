@@ -1,17 +1,17 @@
 package com.tg.manager.utils;
 
-import com.tg.manager.model.StudentModel;
+import com.tg.manager.view.StudentMock;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 
-public class ButtonCell extends TableCell<StudentModel, Boolean> {
+public class ButtonCell extends TableCell<StudentMock, Boolean> {
     private final Button viewButton;
 
     public ButtonCell() {
         this.viewButton = new Button("Ação");
         viewButton.setOnAction(event -> {
-            StudentModel student = (StudentModel) getTableRow().getItem();
+            StudentMock student = (StudentMock) getTableRow().getItem();
             if (student != null) {
                 // Ação ao clicar no botão (pode ser personalizada)
                 System.out.println("Botão clicado para: " + student.getStudent());

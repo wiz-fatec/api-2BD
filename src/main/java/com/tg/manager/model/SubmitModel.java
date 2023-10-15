@@ -8,21 +8,18 @@ import java.sql.Date;
 
 public class SubmitModel {
     private String description;
-    private Date initial_date;
-    private Date final_date;
-    private Integer idToDo;
-
-    public void addSubmit(String description, Date initial_date, Date final_date, Integer idToDo) {
+    private Date initialDate;
+    private Date finalDate;
+    public void addSubmit(String description, Date initialDate, Date finalDate) {
 
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
-            String insercaoSQL = "INSERT INTO entrega (description, initial_date, final_date, idToDo) VALUES (?, ?, ?, ?)";
+            String insercaoSQL = "INSERT INTO entrega (descricao, data_inicial, data_final) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insercaoSQL);
             preparedStatement.setString(1, description);
-            preparedStatement.setDate(2, initial_date);
-            preparedStatement.setDate(3, final_date);
-            preparedStatement.setInt(4, idToDo);
+            preparedStatement.setDate(2, initialDate);
+            preparedStatement.setDate(3, finalDate);
             preparedStatement.executeUpdate();
             preparedStatement.close();
             connection.close();
