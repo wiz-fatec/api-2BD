@@ -13,7 +13,7 @@ public class SubmitModel {
     private Integer id;
     private String description;
     private Date initialDate;
-    private Date finalDate; 
+    private Date finalDate;
 
     public void addSubmit(String description, Date initialDate, Date finalDate) {
 
