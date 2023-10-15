@@ -1,15 +1,20 @@
 package com.tg.manager.model;
 
 import com.tg.manager.model.connection.ConnectionDataBase;
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.util.HashMap;
 
 public class SubmitModel {
+    private Integer id;
     private String description;
     private Date initialDate;
     private Date finalDate;
+
     public void addSubmit(String description, Date initialDate, Date finalDate) {
 
         try {
@@ -27,6 +32,34 @@ public class SubmitModel {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public SubmitModel(Integer id, String description, Date initialDate, Date finalDate) {
+        this.id = id;
+        this.description = description;
+        this.initialDate = initialDate;
+        this.finalDate = finalDate;
+    }
+
+    public void getSubmit() throws SQLException {
+        try {    
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            Statement statementDb = connection.createStatement();
+            ResultSet result = statementDb.executeQuery("SELECT * from entrega");
+
+            while (result.next()) {
+                HashMap<Integer, SubmitModel> informationList = new HashMap<Integer, SubmitModel>();
+                Integer idSubmit = result.getInt("id");
+                String descricao = result.getString("descricao");
+                Date dataInicial = result.getDate("data_inicial");
+                Date dataFinal = result.getDate("data_final");
+                SubmitModel sm = new SubmitModel(idSubmit, descricao, dataInicial, dataFinal);
+                informationList.put(idSubmit, sm);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 }
