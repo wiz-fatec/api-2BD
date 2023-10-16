@@ -1,28 +1,28 @@
 package com.tg.manager.model;
-import com.tg.manager.model.connection.ConnectionDataBase;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-public class AdvisorModel {
- private String fatecEmail;
- private String name;
-    public void addAdvisor(String name, String fatecEmail) {
+import com.tg.manager.model.connection.ConnectionDataBase;
+
+public class TeamModel {
+    private Integer semester;
+    private Integer year;
+    private Integer idIssue;
+    public void addTeam(Integer semester, Integer year, Integer idIssue) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
-            String insercaoSQL = "INSERT INTO orientador (nome, email_fatec) VALUES (?, ?)";
+            String insercaoSQL = "INSERT INTO turma (semestre, ano, identrega) VALUES (?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insercaoSQL);
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, fatecEmail);
+            preparedStatement.setInt(1, semester);
+            preparedStatement.setInt(2, year);
+            preparedStatement.setInt(3, idIssue);
             preparedStatement.executeUpdate();
             preparedStatement.close();
             connection.close();
             System.out.println("Dados inseridos com sucesso!");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
 }
