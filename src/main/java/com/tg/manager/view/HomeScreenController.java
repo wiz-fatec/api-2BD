@@ -1,14 +1,13 @@
 package com.tg.manager.view;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.util.List;
 
+import com.tg.manager.controller.CSVHandler;
 import com.tg.manager.utils.CSVProcessor;
 
 public class HomeScreenController {
@@ -28,7 +27,7 @@ public class HomeScreenController {
             // Imprime a lista de listas no formato desejado
             System.out.print("[");
             boolean first = true;
-            for (List<String> innerList : csvData) {
+/*             for (List<String> innerList : csvData) {
                 if (!first) {
                     System.out.print(", ");
                 } else {
@@ -46,7 +45,8 @@ public class HomeScreenController {
                 }
                 System.out.print("]");
             }
-            System.out.print("]");
+            System.out.print("]"); */
+            CSVHandler.populateDataBase(csvData);
         }
     }
 
