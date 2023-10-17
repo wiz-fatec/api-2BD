@@ -85,7 +85,7 @@ public class StudentModel {
             preparedStatement.setInt(5, teamId);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            connection.close();
+            //connection.close();
             System.out.println("Dados inseridos com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();

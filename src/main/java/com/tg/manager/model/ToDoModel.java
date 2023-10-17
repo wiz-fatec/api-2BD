@@ -34,7 +34,7 @@ public class ToDoModel {
             preparedStatement.setInt(4, idIssue);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            connection.close();
+            //connection.close();
             System.out.println("Dados inseridos com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();

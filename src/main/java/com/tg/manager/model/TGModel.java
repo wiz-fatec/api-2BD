@@ -28,7 +28,7 @@ public class TGModel {
             preparedStatement.setInt(6, idStudent);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            connection.close();
+            //connection.close();
             System.out.println("Dados inseridos com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
