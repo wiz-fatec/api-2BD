@@ -12,19 +12,34 @@ import java.util.HashMap;
 public class SubmitModel {
     private Integer id;
     private String description;
+
+    @Override
+    public String toString() {
+        return "SubmitModel{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", initialDate=" + initialDate +
+                ", finalDate=" + finalDate +
+                ", idTeam=" + idTeam +
+                '}';
+    }
+
     private Date initialDate;
     private Date finalDate;
 
-    public void addSubmit(String description, Date initialDate, Date finalDate) {
+    private Integer idTeam;
+
+    public void addSubmit(String description, Date initialDate, Date finalDate, Integer idTeam) {
 
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
-            String insercaoSQL = "INSERT INTO entrega (descricao, data_inicial, data_final) VALUES (?, ?, ?)";
+            String insercaoSQL = "INSERT INTO entrega (descricao, data_inicial, data_final, idTurma) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insercaoSQL);
             preparedStatement.setString(1, description);
             preparedStatement.setDate(2, initialDate);
             preparedStatement.setDate(3, finalDate);
+            preparedStatement.setInt(4, idTeam);
             preparedStatement.executeUpdate();
             preparedStatement.close();
             connection.close();

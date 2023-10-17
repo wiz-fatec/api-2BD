@@ -12,6 +12,16 @@ public class ToDoModel {
     private Integer idStudent;
     private Integer idIssue;
 
+    @Override
+    public String toString() {
+        return "ToDoModel{" +
+                "feedback='" + feedback + '\'' +
+                ", note=" + note +
+                ", idStudent=" + idStudent +
+                ", idIssue=" + idIssue +
+                '}';
+    }
+
     public void addToDo(String feedback, Double note, Integer idStudent, Integer idIssue) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
@@ -30,4 +40,7 @@ public class ToDoModel {
             e.printStackTrace();
         }
     }
+
+
+
 }
