@@ -42,7 +42,7 @@ public class SubmitModel {
             preparedStatement.setInt(4, idTeam);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            connection.close();
+            //connection.close();
             System.out.println("Dados inseridos com sucesso!");
 
         } catch (SQLException e) {
