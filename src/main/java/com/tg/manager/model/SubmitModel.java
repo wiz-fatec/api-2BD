@@ -22,7 +22,7 @@ public class SubmitModel {
             preparedStatement.setDate(3, finalDate);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            connection.close();
+            //connection.close();
             System.out.println("Dados inseridos com sucesso!");
 
         } catch (SQLException e) {

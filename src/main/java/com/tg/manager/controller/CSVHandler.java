@@ -10,19 +10,21 @@ public class CSVHandler {
 
     public static void populateDataBase(List<List<String>> dataList) {
 
-    //    AdvisorModel advisorModel = new AdvisorModel();
+    AdvisorModel advisorModel = new AdvisorModel();
     //    StudentModel studentModel = new StudentModel();
     //    TGModel tgModel = new TGModel();
 
         for (int i = 1; i < dataList.size(); i++) {
-
-            List<String> subList = dataList.get(i);
-            System.out.println("Advisor: "+subList.get(4)+subList.get(5));
-            System.out.println("TG: "+subList.get(7)+ subList.get(8)+ subList.get(9)+ subList.get(10));
-            System.out.println("Student: "+subList.get(3)+subList.get(1)+subList.get(2));
-    //        advisorModel.addAdvisor(subList.get(4),subList.get(5));
-    //        tgModel.addTG("a", subList.get(7), subList.get(8), subList.get(9), subList.get(10), 0);
-    //        studentModel.addStudent(subList.get(3), subList.get(1), subList.get(2),0,0);
+            
+            try {
+                List<String> subList = dataList.get(i);
+                System.out.println("Advisor: "+subList.get(4)+subList.get(5));
+                System.out.println("TG: "+subList.get(7)+ subList.get(8)+ subList.get(9)+ subList.get(10));
+                System.out.println("Student: "+subList.get(3)+subList.get(1)+subList.get(2));
+                advisorModel.addAdvisor(subList.get(4),subList.get(5));
+            } catch(Error e) {}
+            //        tgModel.addTG("a", subList.get(7), subList.get(8), subList.get(9), subList.get(10), 0);
+        //        studentModel.addStudent(subList.get(3), subList.get(1), subList.get(2),0,0);
         }
     }
     //public static void main(String[] args) {
