@@ -12,6 +12,16 @@ public class ToDoModel {
     private Integer idStudent;
     private Integer idIssue;
 
+    @Override
+    public String toString() {
+        return "ToDoModel{" +
+                "feedback='" + feedback + '\'' +
+                ", note=" + note +
+                ", idStudent=" + idStudent +
+                ", idIssue=" + idIssue +
+                '}';
+    }
+
     public void addToDo(String feedback, Double note, Integer idStudent, Integer idIssue) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
@@ -24,10 +34,13 @@ public class ToDoModel {
             preparedStatement.setInt(4, idIssue);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            connection.close();
+            //connection.close();
             System.out.println("Dados inseridos com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+
+
 }
