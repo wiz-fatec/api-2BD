@@ -1,3 +1,5 @@
+package com.tg.manager.view;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;

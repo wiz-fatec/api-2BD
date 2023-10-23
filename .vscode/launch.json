@@ -15,17 +15,13 @@
             "name": "Main",
             "request": "launch",
             "mainClass": "com.tg.manager.Main",
-            "projectName": "tg-manager",
-            "vmArgs": "--module-path \"C:/Users/Cauan Barbaglio/OneDrive/Documentos/javafx-sdk-21/lib\" --add-modules javafx.controls,javafx.fxml"
-
+            "projectName": "tg-manager"
         },
         {
             "type": "java",
             "name": "Main(1)",
             "request": "launch",
             "mainClass": "com.tg.manager.view.Main",
-            "projectName": "tg-manager",
-            "vmArgs": "--module-path \"C:/Users/Cauan Barbaglio/OneDrive/Documentos/javafx-sdk-21/lib\" --add-modules javafx.controls,javafx.fxml"
-        }
+            "projectName": "tg-manager"        }
     ]
 }

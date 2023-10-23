@@ -1,3 +1,5 @@
+package com.tg.manager.view;
+
 public class Entrega {
     private String atividade;
     private String tipoTG;
