@@ -65,22 +65,22 @@
       </TableView>
       <HBox alignment="CENTER" layoutX="-2.0" layoutY="692.0" prefHeight="75.0" prefWidth="1366.0" style="-fx-background-color: #2e2e2e;">
          <children>
-            <ImageView fx:id="botaoHome" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="botaoHome" fx:id="botaoHome" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" onMouseClicked="#goToHomeScreen" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Documentos/icons8-home-60.png" />
+                  <Image url="@../assets/icons8-home-60.png" />
                </image>
                <HBox.margin>
                   <Insets right="40.0" />
                </HBox.margin>
             </ImageView>
-            <ImageView fx:id="botaoClipboard" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="botaoClipboard" fx:id="botaoClipboard" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" onMouseClicked="#goToGeneralReportScreen" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Documentos/icons8-clipboard-60.png" />
+                  <Image url="@../assets/icons8-clipboard-60.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="botaoCalendar" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="botaoCalendar" fx:id="botaoCalendar" disable="true" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Documentos/icons8-edit-calendar-60.png" />
+                  <Image url="@../assets/icons8-edit-calendar-60.png" />
                </image>
                <HBox.margin>
                   <Insets left="40.0" />
