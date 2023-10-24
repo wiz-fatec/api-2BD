@@ -11,6 +11,7 @@ import java.util.Set;
 public class CSVHandler {
 
     public static void populateDataBase(List<List<String>> dataList) {
+        System.out.println(dataList);
 
         AdvisorModel advisorModel = new AdvisorModel();
         StudentModel studentModel = new StudentModel();
