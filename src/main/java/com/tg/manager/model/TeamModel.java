@@ -28,7 +28,6 @@ public class TeamModel {
             preparedStatement.setInt(2, year);
             System.out.println(preparedStatement.executeUpdate());
             preparedStatement.close();
-            //connection.close();
             System.out.println("Dados inseridos com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();

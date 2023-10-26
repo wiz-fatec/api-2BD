@@ -1,5 +1,6 @@
 package com.tg.manager.model;
 import com.tg.manager.model.connection.ConnectionDataBase;
+import com.tg.manager.utils.EmailValidator;
 import lombok.Data;
 import lombok.ToString;
 
@@ -18,7 +19,7 @@ public class TGModel {
     private String discipline;
     private Integer idStudent;
 
-    public void addTG(String description, String type, String problem, String enterprise, String discipline, Integer idStudent) {
+    public static void addTG(String description, String type, String problem, String enterprise, String discipline, Integer idStudent) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -32,14 +33,13 @@ public class TGModel {
             preparedStatement.setInt(6, idStudent);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            //connection.close();
             System.out.println("Dados inseridos com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public Set<TGModel> getSubmit() throws SQLException {
+    public  Set<TGModel> getSubmit() throws SQLException {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -67,5 +67,24 @@ public class TGModel {
             ex.printStackTrace();
             return null;
         }
+    }
+
+    public static void validatorTG(String description, String typeTg, String problem, String enterprise, String discipline, String emailStudent){
+        EmailValidator.validatorEmail(emailStudent);
+        Integer idStudent = findIdStudent(emailStudent);
+        addTG(description, typeTg, problem, enterprise, discipline, idStudent);
+    }
+
+
+    private static Integer findIdStudent(String emailStudent){
+
+        for(StudentModel advisorModel : StudentModel.getSubmit()){
+
+            if(advisorModel.getFatecEmail().contains(emailStudent)){
+
+                return  advisorModel.getId();
+            }
+        }
+        throw new RuntimeException("Student e-mail not exist");
     }
 }

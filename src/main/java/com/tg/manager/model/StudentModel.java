@@ -1,5 +1,6 @@
 package com.tg.manager.model;
 import com.tg.manager.model.connection.ConnectionDataBase;
+import com.tg.manager.utils.EmailValidator;
 import lombok.Data;
 import lombok.ToString;
 import java.sql.*;
@@ -37,7 +38,7 @@ public class StudentModel {
         }
     }
 
-    public Set<StudentModel> getSubmit() throws SQLException {
+    public static Set<StudentModel> getSubmit(){
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -68,24 +69,15 @@ public class StudentModel {
     }
     public static void validator(String email, String emailFatec, String nameStudent, String emailAdvisor, String typeTg){
 
-        validatorEmail(email);
-        validatorEmail(emailFatec);
-        validatorEmail(emailAdvisor);
+        EmailValidator.validatorEmail(email);
+        EmailValidator.validatorEmail(emailFatec);
+        EmailValidator.validatorEmail(emailAdvisor);
         Integer idAdvisordb = findIdAdvisor(emailAdvisor);
         Integer idTeamdb = findTeam(typeTg);
         if(!(listEmails.contains(emailFatec)) && (idAdvisordb!= -1)){
             listEmails.add(emailFatec);
             addStudent(nameStudent, email, emailFatec, idAdvisordb, idTeamdb);
         }
-    }
-
-    private static boolean validatorEmail(String email){
-
-        if(email.indexOf("@")!=-1){
-
-            return true;
-        }
-        throw  new RuntimeException("Email invalid");
     }
 
     private static Integer findIdAdvisor(String emailAdvisor){

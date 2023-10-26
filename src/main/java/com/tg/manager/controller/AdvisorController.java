@@ -14,7 +14,7 @@ public class AdvisorController {
           String emailAdivisor = data.get(5).toLowerCase().trim();
           if(!(listAdvisor.contains(emailAdivisor))){
               listAdvisor.add(emailAdivisor);
-              AdvisorModel.validatorAdvisorEmail(nameAdivisor, emailAdivisor);
+              AdvisorModel.validatorAdvisor(nameAdivisor, emailAdivisor);
           }
         }
     }

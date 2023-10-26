@@ -1,6 +1,8 @@
 package com.tg.manager.controller;
 
 import com.tg.manager.model.StudentModel;
+import com.tg.manager.utils.EmailValidator;
+
 import java.util.List;
 
 public class StudentController {
@@ -11,10 +13,9 @@ public class StudentController {
             String emailStudent =data.get(1).toLowerCase().trim();
             String emailAdvisor = data.get(5).toLowerCase().trim();
             String typeTg = data.get(6);
-            if(emailFatecStudent.isEmpty()){
-                emailFatecStudent = emailStudent;
-            }
-            StudentModel.validator(emailStudent, emailFatecStudent, nameStudent, emailAdvisor, typeTg );
+            String validatorFatecEmail = EmailValidator.validatorEmailFatec(emailFatecStudent, emailStudent);
+
+            StudentModel.validator(emailStudent, validatorFatecEmail, nameStudent, emailAdvisor, typeTg );
         }
     }
 }

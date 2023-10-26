@@ -1,5 +1,6 @@
 package com.tg.manager.model;
 import com.tg.manager.model.connection.ConnectionDataBase;
+import com.tg.manager.utils.EmailValidator;
 import lombok.Data;
 import lombok.ToString;
 import java.sql.*;
@@ -55,11 +56,10 @@ public class AdvisorModel {
         }
     }
 
-    public static boolean validatorAdvisorEmail(String name, String fatecEmail){
-        if (fatecEmail.indexOf("@") != -1) {
-            addAdvisor(name, fatecEmail);
-            return true;
-        }
-        throw new RuntimeException("Email Invalid");
+    public static  void validatorAdvisor(String name, String fatecEmail){
+        EmailValidator.validatorEmail(fatecEmail);
+        addAdvisor(name, fatecEmail);
+
     }
+
 }

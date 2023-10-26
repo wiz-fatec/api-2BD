@@ -12,8 +12,7 @@ public class CSVHandler {
         AdvisorController.addAdivisor(dataList);
         TeamController.addTeam();
         StudentController.addAStudent(dataList);
-
-
+        TGController.addATg(dataList);
     }
 
 }
