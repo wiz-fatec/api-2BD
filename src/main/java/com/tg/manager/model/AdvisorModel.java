@@ -1,33 +1,19 @@
 package com.tg.manager.model;
 import com.tg.manager.model.connection.ConnectionDataBase;
-
+import lombok.Data;
+import lombok.ToString;
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
+@ToString
 public class AdvisorModel {
- private Integer id;
- private String fatecEmail;
- private String name;
+    private Integer id;
+    private String fatecEmail;
+    private String name;
 
-    public AdvisorModel(String fatecEmail, String name) {
-        this.fatecEmail = fatecEmail;
-        this.name = name;
-    }
-
-    public AdvisorModel() {
-        super();
-
-    }
-
-    @Override
-    public String toString() {
-        return "AdvisorModel{" +
-                "fatecEmail='" + fatecEmail + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
-    private  void addAdvisor(String name, String fatecEmail) {
+    private static void addAdvisor(String name, String fatecEmail) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -43,30 +29,6 @@ public class AdvisorModel {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public String getFatecEmail() {
-        return fatecEmail;
-    }
-
-    public void setFatecEmail(String fatecEmail) {
-        this.fatecEmail = fatecEmail;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public static Set<AdvisorModel> getSubmit()  {
@@ -93,12 +55,12 @@ public class AdvisorModel {
         }
     }
 
-    public  boolean validatorAdvisorEmail(String name, String fatecEmail){
+    public static boolean validatorAdvisorEmail(String name, String fatecEmail){
         if (fatecEmail.indexOf("@") != -1) {
-            addAdvisor(name, fatecEmail);
+            String nameValid = EnumAdvisor.validatorNameEnum(name);
+            addAdvisor(nameValid, fatecEmail);
             return true;
         }
         throw new RuntimeException("Email Invalid");
     }
-    
 }

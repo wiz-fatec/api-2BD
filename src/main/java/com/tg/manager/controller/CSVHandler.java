@@ -9,10 +9,8 @@ public class CSVHandler {
 
     public static void populateDataBase(List<List<String>> dataList) {
 
-        TGModel tgModel = new TGModel();
-        int c =0;
-        TeamController.addTeam();
         AdvisorController.addAdivisor(dataList);
+        TeamController.addTeam();
         StudentController.addAStudent(dataList);
 
 

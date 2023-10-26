@@ -6,44 +6,17 @@ import java.util.Set;
 import java.util.TreeSet;
 
 import com.tg.manager.model.connection.ConnectionDataBase;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
+@Data
+@ToString
 public class TeamModel {
     private Integer id;
     private Integer semester;
     private Integer year;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getSemester() {
-        return semester;
-    }
-
-    public void setSemester(Integer semester) {
-        this.semester = semester;
-    }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-                "id:" +  id  +
-                ", semester:" + semester +
-                ", year:" + year +
-                '}';
-    }
 
     public static void addTeam(Integer semester, Integer year) {
         try {

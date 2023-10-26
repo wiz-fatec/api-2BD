@@ -12,13 +12,10 @@ public class AdvisorController {
         for(List<String> data : dataList){
           String nameAdivisor = data.get(4).toUpperCase().trim();
           String emailAdivisor = data.get(5).toLowerCase().trim();
-
           if(!(listAdvisor.contains(emailAdivisor))){
-              AdvisorModel newAdvisor = new AdvisorModel(nameAdivisor, emailAdivisor);
               listAdvisor.add(emailAdivisor);
-              newAdvisor.validatorAdvisorEmail(nameAdivisor, emailAdivisor);
+              AdvisorModel.validatorAdvisorEmail(nameAdivisor, emailAdivisor);
           }
-
         }
     }
 }

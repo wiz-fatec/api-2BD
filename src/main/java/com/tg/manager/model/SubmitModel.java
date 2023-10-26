@@ -1,6 +1,9 @@
 package com.tg.manager.model;
 
 import com.tg.manager.model.connection.ConnectionDataBase;
+import lombok.Data;
+import lombok.ToString;
+
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,24 +12,13 @@ import java.sql.SQLException;
 import java.sql.Date;
 import java.util.HashMap;
 
+@Data
+@ToString
 public class SubmitModel {
     private Integer id;
     private String description;
-
-    @Override
-    public String toString() {
-        return "SubmitModel{" +
-                "id=" + id +
-                ", description='" + description + '\'' +
-                ", initialDate=" + initialDate +
-                ", finalDate=" + finalDate +
-                ", idTeam=" + idTeam +
-                '}';
-    }
-
     private Date initialDate;
     private Date finalDate;
-
     private Integer idTeam;
 
     public void addSubmit(String description, Date initialDate, Date finalDate, Integer idTeam) {

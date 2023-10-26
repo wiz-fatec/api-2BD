@@ -1,13 +1,13 @@
 package com.tg.manager.model;
 import com.tg.manager.model.connection.ConnectionDataBase;
-
+import lombok.Data;
+import lombok.ToString;
 import java.sql.*;
-import java.text.BreakIterator;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+@Data
+@ToString
 public class StudentModel {
     private  Integer id;
     private String name;
@@ -17,55 +17,6 @@ public class StudentModel {
     private Integer teamId;
 
     private static Set<String> listEmails = new HashSet<>();
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFatecEmail() {
-        return fatecEmail;
-    }
-
-    public void setFatecEmail(String fatecEmail) {
-        this.fatecEmail = fatecEmail;
-    }
-
-    public Integer getAdvisorId() {
-        return advisorId;
-    }
-
-    public void setAdvisorId(Integer advisorId) {
-        this.advisorId = advisorId;
-    }
-
-    public Integer getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(Integer teamId) {
-        this.teamId = teamId;
-    }
 
     @Override
     public String toString() {
@@ -148,10 +99,11 @@ public class StudentModel {
     }
 
     private static Integer findIdAdvisor(String nameAdvisor){
+        String nameAdvisorEnum = EnumAdvisor.validatorNameEnum(nameAdvisor);
 
         for(AdvisorModel advisorModel : AdvisorModel.getSubmit()){
 
-            if(advisorModel.getName().contains(nameAdvisor)){
+            if(advisorModel.getName().contains(nameAdvisorEnum)){
 
                 return  advisorModel.getId();
             }
