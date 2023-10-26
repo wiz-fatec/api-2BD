@@ -18,17 +18,6 @@ public class StudentModel {
 
     private static Set<String> listEmails = new HashSet<>();
 
-    @Override
-    public String toString() {
-        return "StudentModel{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", fatecEmail='" + fatecEmail + '\'' +
-                ", advisorId=" + advisorId +
-                ", teamId=" + teamId +
-                '}';
-    }
-
     private static void addStudent(String name, String email, String fatecEmail, Integer advisorId, Integer teamId ) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
@@ -77,11 +66,12 @@ public class StudentModel {
             return null;
         }
     }
-    public static void validator(String email, String emailFatec, String nameStudent, String nameAdvisor, String typeTg){
+    public static void validator(String email, String emailFatec, String nameStudent, String emailAdvisor, String typeTg){
 
         validatorEmail(email);
         validatorEmail(emailFatec);
-        Integer idAdvisordb = findIdAdvisor(nameAdvisor);
+        validatorEmail(emailAdvisor);
+        Integer idAdvisordb = findIdAdvisor(emailAdvisor);
         Integer idTeamdb = findTeam(typeTg);
         if(!(listEmails.contains(emailFatec)) && (idAdvisordb!= -1)){
             listEmails.add(emailFatec);
@@ -98,17 +88,16 @@ public class StudentModel {
         throw  new RuntimeException("Email invalid");
     }
 
-    private static Integer findIdAdvisor(String nameAdvisor){
-        String nameAdvisorEnum = EnumAdvisor.validatorNameEnum(nameAdvisor);
+    private static Integer findIdAdvisor(String emailAdvisor){
 
         for(AdvisorModel advisorModel : AdvisorModel.getSubmit()){
 
-            if(advisorModel.getName().contains(nameAdvisorEnum)){
+            if(advisorModel.getFatecEmail().contains(emailAdvisor)){
 
                 return  advisorModel.getId();
             }
         }
-        return -1;
+        throw new RuntimeException("Advisor e-mail not exist");
 
     }
 

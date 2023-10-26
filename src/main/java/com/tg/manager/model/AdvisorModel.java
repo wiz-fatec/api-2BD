@@ -57,8 +57,7 @@ public class AdvisorModel {
 
     public static boolean validatorAdvisorEmail(String name, String fatecEmail){
         if (fatecEmail.indexOf("@") != -1) {
-            String nameValid = EnumAdvisor.validatorNameEnum(name);
-            addAdvisor(nameValid, fatecEmail);
+            addAdvisor(name, fatecEmail);
             return true;
         }
         throw new RuntimeException("Email Invalid");
