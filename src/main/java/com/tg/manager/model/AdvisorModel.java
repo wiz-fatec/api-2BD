@@ -10,6 +10,16 @@ public class AdvisorModel {
  private String fatecEmail;
  private String name;
 
+    public AdvisorModel(String fatecEmail, String name) {
+        this.fatecEmail = fatecEmail;
+        this.name = name;
+    }
+
+    public AdvisorModel() {
+        super();
+
+    }
+
     @Override
     public String toString() {
         return "AdvisorModel{" +
@@ -17,7 +27,7 @@ public class AdvisorModel {
                 ", name='" + name + '\'' +
                 '}';
     }
-    public void addAdvisor(String name, String fatecEmail) {
+    private  void addAdvisor(String name, String fatecEmail) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -59,7 +69,7 @@ public class AdvisorModel {
         this.name = name;
     }
 
-    public Set<AdvisorModel> getSubmit() throws SQLException {
+    public static Set<AdvisorModel> getSubmit()  {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -81,6 +91,14 @@ public class AdvisorModel {
             ex.printStackTrace();
             return null;
         }
+    }
+
+    public  boolean validatorAdvisorEmail(String name, String fatecEmail){
+        if (fatecEmail.indexOf("@") != -1) {
+            addAdvisor(name, fatecEmail);
+            return true;
+        }
+        throw new RuntimeException("Email Invalid");
     }
     
 }

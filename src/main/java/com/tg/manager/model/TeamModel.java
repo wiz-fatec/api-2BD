@@ -45,7 +45,7 @@ public class TeamModel {
                 '}';
     }
 
-    public void addTeam(Integer semester, Integer year) {
+    public static void addTeam(Integer semester, Integer year) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -62,7 +62,7 @@ public class TeamModel {
         }
     }
 
-    public Set<TeamModel> getSubmit() throws SQLException {
+    public static Set<TeamModel> getSubmit(){
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();

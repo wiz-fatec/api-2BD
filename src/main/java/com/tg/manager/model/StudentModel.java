@@ -2,7 +2,10 @@ package com.tg.manager.model;
 import com.tg.manager.model.connection.ConnectionDataBase;
 
 import java.sql.*;
+import java.text.BreakIterator;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class StudentModel {
@@ -12,6 +15,9 @@ public class StudentModel {
     private String fatecEmail;
     private Integer advisorId;
     private Integer teamId;
+
+    private static Set<String> listEmails = new HashSet<>();
+
 
     public Integer getId() {
         return id;
@@ -72,7 +78,7 @@ public class StudentModel {
                 '}';
     }
 
-    public void addStudent(String name, String email, String fatecEmail, Integer advisorId, Integer teamId ) {
+    private static void addStudent(String name, String email, String fatecEmail, Integer advisorId, Integer teamId ) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -85,7 +91,6 @@ public class StudentModel {
             preparedStatement.setInt(5, teamId);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            //connection.close();
             System.out.println("Dados inseridos com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -121,6 +126,62 @@ public class StudentModel {
             return null;
         }
     }
+    public static void validator(String email, String emailFatec, String nameStudent, String nameAdvisor, String typeTg){
+
+        validatorEmail(email);
+        validatorEmail(emailFatec);
+        Integer idAdvisordb = findIdAdvisor(nameAdvisor);
+        Integer idTeamdb = findTeam(typeTg);
+        if(!(listEmails.contains(emailFatec)) && (idAdvisordb!= -1)){
+            listEmails.add(emailFatec);
+            addStudent(nameStudent, email, emailFatec, idAdvisordb, idTeamdb);
+        }
+    }
+
+    private static boolean validatorEmail(String email){
+
+        if(email.indexOf("@")!=-1){
+
+            return true;
+        }
+        throw  new RuntimeException("Email invalid");
+    }
+
+    private static Integer findIdAdvisor(String nameAdvisor){
+
+        for(AdvisorModel advisorModel : AdvisorModel.getSubmit()){
+
+            if(advisorModel.getName().contains(nameAdvisor)){
+
+                return  advisorModel.getId();
+            }
+        }
+        return -1;
+
+    }
+
+    private static Integer findTeam(String typeTg){
+        if(typeTg.contains("TG1") && typeTg.contains("TG2")){
+            for(TeamModel teamModel : TeamModel.getSubmit()){
+                if(teamModel.getSemester() == 3)
+                    return teamModel.getId();
+            }
+        } else if (typeTg.contains("TG1")) {
+            for(TeamModel teamModel : TeamModel.getSubmit()){
+                if(teamModel.getSemester() == 1)
+                    return teamModel.getId();
+            }
+
+        } else if (typeTg.contains("TG2")) {
+            for(TeamModel teamModel : TeamModel.getSubmit()){
+                if(teamModel.getSemester() == 2)
+                    return teamModel.getId();
+            }
+
+        }
+        throw new RuntimeException("Team does not exist");
+    }
+
 }
 
     
