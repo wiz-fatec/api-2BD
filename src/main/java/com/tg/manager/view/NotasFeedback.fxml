@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #333434;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tg.manager.view.ControllerNotasFeedback">
+   <children>
+      <Label layoutX="429.0" layoutY="144.25" text="NOTAS E FEEDBACK" textFill="#31efb8">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Nota" layoutX="429.0" layoutY="210.75" prefHeight="33.0" prefWidth="99.75" promptText="Nota" style="-fx-border-color: #31efb8;">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="Feedback" alignment="TOP_LEFT" layoutX="429.0" layoutY="274.0" prefHeight="250.0" prefWidth="772.0" promptText="Feedback" style="-fx-border-color: #31efb8;">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </TextField>
+      <Button fx:id="Botao" layoutX="1066.0" layoutY="550.0" mnemonicParsing="false" onAction="#BotaoEnviar" prefHeight="32.0" prefWidth="136.0" style="-fx-background-color: #31efb8;" text="Enviar" textAlignment="CENTER">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Button>
+      <ChoiceBox fx:id="escolhaDeEntrega" layoutX="38.0" layoutY="274.0" prefHeight="42.0" prefWidth="353.0" style="-fx-border-color: #31efb8;" />
+      <Label fx:id="statusEntrega" alignment="CENTER" layoutX="38.0" layoutY="212.0" prefHeight="40.0" prefWidth="353.0" style="-fx-border-color: #31efb8;" text="Status" textAlignment="CENTER" textFill="#31efb8">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER" layoutX="-10.0" layoutY="692.0" prefHeight="75.0" prefWidth="1376.0" style="-fx-background-color: #2e2e2e;">
+         <children>
+            <ImageView fx:id="botaoHome" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" onMouseClicked="#goToHomeScreen" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-home-60.png" />
+               </image>
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="botaoClipboard" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" onMouseClicked="#goToGeneralReportScreen" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-clipboard-60.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="botaoCalendar" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" onMouseClicked="#goToDeliveryScreen" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-edit-calendar-60.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

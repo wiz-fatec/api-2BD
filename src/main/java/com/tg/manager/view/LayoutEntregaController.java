@@ -17,11 +17,14 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class LayoutEntregaController implements Initializable {
@@ -29,6 +32,8 @@ public class LayoutEntregaController implements Initializable {
     String minhaFinalDataFormatada;
     LocalDate myInicialDate;
     LocalDate myfinalDate;
+    private List<String> listaTG1 = new ArrayList<>();
+    private List<String> listaTG2 = new ArrayList<>();
 
     @FXML
     private ImageView botaoCalendar;
@@ -160,6 +165,11 @@ public class LayoutEntregaController implements Initializable {
 
             Entrega novaEntrega = new Entrega(atividade, tg, inicialData, finalData);
             list.add(novaEntrega);
+            if (tg.equals("TG1")) {
+                listaTG1.add(atividade);
+            } else if (tg.equals("TG2")) {
+                listaTG2.add(atividade);
+            }
             tabela.setItems(list);
             // Limpa os campos após adicionar à tabela
             nomeDaAtividade.clear();
@@ -200,11 +210,19 @@ public class LayoutEntregaController implements Initializable {
 
     @FXML
     void goToGeneralReportScreen(MouseEvent event) {
-
+        
     }
 
     @FXML
     void goToHomeScreen(MouseEvent event) {
         
     }
-}
+    public List<String> getListaTG1() {
+        return listaTG1;
+    }
+
+    public List<String> getListaTG2() {
+        return listaTG2;
+    }
+
+    }
