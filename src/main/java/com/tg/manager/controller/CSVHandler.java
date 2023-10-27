@@ -1,7 +1,5 @@
 package com.tg.manager.controller;
 import java.util.*;
-import com.tg.manager.model.StudentModel;
-import com.tg.manager.model.TGModel;
 
 
 
