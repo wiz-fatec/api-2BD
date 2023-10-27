@@ -1,7 +1,6 @@
 package com.tg.manager.view;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import com.tg.manager.model.StudentModel;
@@ -51,18 +50,12 @@ public class HomeScreenWithTableController implements Initializable {
         rateAndFeedback.setCellFactory(col -> createButtonCell("Atribuir"));
         report.setCellFactory(col -> createButtonCell("Visualizar"));
         profileStudent.setCellFactory(col -> createButtonCell("Visualizar"));
-
         carregarDadosDosAlunos();
     }
 
     private void carregarDadosDosAlunos() {
-        StudentModel studentModel = new StudentModel();
-        try {
-            ObservableList<StudentModel> alunos = FXCollections.observableArrayList(studentModel.getSubmit());
-            table.setItems(alunos);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        ObservableList<StudentModel> alunos = FXCollections.observableArrayList(StudentModel.getSubmit());
+        table.setItems(alunos);
     }
 
     private TableCell<StudentModel, Boolean> createButtonCell(String buttonLabel) {
