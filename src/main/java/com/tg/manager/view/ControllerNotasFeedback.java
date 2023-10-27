@@ -1,7 +1,7 @@
 package com.tg.manager.view;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,13 +9,17 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class ControllerNotasFeedback implements Initializable {
 
@@ -44,32 +48,22 @@ public class ControllerNotasFeedback implements Initializable {
     @FXML
     private Label statusEntrega;
 
-    
-
-    private List<String> mockadoListaTG1 = new ArrayList<>();
-    private List<String> mockadoListaTG2 = new ArrayList<>();
     private Map<String, String> feedbackMap = new HashMap<>();
     private Map<String, String> notaMap = new HashMap<>();
-
-
-
+    List<String> listaTG1 = LayoutEntregaController.getListaTG1();
+    List<String> listaTG2 = LayoutEntregaController.getListaTG2();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        mockadoListaTG1.add("entrega 1");
-        mockadoListaTG1.add("entrega 2");
-        mockadoListaTG1.add("entrega 3");
-        mockadoListaTG2.add("entrega 4");
-        mockadoListaTG2.add("entrega 5");
-        mockadoListaTG2.add("entrega 6");
 
-        String mockadoTipoTG = "TG2";
 
-        if (mockadoTipoTG.equals("TG1")){
-            escolhaDeEntrega.getItems().addAll(mockadoListaTG1);
+        String mockadoDoAlunoTipoTG = "TG2";
+
+        if (mockadoDoAlunoTipoTG.equals("TG1")){
+            escolhaDeEntrega.getItems().addAll(listaTG1);
 
         }
-        if (mockadoTipoTG.equals("TG2")){
-            escolhaDeEntrega.getItems().addAll(mockadoListaTG2);
+        if (mockadoDoAlunoTipoTG.equals("TG2")){
+            escolhaDeEntrega.getItems().addAll(listaTG2);
 
         }
 
@@ -109,47 +103,39 @@ public class ControllerNotasFeedback implements Initializable {
                 statusEntrega.setStyle("-fx-text-fill: red;");
             }
         }
+
+
     }
 
     @FXML
     void goToDeliveryScreen(MouseEvent event) {
-
+            try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("NovaEntregaScreen.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) botaoCalendar.getScene().getWindow();
+        stage.setScene(scene);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
     }
 
     @FXML
     void goToGeneralReportScreen(MouseEvent event) {
-
     }
 
     @FXML
     void goToHomeScreen(MouseEvent event) {
-
+        try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("HomeScreenWithTable.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) botaoCalendar.getScene().getWindow();
+        stage.setScene(scene);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
-
-    public TextField getFeedback() {
-        return Feedback;
     }
-
-
-    public void setFeedback(TextField feedback) {
-        Feedback = feedback;
-    }
-
-
-    public TextField getNota() {
-        return Nota;
-    }
-
-
-    public void setNota(TextField nota) {
-        Nota = nota;
-    }
-
-
-    public Label getStatusEntrega() {
-        return statusEntrega;
-    }
-
 
     public void setStatusEntrega(Label statusEntrega) {
         this.statusEntrega = statusEntrega;

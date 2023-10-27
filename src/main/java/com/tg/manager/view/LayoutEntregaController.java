@@ -6,7 +6,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DateCell;
@@ -20,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -32,8 +36,8 @@ public class LayoutEntregaController implements Initializable {
     String minhaFinalDataFormatada;
     LocalDate myInicialDate;
     LocalDate myfinalDate;
-    private List<String> listaTG1 = new ArrayList<>();
-    private List<String> listaTG2 = new ArrayList<>();
+    private static List<String> listaTG1 = new ArrayList<>();
+    private static List<String> listaTG2 = new ArrayList<>();
 
     @FXML
     private ImageView botaoCalendar;
@@ -78,7 +82,7 @@ public class LayoutEntregaController implements Initializable {
     private ObservableList<Entrega> list = FXCollections.observableArrayList();
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources) {        
         tipoDeTg.getItems().addAll(opcoesChoiceBox);
 
         dataInicial.setDayCellFactory(picker -> new DateCell() {
@@ -215,13 +219,21 @@ public class LayoutEntregaController implements Initializable {
 
     @FXML
     void goToHomeScreen(MouseEvent event) {
-        
+        try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("NotasFeedback.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) botaoHome.getScene().getWindow();
+        stage.setScene(scene);
+    } catch (IOException e) {
+        e.printStackTrace();
     }
-    public List<String> getListaTG1() {
+    }
+    public static List<String> getListaTG1() {
         return listaTG1;
     }
 
-    public List<String> getListaTG2() {
+    public static List<String> getListaTG2() {
         return listaTG2;
     }
 
