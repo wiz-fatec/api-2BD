@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.ToString;
 import java.sql.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -59,6 +60,16 @@ public class AdvisorModel {
     public static  void validatorAdvisor(String name, String fatecEmail){
         EmailValidator.validatorEmail(fatecEmail);
         addAdvisor(name, fatecEmail);
+
+    }
+
+    public static boolean AdvisorExist(String email){
+       for(AdvisorModel advisor : getSubmit()){
+           if(advisor.getFatecEmail().equals(email)){
+               return true;
+           }
+       }
+       return false;
 
     }
 
