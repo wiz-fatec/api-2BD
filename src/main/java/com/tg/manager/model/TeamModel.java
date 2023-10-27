@@ -1,14 +1,10 @@
 package com.tg.manager.model;
 import java.sql.*;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 import com.tg.manager.model.connection.ConnectionDataBase;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.ToString;
 
 @Data
