@@ -1,13 +1,13 @@
 package com.tg.manager.view;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import com.tg.manager.utils.ButtonCell;
+import com.tg.manager.model.StudentModel;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
@@ -26,64 +26,80 @@ public class HomeScreenWithTableController implements Initializable {
     private Button ButtonUploadCertificate;
 
     @FXML
-    private TableColumn<StudentMock, ?> apto;
+    private TableColumn<StudentModel, String> emailFatec;
 
     @FXML
-    private TableColumn<StudentMock, String> institutionalEmail;
+    private TableColumn<StudentModel, Boolean> profileStudent;
 
     @FXML
-    private TableColumn<StudentMock, Boolean> profileStudent;
+    private TableColumn<StudentModel, Boolean> rateAndFeedback;
 
     @FXML
-    private TableColumn<StudentMock, Boolean> rateAndFeedback;
+    private TableColumn<StudentModel, Boolean> report;
 
     @FXML
-    private TableColumn<StudentMock, Boolean> report;
+    private TableColumn<StudentModel, String> name;
 
     @FXML
-    private TableColumn<StudentMock, String> student;
-
-    @FXML
-    private TableView<StudentMock> table;
-
-    @FXML
-    void UploadCSV(ActionEvent event) {
-
-    }
-
-    ObservableList<StudentMock> list = FXCollections.observableArrayList(
-        new StudentMock("Paulo Arantes", "Paulo@test.com"),
-        new StudentMock("Cauan Barbaglio", "Cauan@test.com")
-    );
+    private TableView<StudentModel> table;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
-        student.setCellValueFactory(new PropertyValueFactory<StudentMock, String>("student"));
-        institutionalEmail.setCellValueFactory(new PropertyValueFactory<StudentMock, String>("institutionalEmail"));
-        
-        rateAndFeedback.setCellFactory(col -> new ButtonCell());
-        report.setCellFactory(col -> new ButtonCell());
-        profileStudent.setCellFactory(col -> new ButtonCell());
+        name.setCellValueFactory(new PropertyValueFactory<StudentModel, String>("name"));
+        emailFatec.setCellValueFactory(new PropertyValueFactory<StudentModel, String>("fatecEmail"));
 
-        rateAndFeedback.setCellFactory(col -> {
-            TableCell<StudentMock, Boolean> cell = new ButtonCell();
-            cell.setAlignment(Pos.CENTER);
-            return cell;
+        rateAndFeedback.setCellFactory(col -> createButtonCell("Atribuir"));
+        report.setCellFactory(col -> createButtonCell("Visualizar"));
+        profileStudent.setCellFactory(col -> createButtonCell("Visualizar"));
+
+        carregarDadosDosAlunos();
+    }
+
+    private void carregarDadosDosAlunos() {
+        StudentModel studentModel = new StudentModel();
+        try {
+            ObservableList<StudentModel> alunos = FXCollections.observableArrayList(studentModel.getSubmit());
+            table.setItems(alunos);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private TableCell<StudentModel, Boolean> createButtonCell(String buttonLabel) {
+        return new CustomButtonCell(buttonLabel);
+    }
+}
+
+class CustomButtonCell extends TableCell<StudentModel, Boolean> {
+    private final Button button;
+
+    public CustomButtonCell(String buttonLabel) {
+        button = new Button(buttonLabel);
+        button.setAlignment(getAlignment());;
+        button.setOnAction(event -> {
+            switch (buttonLabel) {
+                case "Rate and Feedback":
+
+                    break;
+                case "Report":
+
+                    break;
+                case "Profile":
+   
+                    break;
+            }
         });
+    }
 
-        report.setCellFactory(col -> {
-            TableCell<StudentMock, Boolean> cell = new ButtonCell();
-            cell.setAlignment(Pos.CENTER);
-            return cell;
-        });
+    @Override
+    protected void updateItem(Boolean item, boolean empty) {
+        super.updateItem(item, empty);
 
-        profileStudent.setCellFactory(col -> {
-            TableCell<StudentMock, Boolean> cell = new ButtonCell();
-            cell.setAlignment(Pos.CENTER);
-            return cell;
-        });
-
-        table.setItems(list);
+        if (empty) {
+            setGraphic(null);
+        } else {
+            setAlignment(Pos.CENTER);
+            setGraphic(button);
+        }
     }
 }

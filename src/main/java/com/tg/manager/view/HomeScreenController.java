@@ -1,14 +1,13 @@
 package com.tg.manager.view;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.util.List;
 
+import com.tg.manager.controller.CSVHandler;
 import com.tg.manager.utils.CSVProcessor;
 
 public class HomeScreenController {
@@ -24,29 +23,7 @@ public class HomeScreenController {
 
             List<List<String>> csvData = CSVProcessor.readCSVToListOfLists(file.getAbsolutePath());
 
-            System.out.print("[");
-            boolean first = true;
-            for (List<String> innerList : csvData) {
-                if (!first) {
-                    System.out.print(", ");
-                } else {
-                    first = false;
-                }
-                System.out.print("[");
-                boolean innerFirst = true;
-                for (String value : innerList) {
-                    if (!innerFirst) {
-                        System.out.print(", ");
-                    } else {
-                        innerFirst = false;
-                    }
-                    System.out.print("\"" + value + "\"");
-                }
-                System.out.print("]");
-            }
-            System.out.print("]");
-
-            // Após processar o CSV, abrir a tela HomeScreenWithTable
+            CSVHandler.populateDataBase(csvData);
             abrirTelaHomeScreenWithTable();
         }
     }
@@ -55,7 +32,6 @@ public class HomeScreenController {
         HomeScreenWithTable homeScreenWithTable = new HomeScreenWithTable();
         try {
             homeScreenWithTable.start(new Stage());
-            // Feche a tela atual, se desejar
             ((Stage) ButtonUploadCSV.getScene().getWindow()).close();
         } catch (Exception e) {
             e.printStackTrace();

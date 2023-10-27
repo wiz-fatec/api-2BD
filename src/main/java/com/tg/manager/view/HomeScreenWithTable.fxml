@@ -43,20 +43,20 @@
             <Font size="32.0" />
          </font>
       </Text>
-      <Button fx:id="ButtonUploadCSV" layoutX="1065.0" layoutY="59.0" mnemonicParsing="false" onAction="#UploadCSV" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: #31efb8;" text="Carregar CSV">
+      <Button fx:id="ButtonUploadCSV" layoutX="1065.0" layoutY="59.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: #31efb8;" text="Carregar CSV">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonUploadCertificate" disable="true" layoutX="870.0" layoutY="59.0" mnemonicParsing="false" onAction="#UploadCSV" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: #31efb8;" text="Certificados">
+      <Button fx:id="ButtonUploadCertificate" disable="true" layoutX="870.0" layoutY="59.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: #31efb8;" text="Certificados">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
       <TableView fx:id="table" layoutX="218.0" layoutY="241.0" prefHeight="338.0" prefWidth="935.0">
          <columns>
-            <TableColumn fx:id="student" prefWidth="124.26663208007812" text="Estudante" />
-            <TableColumn fx:id="institutionalEmail" prefWidth="163.73330688476562" text="Email Institucional" />
+            <TableColumn fx:id="name" prefWidth="124.26663208007812" text="Estudante" />
+            <TableColumn fx:id="emailFatec" prefWidth="163.73330688476562" text="Email Institucional" />
             <TableColumn fx:id="rateAndFeedback" prefWidth="155.99993896484375" text="Nota e Feedback" />
             <TableColumn fx:id="apto" minWidth="0.0" prefWidth="148.2666015625" text="Apto para Apresentar" />
             <TableColumn fx:id="report" minWidth="0.0" prefWidth="162.666748046875" text="Relatório" />
