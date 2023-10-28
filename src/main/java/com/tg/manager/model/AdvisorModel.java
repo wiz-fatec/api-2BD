@@ -1,23 +1,20 @@
 package com.tg.manager.model;
 import com.tg.manager.model.connection.ConnectionDataBase;
-
+import com.tg.manager.utils.EmailValidator;
+import lombok.Data;
+import lombok.ToString;
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
+@ToString
 public class AdvisorModel {
- private Integer id;
- private String fatecEmail;
- private String name;
+    private Integer id;
+    private String fatecEmail;
+    private String name;
 
-    @Override
-    public String toString() {
-        return "AdvisorModel{" +
-                "fatecEmail='" + fatecEmail + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
-    public void addAdvisor(String name, String fatecEmail) {
+    private static void addAdvisor(String name, String fatecEmail) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -35,31 +32,7 @@ public class AdvisorModel {
         }
     }
 
-    public String getFatecEmail() {
-        return fatecEmail;
-    }
-
-    public void setFatecEmail(String fatecEmail) {
-        this.fatecEmail = fatecEmail;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<AdvisorModel> getSubmit() throws SQLException {
+    public static Set<AdvisorModel> getSubmit()  {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -82,5 +55,11 @@ public class AdvisorModel {
             return null;
         }
     }
-    
+
+    public static  void validatorAdvisor(String name, String fatecEmail){
+        EmailValidator.validatorEmail(fatecEmail);
+        addAdvisor(name, fatecEmail);
+
+    }
+
 }

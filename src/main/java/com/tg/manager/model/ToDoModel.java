@@ -1,26 +1,20 @@
 package com.tg.manager.model;
 
 import com.tg.manager.model.connection.ConnectionDataBase;
+import lombok.Data;
+import lombok.ToString;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+@Data
+@ToString
 public class ToDoModel {
     private String feedback;
     private Double note;
     private Integer idStudent;
     private Integer idIssue;
-
-    @Override
-    public String toString() {
-        return "ToDoModel{" +
-                "feedback='" + feedback + '\'' +
-                ", note=" + note +
-                ", idStudent=" + idStudent +
-                ", idIssue=" + idIssue +
-                '}';
-    }
 
     public void addToDo(String feedback, Double note, Integer idStudent, Integer idIssue) {
         try {
@@ -40,7 +34,5 @@ public class ToDoModel {
             e.printStackTrace();
         }
     }
-
-
 
 }

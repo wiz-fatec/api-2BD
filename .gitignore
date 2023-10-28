@@ -30,3 +30,10 @@ hs_err_pid*
 replay_pid*
 
 .vscode
+
+install_nvm.sh
+package-lock.json
+package.json
+
+.classpath
+node_modules
