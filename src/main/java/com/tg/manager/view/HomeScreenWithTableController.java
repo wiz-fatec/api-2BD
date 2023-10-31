@@ -50,10 +50,10 @@ public class HomeScreenWithTableController implements Initializable {
         rateAndFeedback.setCellFactory(col -> createButtonCell("Atribuir"));
         report.setCellFactory(col -> createButtonCell("Visualizar"));
         profileStudent.setCellFactory(col -> createButtonCell("Visualizar"));
-        carregarDadosDosAlunos();
+        loadStudentData();
     }
 
-    private void carregarDadosDosAlunos() {
+    private void loadStudentData() {
         ObservableList<StudentModel> alunos = FXCollections.observableArrayList(StudentModel.getSubmit());
         table.setItems(alunos);
     }
