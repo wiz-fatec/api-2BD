@@ -1,32 +1,25 @@
 package com.tg.manager.model;
 
 import com.tg.manager.model.connection.ConnectionDataBase;
+import lombok.Data;
+import lombok.ToString;
+
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashSet;
 import java.sql.Date;
-import java.util.HashMap;
+import java.util.Set;
 
+@Data
+@ToString
 public class SubmitModel {
     private Integer id;
     private String description;
-
-    @Override
-    public String toString() {
-        return "SubmitModel{" +
-                "id=" + id +
-                ", description='" + description + '\'' +
-                ", initialDate=" + initialDate +
-                ", finalDate=" + finalDate +
-                ", idTeam=" + idTeam +
-                '}';
-    }
-
     private Date initialDate;
     private Date finalDate;
-
     private Integer idTeam;
 
     public void addSubmit(String description, Date initialDate, Date finalDate, Integer idTeam) {
@@ -50,31 +43,29 @@ public class SubmitModel {
         }
     }
 
-    public SubmitModel(Integer id, String description, Date initialDate, Date finalDate) {
-        this.id = id;
-        this.description = description;
-        this.initialDate = initialDate;
-        this.finalDate = finalDate;
-    }
-
-    public void getSubmit() throws SQLException {
+    public Set<SubmitModel> getSubmit() throws SQLException {
         try {    
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
             Statement statementDb = connection.createStatement();
             ResultSet result = statementDb.executeQuery("SELECT * from entrega");
-
+            Set<SubmitModel> submitList = new HashSet<>();
             while (result.next()) {
-                HashMap<Integer, SubmitModel> informationList = new HashMap<Integer, SubmitModel>();
-                Integer idSubmit = result.getInt("id");
-                String descricao = result.getString("descricao");
-                Date dataInicial = result.getDate("data_inicial");
-                Date dataFinal = result.getDate("data_final");
-                SubmitModel sm = new SubmitModel(idSubmit, descricao, dataInicial, dataFinal);
-                informationList.put(idSubmit, sm);
+                SubmitModel submit = new SubmitModel();
+                String description = result.getString("descricao");
+                submit.setDescription(description);
+                Date initialDate = result.getDate("data_inicial");
+                submit.setInitialDate(initialDate);
+                Date finalDate = result.getDate("data_final");
+                submit.setFinalDate(finalDate);
+                Integer idTurma = result.getInt("idTurma");
+                submit.setIdTeam(idTurma);
+                submitList.add(submit);
             }
+            return submitList;
         } catch (SQLException ex) {
             ex.printStackTrace();
+            return null;
         }
     }
 }

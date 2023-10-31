@@ -1,10 +1,15 @@
 package com.tg.manager.model;
 import com.tg.manager.model.connection.ConnectionDataBase;
+import com.tg.manager.utils.EmailValidator;
+import lombok.Data;
+import lombok.ToString;
 
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
+@ToString
 public class TGModel {
     private  Integer id;
     private String description;
@@ -12,9 +17,9 @@ public class TGModel {
     private String problem;
     private String enterprise;
     private String discipline;
-
     private Integer idStudent;
-    public void addTG(String description, String type, String problem, String enterprise, String discipline, Integer idStudent) {
+
+    public static void addTG(String description, String type, String problem, String enterprise, String discipline, Integer idStudent) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -28,70 +33,13 @@ public class TGModel {
             preparedStatement.setInt(6, idStudent);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            //connection.close();
             System.out.println("Dados inseridos com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getProblem() {
-        return problem;
-    }
-
-    public void setProblem(String problem) {
-        this.problem = problem;
-    }
-
-    public String getEnterprise() {
-        return enterprise;
-    }
-
-    public void setEnterprise(String enterprise) {
-        this.enterprise = enterprise;
-    }
-
-    public String getDiscipline() {
-        return discipline;
-    }
-
-    public void setDiscipline(String discipline) {
-        this.discipline = discipline;
-    }
-
-    public Integer getIdStudent() {
-        return idStudent;
-    }
-
-    public void setIdStudent(Integer idStudent) {
-        this.idStudent = idStudent;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Set<TGModel> getSubmit() throws SQLException {
+    public  Set<TGModel> getSubmit() throws SQLException {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -121,15 +69,22 @@ public class TGModel {
         }
     }
 
-    @Override
-    public String toString() {
-        return "TGModel{" +
-                "description='" + description + '\'' +
-                ", type='" + type + '\'' +
-                ", problem='" + problem + '\'' +
-                ", enterprise='" + enterprise + '\'' +
-                ", discipline='" + discipline + '\'' +
-                ", idStudent=" + idStudent +
-                '}';
+    public static void validatorTG(String description, String typeTg, String problem, String enterprise, String discipline, String emailStudent){
+        EmailValidator.validatorEmail(emailStudent);
+        Integer idStudent = findIdStudent(emailStudent);
+        addTG(description, typeTg, problem, enterprise, discipline, idStudent);
+    }
+
+
+    private static Integer findIdStudent(String emailStudent){
+
+        for(StudentModel advisorModel : StudentModel.getSubmit()){
+
+            if(advisorModel.getFatecEmail().contains(emailStudent)){
+
+                return  advisorModel.getId();
+            }
+        }
+        throw new RuntimeException("Student e-mail not exist");
     }
 }

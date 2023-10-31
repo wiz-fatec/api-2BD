@@ -21,35 +21,22 @@ public class HomeScreenController {
         if (file != null) {
             System.out.println("Arquivo selecionado: " + file.getAbsolutePath());
 
-            // Processa o CSV e obtém a lista de listas de strings
             List<List<String>> csvData = CSVProcessor.readCSVToListOfLists(file.getAbsolutePath());
 
-            // Imprime a lista de listas no formato desejado
-            System.out.print("[");
-            boolean first = true;
-/*             for (List<String> innerList : csvData) {
-                if (!first) {
-                    System.out.print(", ");
-                } else {
-                    first = false;
-                }
-                System.out.print("[");
-                boolean innerFirst = true;
-                for (String value : innerList) {
-                    if (!innerFirst) {
-                        System.out.print(", ");
-                    } else {
-                        innerFirst = false;
-                    }
-                    System.out.print("\"" + value + "\"");
-                }
-                System.out.print("]");
-            }
-            System.out.print("]"); */
             CSVHandler.populateDataBase(csvData);
+            abrirTelaHomeScreenWithTable();
         }
     }
 
+    private void abrirTelaHomeScreenWithTable() {
+        HomeScreenWithTable homeScreenWithTable = new HomeScreenWithTable();
+        try {
+            homeScreenWithTable.start(new Stage());
+            ((Stage) ButtonUploadCSV.getScene().getWindow()).close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     private File escolherArquivoCSV() {
         FileChooser fileChooser = new FileChooser();
