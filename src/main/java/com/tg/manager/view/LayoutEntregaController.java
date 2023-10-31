@@ -206,12 +206,20 @@ public class LayoutEntregaController implements Initializable {
 
     @FXML
     void inseridoDataInicial(ActionEvent event) {
-        myInicialDate = dataInicial.getValue();
+        if(dataInicial.getValue() == null) {
+            return;
+        }
+
+        LocalDate myInicialDate = dataInicial.getValue();
         minhaInicialDataFormatada = myInicialDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
     @FXML
     void inseridoDataFinal(ActionEvent event) {
+        if(dataFinal.getValue() == null) {
+            return;
+        }
+        
         LocalDate date = dataFinal.getValue();
         minhaFinalDataFormatada = date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
