@@ -5,8 +5,13 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @ToString
@@ -33,6 +38,33 @@ public class ToDoModel {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+    }
+    public Set<ToDoModel> getToDo()throws Exception{
+        try {    
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            Statement statementDb = connection.createStatement();
+            ResultSet result = statementDb.executeQuery("SELECT * from valor_entrega");
+            Set<ToDoModel> toDoList = new HashSet<>();
+            while (result.next()) {
+                ToDoModel toDo = new ToDoModel();
+                Double grade = result.getDouble("nota");
+                toDo.setNote(grade);
+                String feedback = result.getString("feedback");
+                toDo.setFeedback(feedback);
+                Integer studentId = result.getInt("idaluno");
+                toDo.setIdStudent(studentId);
+                Integer issueId = result.getInt("identrega");
+                toDo.setIdIssue(issueId);
+                toDoList.add(toDo);
+            }
+            return toDoList;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
     }
 
 }
