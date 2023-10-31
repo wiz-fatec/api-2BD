@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #333434;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tg.manager.view.ControllerNotasFeedback">
    <children>
-      <Label layoutX="429.0" layoutY="144.25" text="NOTAS E FEEDBACK" textFill="#31efb8">
+      <Label layoutX="429.0" layoutY="144.25" text="NOTAS E FEEDBACKS" textFill="#31efb8">
          <font>
             <Font size="32.0" />
          </font>
@@ -33,8 +33,8 @@
             <Font size="19.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="escolhaDeEntrega" layoutX="38.0" layoutY="274.0" prefHeight="42.0" prefWidth="353.0" style="-fx-border-color: #31efb8;" />
-      <Label fx:id="statusEntrega" alignment="CENTER" layoutX="38.0" layoutY="212.0" prefHeight="40.0" prefWidth="353.0" style="-fx-border-color: #31efb8;" text="Status" textAlignment="CENTER" textFill="#31efb8">
+      <ChoiceBox fx:id="escolhaDeEntrega" layoutX="39.0" layoutY="336.0" prefHeight="42.0" prefWidth="353.0" style="-fx-border-color: #31efb8;" />
+      <Label fx:id="statusEntrega" alignment="CENTER" layoutX="39.0" layoutY="274.0" prefHeight="40.0" prefWidth="353.0" style="-fx-border-color: #31efb8;" text="Status" textAlignment="CENTER" textFill="#31efb8">
          <font>
             <Font size="19.0" />
          </font>
@@ -64,5 +64,6 @@
             </ImageView>
          </children>
       </HBox>
+      <ChoiceBox fx:id="escolherTG" layoutX="39.0" layoutY="211.0" prefHeight="42.0" prefWidth="353.0" style="-fx-border-color: #31efb8;" />
    </children>
 </AnchorPane>

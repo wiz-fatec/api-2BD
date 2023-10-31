@@ -46,26 +46,32 @@ public class ControllerNotasFeedback implements Initializable {
     private ChoiceBox<String> escolhaDeEntrega;
 
     @FXML
+    private ChoiceBox<String> escolherTG;
+
+    @FXML
     private Label statusEntrega;
 
     private Map<String, String> feedbackMap = new HashMap<>();
     private Map<String, String> notaMap = new HashMap<>();
     List<String> listaTG1 = LayoutEntregaController.getListaTG1();
     List<String> listaTG2 = LayoutEntregaController.getListaTG2();
+    String[] opcoesTG = LayoutEntregaController.getOpcoesChoiceBox();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
-        String mockadoDoAlunoTipoTG = "TG2";
-
-        if (mockadoDoAlunoTipoTG.equals("TG1")){
-            escolhaDeEntrega.getItems().addAll(listaTG1);
-
-        }
-        if (mockadoDoAlunoTipoTG.equals("TG2")){
-            escolhaDeEntrega.getItems().addAll(listaTG2);
-
-        }
+        escolherTG.getItems().addAll(opcoesTG);
+        escolherTG.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                escolhaDeEntrega.getItems().clear(); // Limpar as opções atuais na ChoiceBox
+        
+                if (newValue.equals("TG1")) {
+                    escolhaDeEntrega.getItems().addAll(listaTG1);
+                } else if (newValue.equals("TG2")) {
+                    escolhaDeEntrega.getItems().addAll(listaTG2);
+                }
+            }
+        });
 
         escolhaDeEntrega.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -91,11 +97,9 @@ public class ControllerNotasFeedback implements Initializable {
     void BotaoEnviar(ActionEvent event) {
         String entregaSelecionada = escolhaDeEntrega.getValue();
         if (entregaSelecionada != null) {
-            // Adicione as notas e feedbacks ao mapa correspondente
             feedbackMap.put(entregaSelecionada, Feedback.getText());
             notaMap.put(entregaSelecionada, Nota.getText());
     
-            // Verifique se a nota está presente e atualize o status de acordo
             if (notaMap.containsKey(entregaSelecionada) && !notaMap.get(entregaSelecionada).isEmpty()) {
                 atualizarStatusEntrega(entregaSelecionada);
             } else {
@@ -145,7 +149,7 @@ public class ControllerNotasFeedback implements Initializable {
     private void atualizarStatusEntrega(String entrega) {
         if (notaMap.containsKey(entrega) && !notaMap.get(entrega).isEmpty()) {
             statusEntrega.setText("OK");
-            statusEntrega.setStyle("-fx-text-fill: green;");
+            statusEntrega.setStyle("-fx-text-fill: #31efb8;");
         }
     }
 

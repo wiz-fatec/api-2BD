@@ -78,7 +78,12 @@ public class LayoutEntregaController implements Initializable {
     @FXML
     private ChoiceBox<String> tipoDeTg;
 
-    private String[] opcoesChoiceBox = {"TG1", "TG2"};
+    private static String[] opcoesChoiceBox = {"TG1", "TG2"};
+    
+    public static String[] getOpcoesChoiceBox() {
+        return opcoesChoiceBox;
+    }
+
     private ObservableList<Entrega> list = FXCollections.observableArrayList();
 
     @Override
