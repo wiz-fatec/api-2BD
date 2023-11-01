@@ -52,6 +52,8 @@ public class SubmitModel {
             Set<SubmitModel> submitList = new HashSet<>();
             while (result.next()) {
                 SubmitModel submit = new SubmitModel();
+                Integer idSubmit = result.getInt("id");
+                submit.setId(idSubmit);
                 String description = result.getString("descricao");
                 submit.setDescription(description);
                 Date initialDate = result.getDate("data_inicial");

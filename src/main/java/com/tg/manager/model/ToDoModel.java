@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +15,7 @@ import java.util.Set;
 @Data
 @ToString
 public class ToDoModel {
+    private Integer id;
     private String feedback;
     private Double note;
     private Integer idStudent;
@@ -49,6 +49,8 @@ public class ToDoModel {
             Set<ToDoModel> toDoList = new HashSet<>();
             while (result.next()) {
                 ToDoModel toDo = new ToDoModel();
+                Integer toDoId = result.getInt("id");
+                toDo.setId(toDoId);
                 Double grade = result.getDouble("nota");
                 toDo.setNote(grade);
                 String feedback = result.getString("feedback");
