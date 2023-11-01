@@ -43,7 +43,7 @@ public class SubmitModel {
         }
     }
 
-    public Set<SubmitModel> getSubmit() throws SQLException {
+    public  static Set<SubmitModel> getSubmit()  {
         try {    
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();

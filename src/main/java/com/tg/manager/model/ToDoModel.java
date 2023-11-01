@@ -40,7 +40,7 @@ public class ToDoModel {
         }
 
     }
-    public Set<ToDoModel> getToDo()throws Exception{
+    public static Set<ToDoModel> getToDo(){
         try {    
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
