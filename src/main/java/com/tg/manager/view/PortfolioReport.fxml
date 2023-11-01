@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #303236;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tg.manager.view.HomeScreenController">
+   <children>
+      <HBox alignment="CENTER" layoutX="-3.0" layoutY="693.0" prefHeight="75.0" prefWidth="1366.0" style="-fx-background-color: #2e2e2e;">
+         <children>
+            <ImageView disable="true" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-home-60.png" />
+               </image>
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView disable="true" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-clipboard-60.png" />
+               </image>
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView disable="true" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-edit-calendar-60.png" />
+               </image>
+            </ImageView>
+         </children>
+      </HBox>
+      <Text fill="WHITE" layoutX="304.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Relatório de Portfólio">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Text>
+      <Label layoutX="304.0" layoutY="176.0" prefHeight="38.0" prefWidth="302.0" style="-fx-border-color: #31efb8; -fx-border-radius: 2%;" text="Nome Completo" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <Label layoutX="304.0" layoutY="241.0" prefHeight="38.0" prefWidth="302.0" style="-fx-border-color: #31efb8; -fx-border-radius: 2%;" text="Email de Comunicação" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="304.0" layoutY="305.0" prefHeight="38.0" prefWidth="302.0" style="-fx-border-color: #31efb8; -fx-border-radius: 2%;" text="Email Institucional" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="716.0" layoutY="176.0" prefHeight="38.0" prefWidth="327.0" style="-fx-border-color: #31efb8; -fx-border-radius: 2%;" text="Turma Matriculada" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <Text fill="WHITE" layoutX="304.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notas e Feedback">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Text>
+      <Label alignment="TOP_LEFT" layoutX="304.0" layoutY="466.0" prefHeight="182.0" prefWidth="481.0" style="-fx-border-color: #ffffff; -fx-border-radius: 2%;" text="Feedback" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="873.0" layoutY="468.0" prefHeight="30.0" prefWidth="172.0" style="-fx-border-color: #ffffff; -fx-border-radius: 2%;" text="Nota" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="874.0" layoutY="531.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" style="-fx-background-color: #31efb8;" text="Relatório de Entrega">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button layoutX="874.0" layoutY="591.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="175.0" style="-fx-background-color: #31efb8;" text="Relatório Geral">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
