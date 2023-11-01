@@ -11,7 +11,7 @@ public class AdvisorController {
           String nameAdivisor = data.get(4).toUpperCase().trim();
           String emailAdivisor = data.get(5).toLowerCase().trim();
 
-          if(!(AdvisorModel.AdvisorExist(emailAdivisor))){
+          if(!(AdvisorModel.advisorExist(emailAdivisor))){
               AdvisorModel.validatorAdvisor(nameAdivisor, emailAdivisor);
           }
         }

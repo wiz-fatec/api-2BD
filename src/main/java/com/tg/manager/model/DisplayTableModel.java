@@ -2,7 +2,6 @@ package com.tg.manager.model;
 
 import lombok.Data;
 import lombok.ToString;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,7 +34,7 @@ public class DisplayTableModel {
         Set<ToDoModel> listToDoModel = ToDoModel.getToDo();
         Set<ToDoModel> listExistent = new HashSet<>();
         for(ToDoModel dataToDo : listToDoModel){
-            if(dataToDo.getIdStudent() == idStudent){
+            if(dataToDo.getIdStudent().equals(idStudent)){
                 listExistent.add(dataToDo);
             }
         }
@@ -54,26 +53,17 @@ public class DisplayTableModel {
     }
 
     private static Integer quantityTodo(Integer idStudent){
-        Set<ToDoModel> toDoList = ToDoModel.getToDo();
-        Integer count = 0;
-        for( ToDoModel toDo : toDoList){
-            if(toDo.getIdStudent() == idStudent){
-                count++;
-            }
-        }
-        return  count;
+        Integer occurrences = (int) ToDoModel.getToDo().stream()
+                .filter(e -> e.getIdStudent().equals(idStudent))
+                .count();
+        return occurrences;
 
     }
 
     private static Integer quantitySubmit(Integer idTeam){
-        Set<SubmitModel> listSubmit = SubmitModel.getSubmit();
-        Integer count = 0;
-        for( SubmitModel toDo : listSubmit){
-            if(toDo.getIdTeam() == idTeam){
-                count++;
-            }
-        }
-        return  count;
-
+        Integer occurrences = (int) SubmitModel.getSubmit().stream()
+                .filter(e -> e.getIdTeam().equals(idTeam))
+                .count();
+        return occurrences;
     }
 }

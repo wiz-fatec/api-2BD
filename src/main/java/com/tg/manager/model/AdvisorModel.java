@@ -63,14 +63,13 @@ public class AdvisorModel {
 
     }
 
-    public static boolean AdvisorExist(String email){
+    public static boolean advisorExist(String email){
        for(AdvisorModel advisor : getSubmit()){
            if(advisor.getFatecEmail().equals(email)){
                return true;
            }
        }
        return false;
-
     }
 
 }
