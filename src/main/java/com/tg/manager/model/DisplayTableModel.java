@@ -9,13 +9,13 @@ import java.util.Set;
 @Data
 @ToString
 public class DisplayTableModel {
-    StudentModel student;
+   private StudentModel student;
 
-    Set<ToDoModel> valuesFeedbacks;
+   private Set<ToDoModel> valuesFeedbacks;
 
-    boolean apt;
+   private boolean apt;
 
-    String report;
+   private String report;
 
     public static Set<DisplayTableModel> getDataTable(){
         Set<DisplayTableModel> listDataTable = new HashSet<>();
@@ -76,9 +76,4 @@ public class DisplayTableModel {
         return  count;
 
     }
-
-
-
-
-
 }
