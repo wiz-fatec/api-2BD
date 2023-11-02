@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.sql.Date;
 import java.util.Set;
@@ -22,7 +24,7 @@ public class SubmitModel {
     private Date finalDate;
     private Integer idTeam;
 
-    public void addSubmit(String description, Date initialDate, Date finalDate, Integer idTeam) {
+    private  static void addSubmit(String description, Date initialDate, Date finalDate, Integer idTeam) {
 
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
@@ -35,7 +37,6 @@ public class SubmitModel {
             preparedStatement.setInt(4, idTeam);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            //connection.close();
             System.out.println("Dados inseridos com sucesso!");
 
         } catch (SQLException e) {
@@ -69,5 +70,30 @@ public class SubmitModel {
             ex.printStackTrace();
             return null;
         }
+    }
+
+    public static void submitValidator(String description, String initialDate, String finalDate, String typeTg){
+        String descriptionText = description;
+        Date initialDateConvert =  Date.valueOf(convertDate(initialDate));
+        Date finalDateConvert =  Date.valueOf(convertDate(finalDate));
+        Integer idTeam = getIdTeam(typeTg);
+        addSubmit(descriptionText, initialDateConvert, finalDateConvert, idTeam);
+
+    }
+
+    private static LocalDate convertDate(String date){
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate dateConvert = LocalDate.parse(date, format);
+        return dateConvert;
+    }
+
+    private static Integer getIdTeam(String typeTG){
+        Integer semester = typeTG.equals("TG1") ? 1 : 2;
+        for(TeamModel team : TeamModel.getSubmit()){
+            if(team.getSemester().equals(semester)){
+                return team.getId();
+            }
+        }
+        throw new RuntimeException("Type TG not exist");
     }
 }

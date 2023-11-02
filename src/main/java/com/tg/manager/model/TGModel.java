@@ -11,7 +11,7 @@ import java.util.Set;
 @Data
 @ToString
 public class TGModel {
-    private  Integer id;
+    private Integer id;
     private String description;
     private String type;
     private String problem;

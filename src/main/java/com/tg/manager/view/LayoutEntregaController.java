@@ -1,5 +1,8 @@
 package com.tg.manager.view;
 
+import com.tg.manager.controller.SubmitController;
+import com.tg.manager.model.SubmitModel;
+import com.tg.manager.model.TeamModel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -30,6 +33,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 public class LayoutEntregaController implements Initializable {
     String minhaInicialDataFormatada;
@@ -173,13 +177,8 @@ public class LayoutEntregaController implements Initializable {
             String finalData = minhaFinalDataFormatada;
 
             Entrega novaEntrega = new Entrega(atividade, tg, inicialData, finalData);
-            list.add(novaEntrega);
-            if (tg.equals("TG1")) {
-                listaTG1.add(atividade);
-            } else if (tg.equals("TG2")) {
-                listaTG2.add(atividade);
-            }
-            tabela.setItems(list);
+            SubmitController.setDataInDataBase(novaEntrega);
+            tabela.setItems(SubmitController.getDataInDataBase());
             // Limpa os campos após adicionar à tabela
             nomeDaAtividade.clear();
             tipoDeTg.getSelectionModel().clearSelection();
