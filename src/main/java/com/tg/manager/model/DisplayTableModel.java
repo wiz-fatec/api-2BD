@@ -42,14 +42,13 @@ public class DisplayTableModel {
 
     }
 
-    private static boolean isApt(Integer idTeam, Integer idStudent){
+    private static boolean isApt(Integer idTeam, Integer idStudent) {
         Integer quantityTodoStudent = quantitySubmit(idTeam);
         Integer quantitySubmitStudent = quantityTodo(idStudent);
-        if((quantityTodoStudent / quantitySubmitStudent) == 1){
+        if (quantitySubmitStudent != 0 && (quantityTodoStudent / quantitySubmitStudent) == 1) {
             return true;
         }
         return false;
-
     }
 
     private static Integer quantityTodo(Integer idStudent){

@@ -233,7 +233,7 @@ public class LayoutEntregaController implements Initializable {
     @FXML
     void goToHomeScreen(MouseEvent event) {
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("NotasFeedback.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("HomeScreenWithTable.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) botaoHome.getScene().getWindow();
