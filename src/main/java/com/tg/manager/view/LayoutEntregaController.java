@@ -92,6 +92,7 @@ public class LayoutEntregaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {        
+        tabela.setItems(SubmitController.getDataInDataBase());
         tipoDeTg.getItems().addAll(opcoesChoiceBox);
 
         dataInicial.setDayCellFactory(picker -> new DateCell() {
