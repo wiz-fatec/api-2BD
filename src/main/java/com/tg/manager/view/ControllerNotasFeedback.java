@@ -120,6 +120,7 @@ public class ControllerNotasFeedback implements Initializable {
 
         String entregaSelecionada = escolhaDeEntrega.getValue();
         if (entregaSelecionada != null) {
+            try{
             feedbackMap.put(entregaSelecionada, Feedback.getText());
             notaMap.put(entregaSelecionada, Nota.getText());
             ToDoController.sendDataForDataBase(Feedback.getText(), Nota.getText(), entregaSelecionada, NotasFeedbackScreen.display);
@@ -128,6 +129,8 @@ public class ControllerNotasFeedback implements Initializable {
             } else {
                 statusEntrega.setText("SEM NOTA");
                 statusEntrega.setStyle("-fx-text-fill: red;");
+            }} catch (Exception e){
+
             }
         }
 

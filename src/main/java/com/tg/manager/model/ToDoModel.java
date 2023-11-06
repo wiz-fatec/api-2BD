@@ -70,7 +70,7 @@ public class ToDoModel {
 
     }
 
-    public static void toDoValidator(Integer idIssue, Integer idStudent, Double nota, String feedback){
+    public static void toDoValidator(Integer idIssue, Integer idStudent, Double nota, String feedback) throws Exception{
         Integer idIssueToDo = idIssue;
         Integer idStudentToDo =  idStudent;
         String feedbackToDo = feedback;
@@ -80,7 +80,9 @@ public class ToDoModel {
 
             addToDo(feedbackToDo,notaTratada,idStudentToDo,idIssueToDo);
 
-        } throw new RuntimeException("A nota inserida é negativa ou maior que 10");
+        }else {
+            throw new Exception("Note is invalid");
+        }
 
     }
 }
