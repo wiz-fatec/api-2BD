@@ -1,11 +1,18 @@
 package com.tg.manager.view;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+
+import javax.crypto.spec.RC2ParameterSpec;
+
+import com.tg.manager.controller.ToDoController;
+import com.tg.manager.model.ToDoModel;
+import com.tg.manager.view.NotasFeedbackScreen;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -95,11 +102,19 @@ public class ControllerNotasFeedback implements Initializable {
 
     @FXML
     void BotaoEnviar(ActionEvent event) {
+         System.out.print(NotasFeedbackScreen.toDo);
         String entregaSelecionada = escolhaDeEntrega.getValue();
         if (entregaSelecionada != null) {
             feedbackMap.put(entregaSelecionada, Feedback.getText());
             notaMap.put(entregaSelecionada, Nota.getText());
-    
+            ToDoModel todomodel = new ToDoModel();
+            todomodel.setNote(Double.parseDouble(Nota.getText()));
+            todomodel.setFeedback(Feedback.getText());
+            todomodel.setIdStudent(1);
+           
+            todomodel.setIdIssue(1);
+            ToDoController.sendDataForDataBase(todomodel);
+
             if (notaMap.containsKey(entregaSelecionada) && !notaMap.get(entregaSelecionada).isEmpty()) {
                 atualizarStatusEntrega(entregaSelecionada);
             } else {

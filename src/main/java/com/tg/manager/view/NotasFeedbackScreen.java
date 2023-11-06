@@ -13,12 +13,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class NotasFeedbackScreen extends Application {
-    private Set <SubmitModel> toDo;
-    private DisplayTableModel display;
+    public static Set <SubmitModel> toDo;
 
-    public NotasFeedbackScreen(Set <SubmitModel> toDo, DisplayTableModel display) {
-        this.toDo = toDo;
-        this.display = display;
+    public NotasFeedbackScreen(){}
+
+    public NotasFeedbackScreen(Set <SubmitModel> toDoArg) {
+        toDo = toDoArg;
     }
 
     @Override
