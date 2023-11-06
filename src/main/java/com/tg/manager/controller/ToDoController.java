@@ -10,12 +10,12 @@ import java.util.Set;
 
 public class ToDoController {
 
-    public static void sendDataForDataBase(String feedback, String note, String dataSubmit, DisplayTableModel dataStudent){
+    public static void sendDataForDataBase(String feedback, String note, String dataSubmit, DisplayTableModel dataStudent)throws Exception{
           Double  noteSubmit = Double.parseDouble(note);
           String feedbackSubmit = feedback;
           Integer idIssueSubmit = getIdDataSubmit(dataSubmit);
           Integer idStudentSubmit = dataStudent.getStudent().getId();
-          ToDoModel.addToDo(feedbackSubmit,noteSubmit, idStudentSubmit, idIssueSubmit);
+          ToDoModel.toDoValidator(idIssueSubmit, idStudentSubmit, noteSubmit, feedbackSubmit);
 
     }
 
