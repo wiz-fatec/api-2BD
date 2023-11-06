@@ -176,6 +176,8 @@ public class LayoutEntregaController implements Initializable {
             String tg = tipoDeTg.getValue().toString();
             String inicialData = minhaInicialDataFormatada;
             String finalData = minhaFinalDataFormatada;
+            
+
 
             Entrega novaEntrega = new Entrega(atividade, tg, inicialData, finalData);
             SubmitController.setDataInDataBase(novaEntrega);

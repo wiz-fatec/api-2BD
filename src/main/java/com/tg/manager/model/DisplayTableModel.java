@@ -10,7 +10,7 @@ import java.util.Set;
 public class DisplayTableModel {
    private StudentModel student;
 
-   private Set<ToDoModel> valuesFeedbacks;
+   private Set<SubmitModel> valuesFeedbacks;
 
    private boolean apt;
 
@@ -22,7 +22,7 @@ public class DisplayTableModel {
         for(StudentModel studentData : listStudent){
             DisplayTableModel dataTable = new DisplayTableModel();
             dataTable.setStudent(studentData);
-            dataTable.setValuesFeedbacks(getNoteAndFeedback(studentData.getId()));
+            dataTable.setValuesFeedbacks(getNoteAndFeedback(studentData.getTeamId()));
             dataTable.setApt(isApt(studentData.getTeamId(), studentData.getId()));
             dataTable.setReport("Relatorinho");
             listDataTable.add(dataTable);
@@ -30,26 +30,29 @@ public class DisplayTableModel {
         return listDataTable;
     }
 
-    private static Set<ToDoModel> getNoteAndFeedback(Integer idStudent){
-        Set<ToDoModel> listToDoModel = ToDoModel.getToDo();
-        Set<ToDoModel> listExistent = new HashSet<>();
-        for(ToDoModel dataToDo : listToDoModel){
-            if(dataToDo.getIdStudent().equals(idStudent)){
-                listExistent.add(dataToDo);
+    private static Set<SubmitModel> getNoteAndFeedback(Integer idTeamStudent){
+
+        Set<SubmitModel> listExistent = new HashSet<>();
+        for(SubmitModel dataSubmit :SubmitModel.getSubmit()){
+            if(isTG1andTG2(idTeamStudent)){
+                listExistent.add(dataSubmit);
+            }else{
+                if(dataSubmit.getIdTeam().equals(idTeamStudent)) {
+                    listExistent.add(dataSubmit);
+                }
             }
         }
         return listExistent;
 
     }
 
-    private static boolean isApt(Integer idTeam, Integer idStudent){
+    private static boolean isApt(Integer idTeam, Integer idStudent) {
         Integer quantityTodoStudent = quantitySubmit(idTeam);
         Integer quantitySubmitStudent = quantityTodo(idStudent);
-        if((quantityTodoStudent / quantitySubmitStudent) == 1){
+        if (quantitySubmitStudent != 0 && (quantityTodoStudent / quantitySubmitStudent) == 1) {
             return true;
         }
         return false;
-
     }
 
     private static Integer quantityTodo(Integer idStudent){
@@ -65,5 +68,15 @@ public class DisplayTableModel {
                 .filter(e -> e.getIdTeam().equals(idTeam))
                 .count();
         return occurrences;
+    }
+
+    private static boolean isTG1andTG2(Integer id ){
+        for(TeamModel team : TeamModel.getSubmit()){
+            if(team.getId().equals(id)){
+                boolean isTG1TG2 = team.getSemester().equals(3) ? true : false;
+                return isTG1TG2;
+            }
+        }
+       return false;
     }
 }

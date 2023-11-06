@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,7 +22,7 @@ public class ToDoModel {
     private Integer idStudent;
     private Integer idIssue;
 
-    public void addToDo(String feedback, Double note, Integer idStudent, Integer idIssue) {
+    public static void addToDo(String feedback, Double note, Integer idStudent, Integer idIssue) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -69,4 +70,19 @@ public class ToDoModel {
 
     }
 
+    public static void toDoValidator(Integer idIssue, Integer idStudent, Double nota, String feedback) throws Exception{
+        Integer idIssueToDo = idIssue;
+        Integer idStudentToDo =  idStudent;
+        String feedbackToDo = feedback;
+        String notaEmString = String.valueOf(nota).replace(',','.');
+        Double notaTratada = Double.parseDouble(notaEmString);
+        if (notaTratada >= 0 && notaTratada <=10) {
+
+            addToDo(feedbackToDo,notaTratada,idStudentToDo,idIssueToDo);
+
+        }else {
+            throw new Exception("Note is invalid");
+        }
+
+    }
 }
