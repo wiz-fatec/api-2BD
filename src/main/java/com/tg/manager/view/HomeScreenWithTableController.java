@@ -8,6 +8,7 @@ import java.util.Set;
 import com.tg.manager.model.DisplayTableModel;
 import com.tg.manager.model.SubmitModel;
 import com.tg.manager.model.ToDoModel;
+import com.tg.manager.view.NotasFeedbackScreen;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -120,7 +121,7 @@ class ButtonCell extends TableCell<DisplayTableModel, Boolean> {
                     DisplayTableModel displayModel = tableView.getItems().get(index);
                     Set <SubmitModel> toDo = displayModel.getValuesFeedbacks();
 //                    System.out.println(displayModel);
-                    NotasFeedbackScreen notasFeedbackScreen = new NotasFeedbackScreen(toDo, displayModel);
+                    NotasFeedbackScreen notasFeedbackScreen = new NotasFeedbackScreen(toDo,displayModel);
                     try {
                         notasFeedbackScreen.start(new Stage());
                     } catch (Exception e) {

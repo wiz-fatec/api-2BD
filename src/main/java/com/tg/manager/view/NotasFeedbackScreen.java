@@ -13,12 +13,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class NotasFeedbackScreen extends Application {
-    private Set <SubmitModel> toDo;
-    private DisplayTableModel display;
+    public static Set <SubmitModel> toDo;
 
-    public NotasFeedbackScreen(Set <SubmitModel> toDo, DisplayTableModel display) {
-        this.toDo = toDo;
+    public  static DisplayTableModel display;
+
+    public NotasFeedbackScreen(){}
+
+    public NotasFeedbackScreen(Set <SubmitModel> toDoArg, DisplayTableModel display) {
         this.display = display;
+        toDo = toDoArg;
     }
 
     @Override
@@ -31,7 +34,6 @@ public class NotasFeedbackScreen extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
 
-        System.out.println(toDo);
-//        System.out.println(display);
+
     }
 }

@@ -52,7 +52,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TableView fx:id="tabela" editable="true" layoutX="123.0" layoutY="293.0" prefHeight="318.0" prefWidth="1115.0" style="-fx-background-color: #333434; -fx-border-color: #31efb8;">
+      <TableView fx:id="tabela" editable="true" layoutX="123.0" layoutY="293.0" prefHeight="318.0" prefWidth="1115.0" style="-fx-border-color: #31efb8;">
         <columns>
           <TableColumn fx:id="Atividade" prefWidth="344.0" text="Atividade" />
           <TableColumn id="tipoTg" fx:id="TipoTG" prefWidth="414.0" text="Tipo de TG" />

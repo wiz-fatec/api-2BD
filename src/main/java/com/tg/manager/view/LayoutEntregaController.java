@@ -92,6 +92,7 @@ public class LayoutEntregaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {        
+        tabela.setItems(SubmitController.getDataInDataBase());
         tipoDeTg.getItems().addAll(opcoesChoiceBox);
 
         dataInicial.setDayCellFactory(picker -> new DateCell() {
@@ -175,6 +176,8 @@ public class LayoutEntregaController implements Initializable {
             String tg = tipoDeTg.getValue().toString();
             String inicialData = minhaInicialDataFormatada;
             String finalData = minhaFinalDataFormatada;
+            
+
 
             Entrega novaEntrega = new Entrega(atividade, tg, inicialData, finalData);
             SubmitController.setDataInDataBase(novaEntrega);
@@ -232,7 +235,7 @@ public class LayoutEntregaController implements Initializable {
     @FXML
     void goToHomeScreen(MouseEvent event) {
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("HomeScreenWithTable.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("NotasFeedback.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) botaoHome.getScene().getWindow();
