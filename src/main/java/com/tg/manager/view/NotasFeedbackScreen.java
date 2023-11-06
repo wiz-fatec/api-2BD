@@ -2,6 +2,8 @@ package com.tg.manager.view;
 
 import java.util.Set;
 
+import com.tg.manager.model.DisplayTableModel;
+import com.tg.manager.model.SubmitModel;
 import com.tg.manager.model.ToDoModel;
 
 import javafx.application.Application;
@@ -11,10 +13,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class NotasFeedbackScreen extends Application {
-    private Set <ToDoModel> toDo;
+    private Set <SubmitModel> toDo;
+    private DisplayTableModel display;
 
-    public NotasFeedbackScreen(Set <ToDoModel> toDo) {
+    public NotasFeedbackScreen(Set <SubmitModel> toDo, DisplayTableModel display) {
         this.toDo = toDo;
+        this.display = display;
     }
 
     @Override
@@ -28,5 +32,6 @@ public class NotasFeedbackScreen extends Application {
         primaryStage.show();
 
         System.out.println(toDo);
+//        System.out.println(display);
     }
 }

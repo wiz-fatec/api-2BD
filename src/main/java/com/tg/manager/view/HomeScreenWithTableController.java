@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 import com.tg.manager.model.DisplayTableModel;
+import com.tg.manager.model.SubmitModel;
 import com.tg.manager.model.ToDoModel;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -117,9 +118,9 @@ class ButtonCell extends TableCell<DisplayTableModel, Boolean> {
                     Stage currentStage = (Stage) button.getScene().getWindow();
                     currentStage.close();
                     DisplayTableModel displayModel = tableView.getItems().get(index);
-                    Set <ToDoModel> toDo = displayModel.getValuesFeedbacks();
-                    System.out.println(displayModel);
-                    NotasFeedbackScreen notasFeedbackScreen = new NotasFeedbackScreen(toDo);
+                    Set <SubmitModel> toDo = displayModel.getValuesFeedbacks();
+//                    System.out.println(displayModel);
+                    NotasFeedbackScreen notasFeedbackScreen = new NotasFeedbackScreen(toDo, displayModel);
                     try {
                         notasFeedbackScreen.start(new Stage());
                     } catch (Exception e) {
