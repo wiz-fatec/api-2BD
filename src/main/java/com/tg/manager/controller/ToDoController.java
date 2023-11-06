@@ -26,7 +26,6 @@ public class ToDoController {
             }
         }
         throw new RuntimeException("Submit not exist");
-
     }
 
 
