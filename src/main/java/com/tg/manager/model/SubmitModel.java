@@ -1,35 +1,30 @@
 package com.tg.manager.model;
 
 import com.tg.manager.model.connection.ConnectionDataBase;
+import lombok.Data;
+import lombok.ToString;
+
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.sql.Date;
-import java.util.HashMap;
+import java.util.Set;
 
+@Data
+@ToString
 public class SubmitModel {
     private Integer id;
     private String description;
-
-    @Override
-    public String toString() {
-        return "SubmitModel{" +
-                "id=" + id +
-                ", description='" + description + '\'' +
-                ", initialDate=" + initialDate +
-                ", finalDate=" + finalDate +
-                ", idTeam=" + idTeam +
-                '}';
-    }
-
     private Date initialDate;
     private Date finalDate;
-
     private Integer idTeam;
 
-    public void addSubmit(String description, Date initialDate, Date finalDate, Integer idTeam) {
+    private  static void addSubmit(String description, Date initialDate, Date finalDate, Integer idTeam) {
 
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
@@ -42,7 +37,6 @@ public class SubmitModel {
             preparedStatement.setInt(4, idTeam);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            //connection.close();
             System.out.println("Dados inseridos com sucesso!");
 
         } catch (SQLException e) {
@@ -50,31 +44,56 @@ public class SubmitModel {
         }
     }
 
-    public SubmitModel(Integer id, String description, Date initialDate, Date finalDate) {
-        this.id = id;
-        this.description = description;
-        this.initialDate = initialDate;
-        this.finalDate = finalDate;
-    }
-
-    public void getSubmit() throws SQLException {
+    public  static Set<SubmitModel> getSubmit()  {
         try {    
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
             Statement statementDb = connection.createStatement();
             ResultSet result = statementDb.executeQuery("SELECT * from entrega");
-
+            Set<SubmitModel> submitList = new HashSet<>();
             while (result.next()) {
-                HashMap<Integer, SubmitModel> informationList = new HashMap<Integer, SubmitModel>();
+                SubmitModel submit = new SubmitModel();
                 Integer idSubmit = result.getInt("id");
-                String descricao = result.getString("descricao");
-                Date dataInicial = result.getDate("data_inicial");
-                Date dataFinal = result.getDate("data_final");
-                SubmitModel sm = new SubmitModel(idSubmit, descricao, dataInicial, dataFinal);
-                informationList.put(idSubmit, sm);
+                submit.setId(idSubmit);
+                String description = result.getString("descricao");
+                submit.setDescription(description);
+                Date initialDate = result.getDate("data_inicial");
+                submit.setInitialDate(initialDate);
+                Date finalDate = result.getDate("data_final");
+                submit.setFinalDate(finalDate);
+                Integer idTurma = result.getInt("idTurma");
+                submit.setIdTeam(idTurma);
+                submitList.add(submit);
             }
+            return submitList;
         } catch (SQLException ex) {
             ex.printStackTrace();
+            return null;
         }
+    }
+
+    public static void submitValidator(String description, String initialDate, String finalDate, String typeTg){
+        String descriptionText = description;
+        Date initialDateConvert =  Date.valueOf(convertDate(initialDate));
+        Date finalDateConvert =  Date.valueOf(convertDate(finalDate));
+        Integer idTeam = getIdTeam(typeTg);
+        addSubmit(descriptionText, initialDateConvert, finalDateConvert, idTeam);
+
+    }
+
+    private static LocalDate convertDate(String date){
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate dateConvert = LocalDate.parse(date, format);
+        return dateConvert;
+    }
+
+    private static Integer getIdTeam(String typeTG){
+        Integer semester = typeTG.equals("TG1") ? 1 : 2;
+        for(TeamModel team : TeamModel.getSubmit()){
+            if(team.getSemester().equals(semester)){
+                return team.getId();
+            }
+        }
+        throw new RuntimeException("Type TG not exist");
     }
 }

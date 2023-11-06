@@ -1,18 +1,21 @@
 package com.tg.manager;
 
-
-import com.tg.manager.model.TeamModel;
+import com.tg.manager.model.StudentModel;
 import com.tg.manager.view.HomeScreen;
+import com.tg.manager.view.HomeScreenWithTable;
+import com.tg.manager.view.NotasFeedbackScreen;
 
 import javafx.application.Application;
 
-import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) {
 
+    if (StudentModel.getSubmit().isEmpty()) {
         System.out.println("Hello world!");
-
         Application.launch(HomeScreen.class, args);
+    } else {
+        Application.launch(HomeScreenWithTable.class, args);
+    }
     }
 }

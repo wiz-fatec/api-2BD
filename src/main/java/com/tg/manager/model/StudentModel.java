@@ -1,78 +1,25 @@
 package com.tg.manager.model;
 import com.tg.manager.model.connection.ConnectionDataBase;
-
+import com.tg.manager.utils.EmailValidator;
+import lombok.Data;
+import lombok.ToString;
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
+@ToString
 public class StudentModel {
-    private  Integer id;
+    private Integer id;
     private String name;
     private String email;
     private String fatecEmail;
     private Integer advisorId;
     private Integer teamId;
 
-    public Integer getId() {
-        return id;
-    }
+    private static Set<String> listEmails = new HashSet<>();
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFatecEmail() {
-        return fatecEmail;
-    }
-
-    public void setFatecEmail(String fatecEmail) {
-        this.fatecEmail = fatecEmail;
-    }
-
-    public Integer getAdvisorId() {
-        return advisorId;
-    }
-
-    public void setAdvisorId(Integer advisorId) {
-        this.advisorId = advisorId;
-    }
-
-    public Integer getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(Integer teamId) {
-        this.teamId = teamId;
-    }
-
-    @Override
-    public String toString() {
-        return "StudentModel{" +
-                "name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", fatecEmail='" + fatecEmail + '\'' +
-                ", advisorId=" + advisorId +
-                ", teamId=" + teamId +
-                '}';
-    }
-
-    public void addStudent(String name, String email, String fatecEmail, Integer advisorId, Integer teamId ) {
+    private static void addStudent(String name, String email, String fatecEmail, Integer advisorId, Integer teamId ) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -85,14 +32,13 @@ public class StudentModel {
             preparedStatement.setInt(5, teamId);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            //connection.close();
             System.out.println("Dados inseridos com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public Set<StudentModel> getSubmit() throws SQLException {
+    public static Set<StudentModel> getSubmit(){
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -121,7 +67,52 @@ public class StudentModel {
             return null;
         }
     }
+    public static void validator(String email, String emailFatec, String nameStudent, String emailAdvisor, String typeTg){
+
+        EmailValidator.validatorEmail(email);
+        EmailValidator.validatorEmail(emailFatec);
+        EmailValidator.validatorEmail(emailAdvisor);
+        Integer idAdvisordb = findIdAdvisor(emailAdvisor);
+        Integer idTeamdb = findTeam(typeTg);
+        if(!(listEmails.contains(emailFatec)) && (idAdvisordb!= -1)){
+            listEmails.add(emailFatec);
+            addStudent(nameStudent, email, emailFatec, idAdvisordb, idTeamdb);
+        }
+    }
+
+    private static Integer findIdAdvisor(String emailAdvisor){
+
+        for(AdvisorModel advisorModel : AdvisorModel.getSubmit()){
+
+            if(advisorModel.getFatecEmail().contains(emailAdvisor)){
+
+                return  advisorModel.getId();
+            }
+        }
+        throw new RuntimeException("Advisor e-mail not exist");
+
+    }
+
+    private static Integer findTeam(String typeTg){
+        if(typeTg.contains("TG1") && typeTg.contains("TG2")){
+            for(TeamModel teamModel : TeamModel.getSubmit()){
+                if(teamModel.getSemester() == 3)
+                    return teamModel.getId();
+            }
+        } else if (typeTg.contains("TG1")) {
+            for(TeamModel teamModel : TeamModel.getSubmit()){
+                if(teamModel.getSemester() == 1)
+                    return teamModel.getId();
+            }
+
+        } else if (typeTg.contains("TG2")) {
+            for(TeamModel teamModel : TeamModel.getSubmit()){
+                if(teamModel.getSemester() == 2)
+                    return teamModel.getId();
+            }
+
+        }
+        throw new RuntimeException("Team does not exist");
+    }
+
 }
-
-    
-

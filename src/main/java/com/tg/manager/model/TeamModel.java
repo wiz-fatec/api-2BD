@@ -1,51 +1,20 @@
 package com.tg.manager.model;
 import java.sql.*;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 import com.tg.manager.model.connection.ConnectionDataBase;
+import lombok.Data;
+import lombok.ToString;
 
+@Data
+@ToString
 public class TeamModel {
     private Integer id;
     private Integer semester;
     private Integer year;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getSemester() {
-        return semester;
-    }
-
-    public void setSemester(Integer semester) {
-        this.semester = semester;
-    }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-                "id:" +  id  +
-                ", semester:" + semester +
-                ", year:" + year +
-                '}';
-    }
-
-    public void addTeam(Integer semester, Integer year) {
+    public static void addTeam(Integer semester, Integer year) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -55,14 +24,13 @@ public class TeamModel {
             preparedStatement.setInt(2, year);
             System.out.println(preparedStatement.executeUpdate());
             preparedStatement.close();
-            //connection.close();
             System.out.println("Dados inseridos com sucesso!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public Set<TeamModel> getSubmit() throws SQLException {
+    public static Set<TeamModel> getSubmit(){
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
