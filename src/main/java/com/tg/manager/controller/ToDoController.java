@@ -11,12 +11,12 @@ import java.util.Set;
 public class ToDoController {
 
     public static void sendDataForDataBase(String feedback, String note, String dataSubmit, DisplayTableModel dataStudent)throws Exception{
-          Double  noteSubmit = Double.parseDouble(note);
+          String  noteSubmit =  note.replace(',','.');
+          Double convertNote = Double.parseDouble(noteSubmit);
           String feedbackSubmit = feedback;
           Integer idIssueSubmit = getIdDataSubmit(dataSubmit);
           Integer idStudentSubmit = dataStudent.getStudent().getId();
-          ToDoModel.toDoValidator(idIssueSubmit, idStudentSubmit, noteSubmit, feedbackSubmit);
-
+          ToDoModel.toDoValidator(idIssueSubmit, idStudentSubmit, convertNote, feedbackSubmit);
     }
 
     private static int getIdDataSubmit(String dataSubmit){

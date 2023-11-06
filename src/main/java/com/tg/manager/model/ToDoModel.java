@@ -70,12 +70,12 @@ public class ToDoModel {
 
     }
 
-    public static void toDoValidator(Integer idIssue, Integer idStudent, Double nota, String feedback) throws Exception{
+    public static void toDoValidator(Integer idIssue, Integer idStudent, Double note, String feedback) throws Exception{
         Integer idIssueToDo = idIssue;
         Integer idStudentToDo =  idStudent;
         String feedbackToDo = feedback;
-        String notaEmString = String.valueOf(nota).replace(',','.');
-        Double notaTratada = Double.parseDouble(notaEmString);
+        Double notaTratada = note;
+
         if (notaTratada >= 0 && notaTratada <=10) {
 
             addToDo(feedbackToDo,notaTratada,idStudentToDo,idIssueToDo);
