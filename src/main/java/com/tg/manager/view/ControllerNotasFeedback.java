@@ -3,14 +3,13 @@ package com.tg.manager.view;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import javax.crypto.spec.RC2ParameterSpec;
 
+import com.tg.manager.controller.SubmitController;
 import com.tg.manager.controller.ToDoController;
+import com.tg.manager.model.SubmitModel;
 import com.tg.manager.model.ToDoModel;
 import com.tg.manager.view.NotasFeedbackScreen;
 
@@ -60,25 +59,37 @@ public class ControllerNotasFeedback implements Initializable {
 
     private Map<String, String> feedbackMap = new HashMap<>();
     private Map<String, String> notaMap = new HashMap<>();
-    List<String> listaTG1 = LayoutEntregaController.getListaTG1();
-    List<String> listaTG2 = LayoutEntregaController.getListaTG2();
+    Set<String> listaTG1 ;
+    Set<String> listaTG2 ;
     String[] opcoesTG = LayoutEntregaController.getOpcoesChoiceBox();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        listaTG1 = new HashSet<>();
+        listaTG2 = new HashSet<>();
+        for(SubmitModel submit :NotasFeedbackScreen.toDo){
+            if(SubmitController.convertForTg(submit.getIdTeam()).equals("TG1")){
+                listaTG1.add(submit.getDescription());
+            }else {
+                listaTG2.add(submit.getDescription());
+            }
+
+        }
 
         escolherTG.getItems().addAll(opcoesTG);
         escolherTG.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 escolhaDeEntrega.getItems().clear(); // Limpar as opções atuais na ChoiceBox
-        
+
                 if (newValue.equals("TG1")) {
                     escolhaDeEntrega.getItems().addAll(listaTG1);
                 } else if (newValue.equals("TG2")) {
                     escolhaDeEntrega.getItems().addAll(listaTG2);
                 }
             }
+
         });
+
 
         escolhaDeEntrega.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -103,18 +114,15 @@ public class ControllerNotasFeedback implements Initializable {
     @FXML
     void BotaoEnviar(ActionEvent event) {
          System.out.print(NotasFeedbackScreen.toDo);
+         System.out.println(NotasFeedbackScreen.display);
+         System.out.println(escolhaDeEntrega.getValue());
+
+
         String entregaSelecionada = escolhaDeEntrega.getValue();
         if (entregaSelecionada != null) {
             feedbackMap.put(entregaSelecionada, Feedback.getText());
             notaMap.put(entregaSelecionada, Nota.getText());
-            ToDoModel todomodel = new ToDoModel();
-            todomodel.setNote(Double.parseDouble(Nota.getText()));
-            todomodel.setFeedback(Feedback.getText());
-            todomodel.setIdStudent(1);
-           
-            todomodel.setIdIssue(1);
-            ToDoController.sendDataForDataBase(todomodel);
-
+            ToDoController.sendDataForDataBase(Feedback.getText(), Nota.getText(), entregaSelecionada, NotasFeedbackScreen.display);
             if (notaMap.containsKey(entregaSelecionada) && !notaMap.get(entregaSelecionada).isEmpty()) {
                 atualizarStatusEntrega(entregaSelecionada);
             } else {

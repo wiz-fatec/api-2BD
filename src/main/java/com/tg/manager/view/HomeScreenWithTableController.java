@@ -121,7 +121,7 @@ class ButtonCell extends TableCell<DisplayTableModel, Boolean> {
                     DisplayTableModel displayModel = tableView.getItems().get(index);
                     Set <SubmitModel> toDo = displayModel.getValuesFeedbacks();
 //                    System.out.println(displayModel);
-                    NotasFeedbackScreen notasFeedbackScreen = new NotasFeedbackScreen(toDo);
+                    NotasFeedbackScreen notasFeedbackScreen = new NotasFeedbackScreen(toDo,displayModel);
                     try {
                         notasFeedbackScreen.start(new Stage());
                     } catch (Exception e) {
