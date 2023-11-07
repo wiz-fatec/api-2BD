@@ -1,5 +1,6 @@
 package com.tg.manager.model;
 
+import com.tg.manager.utils.ModelTGEnum;
 import lombok.Data;
 import lombok.ToString;
 import java.util.HashSet;
@@ -21,8 +22,9 @@ public class DisplayTableModel {
         Set<StudentModel> listStudent = StudentModel.getSubmit();
         for(StudentModel studentData : listStudent){
             DisplayTableModel dataTable = new DisplayTableModel();
+            String descriptionTg = TGModel.getModelTg(studentData.getId());
             dataTable.setStudent(studentData);
-            dataTable.setValuesFeedbacks(getNoteAndFeedback(studentData.getTeamId()));
+            dataTable.setValuesFeedbacks(getNoteAndFeedback(studentData.getTeamId(), descriptionTg));
             dataTable.setApt(isApt(studentData.getTeamId(), studentData.getId()));
             dataTable.setReport("Relatorinho");
             listDataTable.add(dataTable);
@@ -30,19 +32,21 @@ public class DisplayTableModel {
         return listDataTable;
     }
 
-    private static Set<SubmitModel> getNoteAndFeedback(Integer idTeamStudent){
-
-        Set<SubmitModel> listExistent = new HashSet<>();
+    public static Set<SubmitModel> getNoteAndFeedback(Integer idTeamStudent, String descriptionTG){
+        Set<SubmitModel> listSubmitExistent = new HashSet<>();
         for(SubmitModel dataSubmit :SubmitModel.getSubmit()){
-            if(isTG1andTG2(idTeamStudent)){
-                listExistent.add(dataSubmit);
-            }else{
-                if(dataSubmit.getIdTeam().equals(idTeamStudent)) {
-                    listExistent.add(dataSubmit);
+            String validatorTypeTg = validatorEnumTypeTg(dataSubmit.getModel());
+            if(descriptionTG.equals(validatorTypeTg)) {
+                if (isTG1andTG2(idTeamStudent)) {
+                    listSubmitExistent.add(dataSubmit);
+                } else {
+                    if (dataSubmit.getIdTeam().equals(idTeamStudent)) {
+                        listSubmitExistent.add(dataSubmit);
+                    }
                 }
             }
         }
-        return listExistent;
+        return listSubmitExistent;
 
     }
 
@@ -78,5 +82,20 @@ public class DisplayTableModel {
             }
         }
        return false;
+    }
+
+    private static String validatorEnumTypeTg(String descriptionTg){
+
+        if(descriptionTg.equals("Estágio - Técnico")){
+            return ModelTGEnum.INTERNSHIP.getDescription();
+        } else if (descriptionTg.equals("Técnico - Disciplina")) {
+            return ModelTGEnum.DISCIPLINE.getDescription();
+        } else if (descriptionTg.equals("Científico")) {
+            return ModelTGEnum.ARTICLE.getDescription();
+        } else if (descriptionTg.equals("Portfólio")) {
+            return ModelTGEnum.PORTIFOLIO.getDescription();
+        }
+        return null;
+
     }
 }

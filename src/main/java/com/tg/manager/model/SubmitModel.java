@@ -23,18 +23,20 @@ public class SubmitModel {
     private Date initialDate;
     private Date finalDate;
     private Integer idTeam;
+    private String model;
 
-    private  static void addSubmit(String description, Date initialDate, Date finalDate, Integer idTeam) {
+    private  static void addSubmit(String description, Date initialDate, Date finalDate, Integer idTeam, String model) {
 
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
-            String insercaoSQL = "INSERT INTO entrega (descricao, data_inicial, data_final, idTurma) VALUES (?, ?, ?, ?)";
+            String insercaoSQL = "INSERT INTO entrega (descricao, data_inicial, data_final, idTurma, modelo) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insercaoSQL);
             preparedStatement.setString(1, description);
             preparedStatement.setDate(2, initialDate);
             preparedStatement.setDate(3, finalDate);
             preparedStatement.setInt(4, idTeam);
+            preparedStatement.setString(5, model);
             preparedStatement.executeUpdate();
             preparedStatement.close();
             System.out.println("Dados inseridos com sucesso!");
@@ -63,6 +65,8 @@ public class SubmitModel {
                 submit.setFinalDate(finalDate);
                 Integer idTurma = result.getInt("idTurma");
                 submit.setIdTeam(idTurma);
+                String model = result.getString("modelo");
+                submit.setModel(model);
                 submitList.add(submit);
             }
             return submitList;
@@ -72,12 +76,12 @@ public class SubmitModel {
         }
     }
 
-    public static void submitValidator(String description, String initialDate, String finalDate, String typeTg){
+    public static void submitValidator(String description, String initialDate, String finalDate, String typeTg, String model){
         String descriptionText = description;
         Date initialDateConvert =  Date.valueOf(convertDate(initialDate));
         Date finalDateConvert =  Date.valueOf(convertDate(finalDate));
         Integer idTeam = getIdTeam(typeTg);
-        addSubmit(descriptionText, initialDateConvert, finalDateConvert, idTeam);
+        addSubmit(descriptionText, initialDateConvert, finalDateConvert, idTeam, model);
 
     }
 
