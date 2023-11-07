@@ -5,14 +5,23 @@ public class Entrega {
     private String tipoTG;
     private String dataInicial;
     private String dataFinal;
+    private String tgModelo;
+
+    public String getTgModelo() {
+        return tgModelo;
+    }
+    public void setTgModelo(String tgModelo) {
+        this.tgModelo = tgModelo;
+    }
     public String getAtividade() {
         return atividade;
     }
-    public Entrega(String atividade, String tipoTG, String dataInicial, String dataFinal) {
+    public Entrega(String atividade, String tipoTG, String dataInicial, String dataFinal, String tgModelo) {
         this.atividade = atividade;
         this.tipoTG = tipoTG;
         this.dataInicial = dataInicial;
         this.dataFinal = dataFinal;
+        this.tgModelo = tgModelo;
     }
     public void setAtividade(String atividade) {
         this.atividade = atividade;

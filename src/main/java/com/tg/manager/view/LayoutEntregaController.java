@@ -68,6 +68,9 @@ public class LayoutEntregaController implements Initializable {
     private TableColumn<Entrega, String> TipoTG;
 
     @FXML
+    private TableColumn<Entrega, String> tgModelo;
+
+    @FXML
     private DatePicker dataFinal;
 
     @FXML
@@ -82,8 +85,11 @@ public class LayoutEntregaController implements Initializable {
     @FXML
     private ChoiceBox<String> tipoDeTg;
 
+    @FXML
+    private ChoiceBox<String> ModeloTg;
+
     private static String[] opcoesChoiceBox = {"TG1", "TG2"};
-    
+    private static String[] opcoesModeloTg = {"Estágio Técnico", "Técnico Disciplina", "Científico", "Portfólio"};
     public static String[] getOpcoesChoiceBox() {
         return opcoesChoiceBox;
     }
@@ -94,7 +100,7 @@ public class LayoutEntregaController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {        
         tabela.setItems(SubmitController.getDataInDataBase());
         tipoDeTg.getItems().addAll(opcoesChoiceBox);
-
+        ModeloTg.getItems().addAll(opcoesModeloTg);
         dataInicial.setDayCellFactory(picker -> new DateCell() {
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
@@ -176,10 +182,10 @@ public class LayoutEntregaController implements Initializable {
             String tg = tipoDeTg.getValue().toString();
             String inicialData = minhaInicialDataFormatada;
             String finalData = minhaFinalDataFormatada;
-            
+            String modeloDeTg = ModeloTg.getValue();
 
 
-            Entrega novaEntrega = new Entrega(atividade, tg, inicialData, finalData);
+            Entrega novaEntrega = new Entrega(atividade, tg, inicialData, finalData, modeloDeTg);
             SubmitController.setDataInDataBase(novaEntrega);
             tabela.setItems(SubmitController.getDataInDataBase());
             // Limpa os campos após adicionar à tabela
@@ -191,6 +197,7 @@ public class LayoutEntregaController implements Initializable {
             dataFinal.setDisable(true);
             minhaInicialDataFormatada = null;
             minhaFinalDataFormatada = null;
+            ModeloTg.getSelectionModel().clearSelection();
         } else {
             // Lógica de tratamento para campos vazios
             // Por exemplo, exibir uma mensagem de erro ao usuário
@@ -203,7 +210,8 @@ public class LayoutEntregaController implements Initializable {
                 dataInicial.getValue() != null &&
                 dataFinal.getValue() != null &&
                 minhaInicialDataFormatada != null &&
-                minhaFinalDataFormatada != null;
+                minhaFinalDataFormatada != null &&
+                ModeloTg.getValue() != null;
     }
 
     @FXML
