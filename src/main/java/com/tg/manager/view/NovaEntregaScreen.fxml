@@ -55,7 +55,8 @@
       <TableView fx:id="tabela" editable="true" layoutX="123.0" layoutY="293.0" prefHeight="318.0" prefWidth="1115.0" style="-fx-border-color: #31efb8;">
         <columns>
           <TableColumn fx:id="Atividade" prefWidth="344.0" text="Atividade" />
-          <TableColumn id="tipoTg" fx:id="TipoTG" prefWidth="414.0" text="Tipo de TG" />
+          <TableColumn id="TipoTg" fx:id="TipoTG" prefWidth="414.0" text="Tipo de TG" />
+           <TableColumn fx:id="TGModelo" prefWidth="184.0" text="Modelo de TG" />
             <TableColumn fx:id="DataInicial" prefWidth="184.0" text="Data Inicial" />
             <TableColumn fx:id="DataFinal" prefWidth="161.0" text="Data Final" />
         </columns>

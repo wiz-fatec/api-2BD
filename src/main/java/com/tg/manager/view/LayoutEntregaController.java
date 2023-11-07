@@ -68,7 +68,7 @@ public class LayoutEntregaController implements Initializable {
     private TableColumn<Entrega, String> TipoTG;
 
     @FXML
-    private TableColumn<Entrega, String> tgModelo;
+    private TableColumn<Entrega, String> TGModelo;
 
     @FXML
     private DatePicker dataFinal;
@@ -89,7 +89,7 @@ public class LayoutEntregaController implements Initializable {
     private ChoiceBox<String> ModeloTg;
 
     private static String[] opcoesChoiceBox = {"TG1", "TG2"};
-    private static String[] opcoesModeloTg = {"Estágio Técnico", "Técnico Disciplina", "Científico", "Portfólio"};
+    private static String[] opcoesModeloTg = {"Estágio - Técnico", "Técnico - Disciplina", "Científico", "Portfólio"};
     public static String[] getOpcoesChoiceBox() {
         return opcoesChoiceBox;
     }
@@ -154,21 +154,24 @@ public class LayoutEntregaController implements Initializable {
         tipoDeTg.valueProperty().addListener((observable, oldValue, newValue) -> checkCampos());
         dataInicial.valueProperty().addListener((observable, oldValue, newValue) -> checkCampos());
         dataFinal.valueProperty().addListener((observable, oldValue, newValue) -> checkCampos());
-
+        ModeloTg.valueProperty().addListener((observable, oldValue, newValue) -> checkCampos());
         Atividade.setCellValueFactory(new PropertyValueFactory<>("atividade"));
         DataFinal.setCellValueFactory(new PropertyValueFactory<>("dataFinal"));
         DataInicial.setCellValueFactory(new PropertyValueFactory<>("dataInicial"));
         TipoTG.setCellValueFactory(new PropertyValueFactory<>("tipoTG"));
+        TGModelo.setCellValueFactory(new PropertyValueFactory<>("tgModelo"));
     }
 
     private void checkCampos() {
         String atividade = nomeDaAtividade.getText();
         String tg = tipoDeTg.getValue();
+        String modelo = ModeloTg.getValue();
         LocalDate dataInicialValue = dataInicial.getValue();
         LocalDate dataFinalValue = dataFinal.getValue();
 
         boolean camposPreenchidos = atividade != null && !atividade.isEmpty() &&
                 tg != null &&
+                modelo != null &&
                 dataInicialValue != null &&
                 dataFinalValue != null;
 

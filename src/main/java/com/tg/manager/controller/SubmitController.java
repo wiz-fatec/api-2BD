@@ -15,7 +15,8 @@ public class SubmitController {
       String typeTg = data.getTipoTG();
       String initialDate = data.getDataInicial();
       String finalDate = data.getDataFinal();
-      SubmitModel.submitValidator(description, initialDate, finalDate, typeTg);
+      String model = data.getTgModelo();
+      SubmitModel.submitValidator(description, initialDate, finalDate, typeTg, model);
    }
 
    public static ObservableList<Entrega> getDataInDataBase(){
@@ -27,7 +28,8 @@ public class SubmitController {
          String initialDate = formatter.format( submit.getInitialDate());
          String finalDate = formatter.format( submit.getFinalDate());
          String typeTg = convertForTg(submit.getIdTeam());
-         Entrega entrega = new Entrega(description, typeTg, initialDate, finalDate);
+         String model = submit.getModel();
+         Entrega entrega = new Entrega(description, typeTg, initialDate, finalDate, model);
          list.add(entrega);
       }
       return list;
