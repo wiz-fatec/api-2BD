@@ -105,9 +105,9 @@ public class DisplayTableModel {
     }
 
     public static String descriptionTg(String description){
-        for( ModelTGEnum x : ModelTGEnum.values()){
-            if(x.getDescription().equals(description)){
-                return translateTg(x.name());
+        for( ModelTGEnum nameEnum : ModelTGEnum.values()){
+            if(nameEnum.getDescription().equals(description)){
+                return translateTg(nameEnum.name());
             }
         }
         return null;
