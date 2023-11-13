@@ -1,0 +1,41 @@
+package com.tg.manager.view;
+
+import java.util.Set;
+
+import com.tg.manager.model.DisplayTableModel;
+import com.tg.manager.model.SubmitModel;
+import com.tg.manager.model.ToDoModel;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class RelatorioScreen extends Application {
+    public static Set <SubmitModel> toDo;
+
+    public  static DisplayTableModel display;
+
+    public RelatorioScreen(){}
+
+    public RelatorioScreen(Set <SubmitModel> toDoArg, DisplayTableModel display) {
+        this.display = display;
+        toDo = toDoArg;
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        //TODO condicional para definir qual o tipo de relatório se deve abrir usando aluno como parâmetro.
+        String tipoRelatorio = "RelatorioPortfolio.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(tipoRelatorio)); 
+        Parent root = fxmlLoader.load();
+        Scene tela1 = new Scene(root);
+
+        primaryStage.setScene(tela1);
+        primaryStage.setResizable(false);
+        primaryStage.show();
+
+
+    }
+}
