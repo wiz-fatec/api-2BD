@@ -45,6 +45,9 @@ public class HomeScreenWithTableController implements Initializable {
     private TableColumn<DisplayTableModel, String> emailFatecColumn;
 
     @FXML
+    private TableColumn<DisplayTableModel, String> typeTgColumn;
+
+    @FXML
     private TableColumn<DisplayTableModel, Boolean> profileStudentColumn;
 
     @FXML
@@ -81,7 +84,7 @@ public class HomeScreenWithTableController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         nameColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getStudent().getName()));
         emailFatecColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getStudent().getFatecEmail()));
-
+        typeTgColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTypeTg()));
         profileStudentColumn.setCellFactory(col -> createButtonCell("Visualizar Perfil"));
         rateAndFeedbackColumn.setCellFactory(col -> createButtonCell("Atribuir Nota"));
         reportColumn.setCellFactory(col -> createButtonCell("Visualizar Relatório"));

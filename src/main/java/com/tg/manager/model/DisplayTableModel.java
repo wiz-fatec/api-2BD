@@ -17,16 +17,21 @@ public class DisplayTableModel {
 
    private String report;
 
+   private String typeTg;
+
     public static Set<DisplayTableModel> getDataTable(){
         Set<DisplayTableModel> listDataTable = new HashSet<>();
         Set<StudentModel> listStudent = StudentModel.getSubmit();
         for(StudentModel studentData : listStudent){
             DisplayTableModel dataTable = new DisplayTableModel();
             String descriptionTg = TGModel.getModelTg(studentData.getId());
+            String descriptionTgEnum = descriptionTg(descriptionTg);
+            String typeTg = typeTG(studentData.getId());
             dataTable.setStudent(studentData);
             dataTable.setValuesFeedbacks(getNoteAndFeedback(studentData.getTeamId(), descriptionTg));
             dataTable.setApt(isApt(studentData.getTeamId(), studentData.getId()));
             dataTable.setReport("Relatorinho");
+            dataTable.setTypeTg(typeTg + " - "+ descriptionTgEnum);
             listDataTable.add(dataTable);
         }
         return listDataTable;
@@ -96,6 +101,36 @@ public class DisplayTableModel {
             return ModelTGEnum.PORTIFOLIO.getDescription();
         }
         return null;
+
+    }
+
+    public static String descriptionTg(String description){
+        for( ModelTGEnum x : ModelTGEnum.values()){
+            if(x.getDescription().equals(description)){
+                return translateTg(x.name());
+            }
+        }
+        return null;
+    }
+
+    private static String typeTG(int idStudent){
+       return TGModel.getTypeTg(idStudent);
+    }
+
+
+    private static String translateTg(String description){
+        switch (description){
+            case "INTERNSHIP":
+                return "Estágio - Técnico";
+            case "DISCIPLINE":
+                return "Técnico - Disciplina";
+            case "ARTICLE":
+                return "Científico";
+            case "PORTIFOLIO":
+                return "Portfólio";
+            default:
+                throw new RuntimeException("Description not exist");
+        }
 
     }
 }
