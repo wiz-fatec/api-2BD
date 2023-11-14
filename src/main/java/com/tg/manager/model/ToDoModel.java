@@ -69,6 +69,41 @@ public class ToDoModel {
         }
 
     }
+    public static String deleteToDo(Integer idTodo){
+        try {
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            String query = "DELETE  FROM valor_entrega WHERE id = ?";
+            PreparedStatement statementDb = connection.prepareStatement(query);
+            statementDb.setInt(1, idTodo);
+            int rowsAffected = statementDb.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Set<Integer> filterTodoForDelete(int idSubmit){
+        try {
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            String query = "SELECT id FROM valor_entrega WHERE identrega = ?";
+            PreparedStatement statementDb = connection.prepareStatement(query);
+            statementDb.setInt(1, idSubmit);
+            ResultSet result = statementDb.executeQuery();
+            Set<Integer> listId = new HashSet<>();
+            while (result.next()) {
+                String id= result.getString("id");
+                listId.add(Integer.valueOf(id));
+            }
+            return listId;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        return null;
+
+    }
 
     public static void toDoValidator(Integer idIssue, Integer idStudent, Double note, String feedback) throws Exception{
         Integer idIssueToDo = idIssue;
@@ -76,7 +111,7 @@ public class ToDoModel {
         String feedbackToDo = feedback;
         Double notaTratada = note;
 
-        if (notaTratada >= 0 && notaTratada <=10) {
+        if (notaTratada >= 0 && notaTratada <= 10) {
 
             addToDo(feedbackToDo,notaTratada,idStudentToDo,idIssueToDo);
 
