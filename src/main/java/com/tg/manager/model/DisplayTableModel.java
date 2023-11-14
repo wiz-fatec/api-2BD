@@ -133,4 +133,17 @@ public class DisplayTableModel {
         }
 
     }
+
+    public static Set<DisplayTableModel> filterTable(String descriptionTg){
+        if(descriptionTg != null) {
+            Set<DisplayTableModel> listStudent = new HashSet<>();
+            for (DisplayTableModel find : DisplayTableModel.getDataTable()) {
+                if(find.getTypeTg().contains(descriptionTg)){
+                    listStudent.add(find);
+                }
+            }
+            return listStudent;
+        }
+        return DisplayTableModel.getDataTable();
+    }
 }
