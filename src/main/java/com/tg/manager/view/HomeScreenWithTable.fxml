@@ -14,7 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #303236;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tg.manager.view.HomeScreenWithTableController">
    <children>
-      <Text fill="WHITE" layoutX="138.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OLÁ, PROFESSOR">
+      <Text fill="WHITE" layoutX="126.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OLÁ, PROFESSOR">
          <font>
             <Font size="32.0" />
          </font>
@@ -29,7 +29,7 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <TableView fx:id="table" layoutX="218.0" layoutY="283.0" prefHeight="338.0" prefWidth="935.0">
+      <TableView fx:id="table" layoutX="135.0" layoutY="283.0" prefHeight="338.0" prefWidth="1086.0">
          <columns>
             <TableColumn fx:id="nameColumn" prefWidth="124.26663208007812" text="Estudante" />
             <TableColumn fx:id="emailFatecColumn" prefWidth="163.73330688476562" text="Email Institucional" />
@@ -64,6 +64,6 @@
             </ImageView>
          </children>
       </HBox>
-      <ComboBox fx:id="filterTG" layoutX="218.0" layoutY="203.0" onAction="#filterStudentTG" prefHeight="28.0" prefWidth="220.0" />
+      <ComboBox fx:id="filterTG" layoutX="133.0" layoutY="203.0" onAction="#filterStudentTG" prefHeight="28.0" prefWidth="220.0" />
    </children>
 </AnchorPane>
