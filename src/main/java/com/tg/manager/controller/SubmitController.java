@@ -2,6 +2,7 @@ package com.tg.manager.controller;
 
 import com.tg.manager.model.SubmitModel;
 import com.tg.manager.model.TeamModel;
+import com.tg.manager.model.ToDoModel;
 import com.tg.manager.view.Entrega;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,6 +44,16 @@ public class SubmitController {
          }
       }
       throw new RuntimeException("Id Team not exist");
+
+   }
+
+   public static void deleteInDb(Integer idSubmit){
+      if(!(ToDoModel.filterTodoForDelete(idSubmit).isEmpty())){
+         for(Integer idForDelete : ToDoModel.filterTodoForDelete(idSubmit)){
+            ToDoModel.deleteToDo(idForDelete);
+         }
+      }
+      SubmitModel.deleteSubmit(idSubmit);
 
    }
 }

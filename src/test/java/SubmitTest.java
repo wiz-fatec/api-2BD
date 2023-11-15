@@ -1,3 +1,4 @@
+import com.tg.manager.controller.SubmitController;
 import com.tg.manager.model.DisplayTableModel;
 import com.tg.manager.model.SubmitModel;
 import com.tg.manager.model.TGModel;
@@ -21,5 +22,13 @@ public class SubmitTest {
     @Test
     public void validateMethodTypeTGAndModelTg(){
         System.out.println(DisplayTableModel.getNoteAndFeedback(2, "Relatório Técnico - Estágio (Somente para quem não pode participar de 6 APIs. Autorizado pela empresa)"));
+    }
+
+    @Test
+    public void deleteSubmit(){
+        // Test for delete of submit
+        SubmitController.deleteInDb(10);
+        SubmitController.deleteInDb(9);
+        SubmitController.deleteInDb(8);
     }
 }

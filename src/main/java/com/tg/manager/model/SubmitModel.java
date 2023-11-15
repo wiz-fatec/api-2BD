@@ -46,6 +46,20 @@ public class SubmitModel {
         }
     }
 
+    public static String deleteSubmit(Integer idSubmit){
+        try {
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            String query = "DELETE  FROM entrega WHERE id = ?";
+            PreparedStatement statementDb = connection.prepareStatement(query);
+            statementDb.setInt(1, idSubmit);
+            int rowsAffected = statementDb.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
     public  static Set<SubmitModel> getSubmit()  {
         try {    
             ConnectionDataBase connectionDb = new ConnectionDataBase();
