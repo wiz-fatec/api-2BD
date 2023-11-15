@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -28,7 +29,7 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <TableView fx:id="table" layoutX="218.0" layoutY="241.0" prefHeight="338.0" prefWidth="935.0">
+      <TableView fx:id="table" layoutX="218.0" layoutY="283.0" prefHeight="338.0" prefWidth="935.0">
          <columns>
             <TableColumn fx:id="nameColumn" prefWidth="124.26663208007812" text="Estudante" />
             <TableColumn fx:id="emailFatecColumn" prefWidth="163.73330688476562" text="Email Institucional" />
@@ -63,5 +64,6 @@
             </ImageView>
          </children>
       </HBox>
+      <ComboBox fx:id="filterTG" layoutX="218.0" layoutY="203.0" onAction="#filterStudentTG" prefHeight="28.0" prefWidth="220.0" />
    </children>
 </AnchorPane>
