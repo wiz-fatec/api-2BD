@@ -9,15 +9,19 @@ import com.tg.manager.model.DisplayTableModel;
 import com.tg.manager.model.SubmitModel;
 import com.tg.manager.model.ToDoModel;
 import com.tg.manager.view.NotasFeedbackScreen;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -45,6 +49,9 @@ public class HomeScreenWithTableController implements Initializable {
     private TableColumn<DisplayTableModel, String> emailFatecColumn;
 
     @FXML
+    private ComboBox<String> filterTG;
+
+    @FXML
     private TableColumn<DisplayTableModel, String> typeTgColumn;
 
     @FXML
@@ -61,6 +68,20 @@ public class HomeScreenWithTableController implements Initializable {
 
     @FXML
     private TableView<DisplayTableModel> table;
+
+    @FXML
+    void filterStudentTG(ActionEvent event) {
+        String selectedTypeTg = filterTG.getValue();
+
+        if ("Sem filtro".equals(selectedTypeTg)) {
+            loadStudentData();
+        } else if (selectedTypeTg != null) {
+            Set<DisplayTableModel> filteredList = DisplayTableModel.filterTable(selectedTypeTg);
+    
+            ObservableList<DisplayTableModel> filteredStudentList = FXCollections.observableArrayList(filteredList);
+            table.setItems(filteredStudentList);
+        }
+    }
 
     @FXML
     void goToDeliveryScreenHome(MouseEvent event) {
@@ -89,7 +110,16 @@ public class HomeScreenWithTableController implements Initializable {
         rateAndFeedbackColumn.setCellFactory(col -> createButtonCell("Atribuir Nota"));
         reportColumn.setCellFactory(col -> createButtonCell("Visualizar Relatório"));
 
+        initComboBox();
+
         loadStudentData();
+    }
+
+    private void initComboBox() {
+    ObservableList<String> typesList = FXCollections.observableArrayList(
+            "Sem filtro", "Portfólio", "Estágio - Técnico", "Técnico - Disciplina", "Científico"
+    );
+    filterTG.setItems(typesList);
     }
 
     private void loadStudentData() {
