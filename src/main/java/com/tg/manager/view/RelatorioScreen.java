@@ -13,22 +13,19 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class RelatorioScreen extends Application {
-    public static Set <SubmitModel> toDo;
-
-    public  static DisplayTableModel display;
-
+    public  static DisplayTableModel display1;
     public RelatorioScreen(){}
 
-    public RelatorioScreen(Set <SubmitModel> toDoArg, DisplayTableModel display) {
-        this.display = display;
-        toDo = toDoArg;
-    }
+    public RelatorioScreen(DisplayTableModel display1) {
+        this.display1 = display1;
+        }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         //TODO condicional para definir qual o tipo de relatório se deve abrir usando aluno como parâmetro.
-        String tipoRelatorio = "RelatorioPortfolio.fxml";
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(tipoRelatorio)); 
+        String relatorio;
+        relatorio = "RelatorioPortfolio.fxml";
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(relatorio)); 
         Parent root = fxmlLoader.load();
         Scene tela1 = new Scene(root);
 

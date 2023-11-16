@@ -1,15 +1,20 @@
 package com.tg.manager.view;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class LayoutRelatorioDisciplinaController implements Initializable{
 
@@ -24,6 +29,9 @@ public class LayoutRelatorioDisciplinaController implements Initializable{
 
     @FXML
     private Label NomeCompleto;
+
+    @FXML
+    private Label TemaTg;
 
     @FXML
     private Button RelatorioEntrega;
@@ -50,7 +58,10 @@ public class LayoutRelatorioDisciplinaController implements Initializable{
     private ImageView botaoHome;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        
+        EmailInstitucional.setText(ButtonCell.getDisplayModel1().getStudent().getFatecEmail());
+        NomeCompleto.setText(ButtonCell.getDisplayModel1().getStudent().getName());
+        EmailPessoal.setText(ButtonCell.getDisplayModel1().getStudent().getEmail());
+        //Turma.setText(ButtonCell.getDisplayModel1().getStudent().getTypeTg());
     }
 
 
@@ -61,6 +72,15 @@ public class LayoutRelatorioDisciplinaController implements Initializable{
 
     @FXML
     void goToDeliveryScreen(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("NovaEntregaScreen.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) botaoCalendar.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }    
 
     }
 
@@ -76,7 +96,15 @@ public class LayoutRelatorioDisciplinaController implements Initializable{
 
     @FXML
     void goToHomeScreen(MouseEvent event) {
-
-    }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("HomeScreenWithTable.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) botaoCalendar.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        }
 
 }

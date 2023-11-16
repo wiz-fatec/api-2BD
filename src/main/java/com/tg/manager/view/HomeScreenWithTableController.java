@@ -102,11 +102,21 @@ public class HomeScreenWithTableController implements Initializable {
     private TableCell<DisplayTableModel, Boolean> createButtonCell(String buttonLabel) {
         return new ButtonCell(buttonLabel);
     }
+
+    public static DisplayTableModel getDisplayModel1() {
+        return ButtonCell.getDisplayModel1();
+    }
+    
+
 }
 
 class ButtonCell extends TableCell<DisplayTableModel, Boolean> {
     private final Button button;
+    public Button getButton() {
+        return button;
+    }
 
+    private static DisplayTableModel  displayModel1;
     public ButtonCell(String buttonLabel) {
         button = new Button(buttonLabel);
         button.setAlignment(Pos.CENTER);
@@ -132,7 +142,16 @@ class ButtonCell extends TableCell<DisplayTableModel, Boolean> {
                     }
                     break;
                 case "Visualizar Relatório":
-                    // Lógica para "Visualizar Relatório" com base no email
+                    Stage currentStage1 = (Stage) button.getScene().getWindow();
+                    currentStage1.close();
+                    displayModel1 = tableView.getItems().get(index);
+                    System.out.println(displayModel1);
+                    RelatorioScreen RelatorioScreen = new RelatorioScreen(displayModel1);
+                    try {
+                        RelatorioScreen.start(new Stage());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case "Visualizar Perfil":
                     // Lógica para "Visualizar Perfil" com base no email
@@ -153,4 +172,9 @@ class ButtonCell extends TableCell<DisplayTableModel, Boolean> {
             setGraphic(button);
         }
     }
+
+    public static DisplayTableModel getDisplayModel1() {
+        return displayModel1;
+    }
+    
 }
