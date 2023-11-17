@@ -17,7 +17,6 @@ public class Main {
         System.out.println("Hello world!");
         Application.launch(HomeScreen.class, args);
     } else {
-        TGModel.getDisciplineTG(56);
         Application.launch(HomeScreenWithTable.class, args);
     }
     }
