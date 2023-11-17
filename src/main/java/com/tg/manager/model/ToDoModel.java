@@ -3,9 +3,7 @@ package com.tg.manager.model;
 import com.tg.manager.model.connection.ConnectionDataBase;
 import lombok.Data;
 import lombok.ToString;
-
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -95,6 +93,38 @@ public class ToDoModel {
             while (result.next()) {
                 String id= result.getString("id");
                 listId.add(Integer.valueOf(id));
+            }
+            return listId;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        return null;
+
+    }
+
+    public static Set<ToDoModel> filterTodo(int idStudent){
+        try {
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            String query = "SELECT * FROM valor_entrega WHERE idaluno = ?";
+            PreparedStatement statementDb = connection.prepareStatement(query);
+            statementDb.setInt(1, idStudent );
+            ResultSet result = statementDb.executeQuery();
+            Set<ToDoModel> listId = new HashSet<>();
+            while (result.next()) {
+                ToDoModel todo = new ToDoModel();
+                Integer id = result.getInt("id");
+                todo.setId(id);
+                Double note = result.getDouble("nota");
+                todo.setNote(note);
+                String feedBack = result.getString("feedback");
+                todo.setFeedback(feedBack);
+                Integer idStudentTodo = result.getInt("idaluno");
+                todo.setIdStudent(idStudentTodo);
+                Integer idIssue= result.getInt("identrega");
+                todo.setIdIssue(idIssue);
+                listId.add(todo);
             }
             return listId;
         } catch (SQLException ex) {
