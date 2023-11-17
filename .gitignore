@@ -37,3 +37,5 @@ package.json
 
 .classpath
 node_modules
+
+tests
