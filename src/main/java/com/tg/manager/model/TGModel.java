@@ -113,6 +113,72 @@ public class TGModel {
         return null;
     }
 
+    public static String getDisciplineTG(Integer idStudent){
+            try {
+        ConnectionDataBase connectionDb = new ConnectionDataBase();
+        Connection connection = connectionDb.getConexao();
+        String query = "SELECT disciplina FROM tg WHERE idaluno = ?";
+        PreparedStatement statementDb = connection.prepareStatement(query);
+        statementDb.setInt(1, idStudent);
+        ResultSet result = statementDb.executeQuery();
+        while (result.next()) {
+            String type= result.getString("disciplina");
+            return type;
+        }
+        result.close();
+        statementDb.close();
+        connection.close();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return null;
+
+    }
+
+    public static String getEnterpriseTG(Integer idStudent){
+            try {
+        ConnectionDataBase connectionDb = new ConnectionDataBase();
+        Connection connection = connectionDb.getConexao();
+        String query = "SELECT empresa FROM tg WHERE idaluno = ?";
+        PreparedStatement statementDb = connection.prepareStatement(query);
+        statementDb.setInt(1, idStudent);
+        ResultSet result = statementDb.executeQuery();
+        while (result.next()) {
+            String type= result.getString("empresa");
+            return type;
+        }
+        result.close();
+        statementDb.close();
+        connection.close();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return null;
+
+    }
+
+    public static String getProblemTG(Integer idStudent){
+            try {
+        ConnectionDataBase connectionDb = new ConnectionDataBase();
+        Connection connection = connectionDb.getConexao();
+        String query = "SELECT problema FROM tg WHERE idaluno = ?";
+        PreparedStatement statementDb = connection.prepareStatement(query);
+        statementDb.setInt(1, idStudent);
+        ResultSet result = statementDb.executeQuery();
+        while (result.next()) {
+            String type= result.getString("problema");
+            return type;
+        }
+        result.close();
+        statementDb.close();
+        connection.close();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return null;
+
+    }
+
     public static void validatorTG(String description, String typeTg, String problem, String enterprise, String discipline, String emailStudent){
         EmailValidator.validatorEmail(emailStudent);
         Integer idStudent = findIdStudent(emailStudent);
