@@ -81,6 +81,51 @@ public class ToDoModel {
         return null;
     }
 
+    public static String getFeedBackToDo(Integer idStudent){
+        try {
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            String query = "SELECT feedback FROM valor_entrega WHERE idaluno = ? ORDER BY id DESC LIMIT 1";
+            PreparedStatement statementDb = connection.prepareStatement(query);
+            statementDb.setInt(1, idStudent);
+            ResultSet result = statementDb.executeQuery();
+            while (result.next()) {
+                String type= result.getString("feedback");
+                return type;
+            }
+            result.close();
+            statementDb.close();
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        return null;
+    }
+
+        public static String getNoteToDo(Integer idStudent){
+        try {
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            String query = "SELECT nota FROM valor_entrega WHERE idaluno = ? ORDER BY id DESC LIMIT 1";
+            PreparedStatement statementDb = connection.prepareStatement(query);
+            statementDb.setInt(1, idStudent);
+            ResultSet result = statementDb.executeQuery();
+            while (result.next()) {
+                String type= result.getString("nota");
+                return type;
+            }
+            result.close();
+            statementDb.close();
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        return null;
+    }
+
+
     public static Set<Integer> filterTodoForDelete(int idSubmit){
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
