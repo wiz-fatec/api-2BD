@@ -62,8 +62,13 @@ public class LayoutRelatorioTecnicoController implements Initializable{
         NomeCompleto.setText(ButtonCell.getDisplayModel1().getStudent().getName());
         EmailPessoal.setText(ButtonCell.getDisplayModel1().getStudent().getEmail());
         Turma.setText(ButtonCell.getDisplayModel1().getTypeTg());
-        RelatorioFeedback.setText(ToDoModel.getFeedBackToDo(ButtonCell.getDisplayModel1().getStudent().getId()));
-        RelatorioNota.setText(ToDoModel.getNoteToDo(ButtonCell.getDisplayModel1().getStudent().getId()));
+        if (ToDoModel.getNoteToDo(ButtonCell.getDisplayModel1().getStudent().getId())!= null){
+            RelatorioNota.setText(ToDoModel.getNoteToDo(ButtonCell.getDisplayModel1().getStudent().getId()));
+        }
+        if (ButtonCell.getDisplayModel1().getFeedbackTG()!= null){
+            RelatorioFeedback.setText(ButtonCell.getDisplayModel1().getFeedbackTG());
+        }
+
         Empresa.setText(TGModel.getEnterpriseTG(ButtonCell.getDisplayModel1().getStudent().getId()));
     }
 

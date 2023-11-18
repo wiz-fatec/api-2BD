@@ -1,11 +1,8 @@
 package com.tg.manager.view;
 
-import java.util.Set;
 
 import com.tg.manager.model.DisplayTableModel;
-import com.tg.manager.model.SubmitModel;
 import com.tg.manager.model.TGModel;
-import com.tg.manager.model.ToDoModel;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
