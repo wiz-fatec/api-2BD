@@ -15,6 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import com.tg.manager.model.TGModel;
+import com.tg.manager.model.ToDoModel;
 import com.tg.manager.view.ButtonCell;
 
 public class LayoutRelatorioCientificoController implements Initializable{
@@ -52,12 +54,17 @@ public class LayoutRelatorioCientificoController implements Initializable{
     @FXML
     private ImageView botaoHome;
 
+    @FXML
+    private Label Problema;
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         EmailInstitucional.setText(ButtonCell.getDisplayModel1().getStudent().getFatecEmail());
         NomeCompleto.setText(ButtonCell.getDisplayModel1().getStudent().getName());
         EmailPessoal.setText(ButtonCell.getDisplayModel1().getStudent().getEmail());
-        //Turma.setText(ButtonCell.getDisplayModel1().getStudent().getTypeTg());
-
+        Turma.setText(ButtonCell.getDisplayModel1().getTypeTg());
+        RelatorioFeedback.setText(ToDoModel.getFeedBackToDo(ButtonCell.getDisplayModel1().getStudent().getId()));
+        RelatorioNota.setText(ToDoModel.getNoteToDo(ButtonCell.getDisplayModel1().getStudent().getId()));
+        Problema.setText(TGModel.getProblemTG(ButtonCell.getDisplayModel1().getStudent().getId()));
     }
 
     @FXML

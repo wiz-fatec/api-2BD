@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.tg.manager.model.DisplayTableModel;
 import com.tg.manager.model.SubmitModel;
+import com.tg.manager.model.TGModel;
 import com.tg.manager.model.ToDoModel;
 
 import javafx.application.Application;
@@ -22,9 +23,23 @@ public class RelatorioScreen extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //TODO condicional para definir qual o tipo de relatório se deve abrir usando aluno como parâmetro.
         String relatorio;
-        relatorio = "RelatorioPortfolio.fxml";
+        String qualRelatorio = TGModel.getModelTg(ButtonCell.getDisplayModel1().getStudent().getId());
+        if (qualRelatorio.contains("Científico")){
+            relatorio = "RelatorioCientifico.fxml";
+        }
+        
+        else if (qualRelatorio.contains("Estágio")){
+            relatorio = "RelatorioEstagioTecnico.fxml";
+        }
+        
+        else if(qualRelatorio.contains("Disciplina")){
+            relatorio = "RelatorioTecnicoDisciplina.fxml";
+        }
+        
+        else{
+            relatorio = "RelatorioPortfolio.fxml";
+        }
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(relatorio)); 
         Parent root = fxmlLoader.load();
         Scene tela1 = new Scene(root);

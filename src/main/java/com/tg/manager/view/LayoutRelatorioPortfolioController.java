@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.tg.manager.model.ToDoModel;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -55,7 +57,9 @@ public class LayoutRelatorioPortfolioController implements Initializable{
         EmailInstitucional.setText(ButtonCell.getDisplayModel1().getStudent().getFatecEmail());
         NomeCompleto.setText(ButtonCell.getDisplayModel1().getStudent().getName());
         EmailPessoal.setText(ButtonCell.getDisplayModel1().getStudent().getEmail());
-        //Turma.setText(ButtonCell.getDisplayModel1().getStudent().getTypeTg());
+        Turma.setText(ButtonCell.getDisplayModel1().getTypeTg());
+        RelatorioFeedback.setText(ToDoModel.getFeedBackToDo(ButtonCell.getDisplayModel1().getStudent().getId()));
+        RelatorioNota.setText(ToDoModel.getNoteToDo(ButtonCell.getDisplayModel1().getStudent().getId()));
     }
 
     @FXML
