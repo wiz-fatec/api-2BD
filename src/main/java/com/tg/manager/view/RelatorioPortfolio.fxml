@@ -27,8 +27,14 @@
       </Label>
       <Button fx:id="RelatorioEntrega" layoutX="880.0" layoutY="452.0" mnemonicParsing="false" onAction="#goToDeliveryReport" prefHeight="40.0" prefWidth="136.0" style="-fx-background-color: #31efb8;" text="Relatório de Entrega" />
       <Button fx:id="RelatorioGeral" layoutX="880.0" layoutY="553.0" mnemonicParsing="false" onAction="#goToGeneralReport" prefHeight="40.0" prefWidth="136.0" style="-fx-background-color: #31efb8;" text="Relatório Geral" />
-      <Label fx:id="RelatorioNota" layoutX="880.0" layoutY="353.0" prefHeight="40.0" prefWidth="136.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #ffffff;" text="Nota" textFill="WHITE" />
-      <Label fx:id="RelatorioFeedback" alignment="TOP_LEFT" layoutX="170.0" layoutY="349.0" prefHeight="244.0" prefWidth="658.0" style="-fx-border-color: #ffffff;" text="Feedback" textFill="WHITE" />
+      <Label fx:id="RelatorioNota" layoutX="880.0" layoutY="353.0" prefHeight="40.0" prefWidth="136.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #ffffff;" text="Nota" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="RelatorioFeedback" alignment="TOP_LEFT" layoutX="170.0" layoutY="349.0" prefHeight="244.0" prefWidth="658.0" style="-fx-border-color: #ffffff;" text="Feedback" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
       <HBox alignment="CENTER" layoutY="641.0" prefHeight="75.0" prefWidth="1248.0" style="-fx-background-color: #2e2e2e;">
          <children>
             <ImageView fx:id="botaoHome" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" onMouseClicked="#goToHomeScreen" pickOnBounds="true" preserveRatio="true">
