@@ -18,6 +18,7 @@ public class TeamModel {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
+            connection.setAutoCommit(false);
             String insercaoSQL = "INSERT INTO turma (semestre, ano) VALUES (?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insercaoSQL);
             preparedStatement.setInt(1, semester);
@@ -25,6 +26,7 @@ public class TeamModel {
             System.out.println(preparedStatement.executeUpdate());
             preparedStatement.close();
             System.out.println("Dados inseridos com sucesso!");
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }

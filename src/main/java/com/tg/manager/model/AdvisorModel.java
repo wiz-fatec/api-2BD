@@ -19,15 +19,15 @@ public class AdvisorModel {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
+            connection.setAutoCommit(false);
             String insercaoSQL = "INSERT INTO orientador (nome, email_fatec) VALUES (?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insercaoSQL);
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, fatecEmail);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            //connection.close();
             System.out.println("Dados inseridos com sucesso!");
-
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }

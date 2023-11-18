@@ -23,6 +23,7 @@ public class StudentModel {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
+            connection.setAutoCommit(false);
             String insercaoSQL = "INSERT INTO aluno (nome, email, email_fatec, idOrientador, idturma) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insercaoSQL);
             preparedStatement.setString(1, name);
@@ -33,6 +34,7 @@ public class StudentModel {
             preparedStatement.executeUpdate();
             preparedStatement.close();
             System.out.println("Dados inseridos com sucesso!");
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }

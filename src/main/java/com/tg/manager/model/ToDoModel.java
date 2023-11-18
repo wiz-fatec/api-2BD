@@ -24,6 +24,7 @@ public class ToDoModel {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
+            connection.setAutoCommit(false);
             String insercaoSQL = "INSERT INTO valor_entrega (nota, feedback, idaluno, identrega) VALUES (?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(insercaoSQL);
             preparedStatement.setDouble(1, note);
@@ -32,8 +33,8 @@ public class ToDoModel {
             preparedStatement.setInt(4, idIssue);
             preparedStatement.executeUpdate();
             preparedStatement.close();
-            //connection.close();
             System.out.println("Dados inseridos com sucesso!");
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
