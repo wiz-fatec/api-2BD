@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.io.IOException;
 
+import com.tg.manager.model.AdvisorModel;
 import com.tg.manager.model.TGModel;
 import com.tg.manager.model.ToDoModel;
 
@@ -30,6 +31,12 @@ public class LayoutRelatorioEstagioDisciplinaController implements Initializable
 
     @FXML
     private Label NomeCompleto;
+
+    @FXML
+    private Label Orientador;
+
+    @FXML
+    private Label EmailOrientador;
 
     @FXML
     private Button RelatorioEntrega;
@@ -60,18 +67,19 @@ public class LayoutRelatorioEstagioDisciplinaController implements Initializable
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        EmailInstitucional.setText(ButtonCell.getDisplayModel1().getStudent().getFatecEmail());
-        NomeCompleto.setText(ButtonCell.getDisplayModel1().getStudent().getName());
-        EmailPessoal.setText(ButtonCell.getDisplayModel1().getStudent().getEmail());
-        Turma.setText(ButtonCell.getDisplayModel1().getTypeTg());
+        EmailInstitucional.setText("E-mail Fatec: "+ButtonCell.getDisplayModel1().getStudent().getFatecEmail());
+        NomeCompleto.setText("Nome: "+ButtonCell.getDisplayModel1().getStudent().getName());
+        EmailPessoal.setText("E-mail: "+ButtonCell.getDisplayModel1().getStudent().getEmail());
+        Turma.setText("Turma: "+ButtonCell.getDisplayModel1().getTypeTg());
         if (ToDoModel.getNoteToDo(ButtonCell.getDisplayModel1().getStudent().getId())!= null){
             RelatorioNota.setText(ToDoModel.getNoteToDo(ButtonCell.getDisplayModel1().getStudent().getId()));
         }
         if (ButtonCell.getDisplayModel1().getFeedbackTG()!= null){
             RelatorioFeedback.setText(ButtonCell.getDisplayModel1().getFeedbackTG());
         }
-
-        disciplinaLabel.setText(TGModel.getDisciplineTG(ButtonCell.getDisplayModel1().getStudent().getId()));
+        Orientador.setText("Orientador: " + AdvisorModel.filterIdAdvisor(ButtonCell.getDisplayModel1().getStudent().getAdvisorId()).getName());
+        EmailOrientador.setText("E-mail orientador: " + AdvisorModel.filterIdAdvisor(ButtonCell.getDisplayModel1().getStudent().getAdvisorId()).getFatecEmail());
+        disciplinaLabel.setText("Disciplina: "+TGModel.getDisciplineTG(ButtonCell.getDisplayModel1().getStudent().getId()));
     }
  
 
