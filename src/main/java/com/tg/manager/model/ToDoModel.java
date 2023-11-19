@@ -93,8 +93,7 @@ public class ToDoModel {
                 String type= result.getString("feedback");
                 return type;
             }
-
-        } catch (SQLException ex) {
+         } catch (SQLException ex) {
             ex.printStackTrace();
 
         }
