@@ -23,12 +23,12 @@
             <Font size="19.0" />
          </font>
       </TextField>
-      <TextField fx:id="Feedback" alignment="TOP_LEFT" layoutX="429.0" layoutY="274.0" prefHeight="250.0" prefWidth="772.0" promptText="Feedback" style="-fx-border-color: #31efb8;">
+      <TextField fx:id="Feedback" alignment="TOP_LEFT" layoutX="429.0" layoutY="274.0" prefHeight="250.0" prefWidth="364.0" promptText="Feedback" style="-fx-border-color: #31efb8;">
          <font>
             <Font size="19.0" />
          </font>
       </TextField>
-      <Button fx:id="Botao" layoutX="1066.0" layoutY="550.0" mnemonicParsing="false" onAction="#BotaoEnviar" prefHeight="32.0" prefWidth="136.0" style="-fx-background-color: #31efb8;" text="Enviar" textAlignment="CENTER">
+      <Button fx:id="Botao" layoutX="657.0" layoutY="562.0" mnemonicParsing="false" onAction="#BotaoEnviar" prefHeight="32.0" prefWidth="136.0" style="-fx-background-color: #31efb8;" text="Enviar" textAlignment="CENTER">
          <font>
             <Font size="19.0" />
          </font>
@@ -65,5 +65,7 @@
          </children>
       </HBox>
       <ChoiceBox fx:id="escolherTG" layoutX="39.0" layoutY="211.0" prefHeight="42.0" prefWidth="353.0" style="-fx-border-color: #31efb8;" />
+      <Label fx:id="NotaLabel" layoutX="898.0" layoutY="211.0" prefHeight="33.0" prefWidth="99.75" style="-fx-border-color: #31efb8;" text="Nota recente" textFill="#31efb8" />
+      <Label fx:id="FeedbackLabel" alignment="TOP_LEFT" layoutX="898.0" layoutY="274.0" prefHeight="250.0" prefWidth="364.0" style="-fx-border-color: #31efb8;" text="Feedback recente" textFill="#31efb8" />
    </children>
 </AnchorPane>

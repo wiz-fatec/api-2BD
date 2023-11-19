@@ -37,7 +37,13 @@ public class ControllerNotasFeedback implements Initializable {
     private TextField Feedback;
 
     @FXML
+    private Label FeedbackLabel;
+
+    @FXML
     private TextField Nota;
+
+    @FXML
+    private Label NotaLabel;
 
     @FXML
     private ImageView botaoCalendar;
@@ -96,14 +102,18 @@ public class ControllerNotasFeedback implements Initializable {
                 // Exibir as notas e feedbacks correspondentes se já existirem
                 if (feedbackMap.containsKey(newValue)) {
                     Feedback.setText(feedbackMap.get(newValue));
+                    FeedbackLabel.setText("Feedback: " + feedbackMap.get(newValue));
                 } else {
                     Feedback.setText("");
+                    FeedbackLabel.setText("Feedback: ");
                 }
                 if (notaMap.containsKey(newValue)) {
                     Nota.setText(notaMap.get(newValue));
+                    NotaLabel.setText("Nota: " + notaMap.get(newValue));
                     atualizarStatusEntrega(newValue);
                 } else {
                     Nota.setText("");
+                    NotaLabel.setText("Nota: ");
                     statusEntrega.setText("SEM NOTA");
                     statusEntrega.setStyle("-fx-text-fill: red;");
                 }
@@ -116,9 +126,8 @@ public class ControllerNotasFeedback implements Initializable {
          System.out.print(NotasFeedbackScreen.toDo);
          System.out.println(NotasFeedbackScreen.display);
          System.out.println(escolhaDeEntrega.getValue());
-
-
-        String entregaSelecionada = escolhaDeEntrega.getValue();
+         System.out.println(NotasFeedbackScreen.display.getStudent().getId());
+         String entregaSelecionada = escolhaDeEntrega.getValue();
         if (entregaSelecionada != null) {
             try{
             feedbackMap.put(entregaSelecionada, Feedback.getText());
@@ -180,4 +189,3 @@ public class ControllerNotasFeedback implements Initializable {
     }
 
 } 
-

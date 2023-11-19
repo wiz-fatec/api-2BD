@@ -57,6 +57,32 @@ public class AdvisorModel {
         }
     }
 
+    public static AdvisorModel filterIdAdvisor(Integer idAdvisor){
+        try {
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            String query = "SELECT * FROM orientador WHERE id = ?";
+            PreparedStatement statementDb = connection.prepareStatement(query);
+            statementDb.setInt(1, idAdvisor);
+            ResultSet result = statementDb.executeQuery();
+            while (result.next()) {
+                AdvisorModel advisor = new AdvisorModel();
+                Integer id = result.getInt("id");
+                advisor.setId(id);
+                String emailFatac = result.getString("email_fatec");
+                advisor.setFatecEmail(emailFatac);
+                String name = result.getString("nome");
+                advisor.setName(name);
+                return advisor;
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+
+    }
+
     public static  void validatorAdvisor(String name, String fatecEmail){
         EmailValidator.validatorEmail(fatecEmail);
         addAdvisor(name, fatecEmail);

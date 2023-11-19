@@ -93,9 +93,7 @@ public class ToDoModel {
                 String type= result.getString("feedback");
                 return type;
             }
-            result.close();
-            statementDb.close();
-            connection.close();
+
         } catch (SQLException ex) {
             ex.printStackTrace();
 
@@ -115,9 +113,6 @@ public class ToDoModel {
                 String type= result.getString("nota");
                 return type;
             }
-            result.close();
-            statementDb.close();
-            connection.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
 

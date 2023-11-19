@@ -1,12 +1,8 @@
 package com.tg.manager.view;
 
 import com.tg.manager.controller.SubmitController;
-import com.tg.manager.model.SubmitModel;
-import com.tg.manager.model.TeamModel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,7 +29,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 public class LayoutEntregaController implements Initializable {
     String minhaInicialDataFormatada;
@@ -94,7 +89,6 @@ public class LayoutEntregaController implements Initializable {
         return opcoesChoiceBox;
     }
 
-    private ObservableList<Entrega> list = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {        

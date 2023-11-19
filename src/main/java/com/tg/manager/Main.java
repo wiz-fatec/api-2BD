@@ -1,11 +1,8 @@
 package com.tg.manager;
 
 import com.tg.manager.model.StudentModel;
-import com.tg.manager.model.TGModel;
-import com.tg.manager.model.ToDoModel;
 import com.tg.manager.view.HomeScreen;
 import com.tg.manager.view.HomeScreenWithTable;
-import com.tg.manager.view.NotasFeedbackScreen;
 
 import javafx.application.Application;
 
