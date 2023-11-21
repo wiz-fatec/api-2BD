@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.tg.manager.model.AdvisorModel;
+import com.tg.manager.model.TGModel;
+
 import javafx.fxml.Initializable;
 
 import javafx.fxml.FXML;
@@ -24,16 +27,7 @@ public class LayoutPerfilAlunoController implements Initializable{
     private Label EmailOrientador1;
 
     @FXML
-    private Label EmailOrientador2;
-
-    @FXML
     private Label EmailPessoal;
-
-    @FXML
-    private Label ModeloTG1;
-
-    @FXML
-    private Label ModeloTG2;
 
     @FXML
     private Label NomeCompleto;
@@ -42,19 +36,10 @@ public class LayoutPerfilAlunoController implements Initializable{
     private Label Orientador1;
 
     @FXML
-    private Label Orientador2;
-
-    @FXML
-    private Label TemaTG1;
-
-    @FXML
-    private Label TemaTG2;
+    private Label Complemento;
 
     @FXML
     private Label Turma1;
-
-    @FXML
-    private Label Turma2;
 
     @FXML
     private ImageView botaoCalendar;
@@ -65,11 +50,32 @@ public class LayoutPerfilAlunoController implements Initializable{
     @FXML
     private ImageView botaoHome;
 
-
+    @FXML
+    
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        NomeCompleto.setText(ButtonCell.getDisplayModel2().getStudent().getName());
-        EmailPessoal.setText(ButtonCell.getDisplayModel2().getStudent().getEmail());
-        EmailInstitucional.setText(ButtonCell.getDisplayModel2().getStudent().getFatecEmail());
+        EmailInstitucional.setText("E-mail Fatec: "+ButtonCell.getDisplayModel2().getStudent().getFatecEmail());
+        NomeCompleto.setText("Nome: " + ButtonCell.getDisplayModel2().getStudent().getName());
+        EmailPessoal.setText("E-mail: "+ButtonCell.getDisplayModel2().getStudent().getEmail());
+        Turma1.setText("Turma: "+ButtonCell.getDisplayModel2().getTypeTg());
+        Orientador1.setText("Orientador: " + AdvisorModel.filterIdAdvisor(ButtonCell.getDisplayModel2().getStudent().getAdvisorId()).getName());
+        EmailOrientador1.setText("E-mail orientador: " + AdvisorModel.filterIdAdvisor(ButtonCell.getDisplayModel2().getStudent().getAdvisorId()).getFatecEmail());
+        
+        String infoTg = ButtonCell.getDisplayModel2().getTypeTg();
+
+        if (infoTg.contains("Científico")){
+            Complemento.setText("Problema: " +TGModel.getProblemTG(ButtonCell.getDisplayModel2().getStudent().getId()));
+        }
+        if (infoTg.contains("Estágio")){
+            Complemento.setText("Empresa: " +TGModel.getEnterpriseTG(ButtonCell.getDisplayModel2().getStudent().getId()));
+        }
+        
+        if(infoTg.contains("Disciplina")){
+            Complemento.setText("Disciplina: " +TGModel.getDisciplineTG(ButtonCell.getDisplayModel2().getStudent().getId()));
+        }
+
+        if(infoTg.contains("Portfólio")){
+            Complemento.setText(null);
+        }
 
     }
 
