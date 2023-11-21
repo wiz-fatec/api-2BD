@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane layoutX="138.0" layoutY="81.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #303236;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tg.manager.view.LayoutRelatorioDisciplinaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1248.0" style="-fx-background-color: #303236;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tg.manager.view.LayoutRelatorioEstagioDisciplinaController">
    <children>
-      <Label layoutX="170.0" layoutY="54.0" text="RELATÓRIO TÉCNICO - DISCIPLINA" textFill="WHITE">
+      <Label layoutX="170.0" layoutY="54.0" prefHeight="35.0" prefWidth="466.0" text="RELATÓRIO ESTÁGIO - DISCIPLINA" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>
@@ -20,7 +20,8 @@
       <Label fx:id="EmailPessoal" layoutX="170.0" layoutY="165.0" prefHeight="32.0" prefWidth="408.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Email De Comunicação" textFill="WHITE" />
       <Label fx:id="EmailInstitucional" layoutX="170.0" layoutY="222.0" prefHeight="32.0" prefWidth="408.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Email Institucional" textFill="WHITE" />
       <Label fx:id="Turma" layoutX="664.0" layoutY="107.0" prefHeight="32.0" prefWidth="352.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Turma Matrículada" textFill="WHITE" />
-      <Label fx:id="Disciplina" layoutX="664.0" layoutY="165.0" prefHeight="32.0" prefWidth="352.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Disciplina Desenvolvida" textFill="WHITE" />
+      <Label fx:id="Orientador" layoutX="664.0" layoutY="222.0" prefHeight="32.0" prefWidth="408.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Orientador" textFill="WHITE" />
+      <Label fx:id="EmailOrientador" layoutX="664.0" layoutY="281.0" prefHeight="32.0" prefWidth="408.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Email Orientador" textFill="WHITE" />
       <Label layoutX="170.0" layoutY="300.0" text="NOTA E FEEDBACK" textFill="WHITE">
          <font>
             <Font size="24.0" />
@@ -28,13 +29,19 @@
       </Label>
       <Button fx:id="RelatorioEntrega" layoutX="880.0" layoutY="452.0" mnemonicParsing="false" onAction="#goToDeliveryReport" prefHeight="40.0" prefWidth="136.0" style="-fx-background-color: #31efb8;" text="Relatório de Entrega" />
       <Button fx:id="RelatorioGeral" layoutX="880.0" layoutY="553.0" mnemonicParsing="false" onAction="#goToGeneralReport" prefHeight="40.0" prefWidth="136.0" style="-fx-background-color: #31efb8;" text="Relatório Geral" />
-      <Label fx:id="RelatorioNota" layoutX="880.0" layoutY="353.0" prefHeight="40.0" prefWidth="136.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #ffffff;" text="Nota" textFill="WHITE" />
-      <Label fx:id="RelatorioFeedback" alignment="TOP_LEFT" layoutX="170.0" layoutY="349.0" prefHeight="244.0" prefWidth="658.0" style="-fx-border-color: #ffffff;" text="Feedback" textFill="WHITE" />
-      <HBox alignment="CENTER" layoutX="6.0" layoutY="613.0" prefHeight="75.0" prefWidth="1376.0" style="-fx-background-color: #2e2e2e;">
+      <Label fx:id="RelatorioNota" layoutX="880.0" layoutY="353.0" prefHeight="40.0" prefWidth="136.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #ffffff;" text="Nota" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="RelatorioFeedback" alignment="TOP_LEFT" layoutX="170.0" layoutY="349.0" prefHeight="244.0" prefWidth="658.0" style="-fx-border-color: #ffffff;" text="Feedback" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <HBox alignment="CENTER" layoutY="641.0" prefHeight="75.0" prefWidth="1248.0" style="-fx-background-color: #2e2e2e;">
          <children>
             <ImageView fx:id="botaoHome" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" onMouseClicked="#goToHomeScreen" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Documents/api-2BD/src/main/java/com/tg/manager/assets/icons8-home-60.png" />
+                  <Image url="@../assets/icons8-home-60.png" />
                </image>
                <HBox.margin>
                   <Insets right="40.0" />
@@ -42,12 +49,12 @@
             </ImageView>
             <ImageView fx:id="botaoClipboard" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" onMouseClicked="#goToGeneralReportScreen" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Documents/api-2BD/src/main/java/com/tg/manager/assets/icons8-clipboard-60.png" />
+                  <Image url="@../assets/icons8-clipboard-60.png" />
                </image>
             </ImageView>
             <ImageView fx:id="botaoCalendar" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" onMouseClicked="#goToDeliveryScreen" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Documents/api-2BD/src/main/java/com/tg/manager/assets/icons8-edit-calendar-60.png" />
+                  <Image url="@../assets/icons8-edit-calendar-60.png" />
                </image>
                <HBox.margin>
                   <Insets left="40.0" />
@@ -55,6 +62,6 @@
             </ImageView>
          </children>
       </HBox>
-      <Label fx:id="TemaTg" layoutX="664.0" layoutY="222.0" prefHeight="32.0" prefWidth="352.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Tema da TG" textFill="WHITE" />
+      <Label fx:id="disciplinaLabel" layoutX="664.0" layoutY="165.0" prefHeight="32.0" prefWidth="352.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Disciplina" textFill="WHITE" />
    </children>
 </AnchorPane>

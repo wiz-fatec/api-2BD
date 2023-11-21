@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.tg.manager.model.AdvisorModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import com.tg.manager.view.ButtonCell;
+import com.tg.manager.model.TGModel;
+import com.tg.manager.model.ToDoModel;
 
 public class LayoutRelatorioCientificoController implements Initializable{
 
@@ -30,6 +32,12 @@ public class LayoutRelatorioCientificoController implements Initializable{
 
     @FXML
     private Button RelatorioEntrega;
+
+    @FXML
+    private Label Orientador;
+
+    @FXML
+    private Label EmailOrientador;
 
     @FXML
     private Label RelatorioFeedback;
@@ -52,12 +60,23 @@ public class LayoutRelatorioCientificoController implements Initializable{
     @FXML
     private ImageView botaoHome;
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        EmailInstitucional.setText(ButtonCell.getDisplayModel1().getStudent().getFatecEmail());
-        NomeCompleto.setText(ButtonCell.getDisplayModel1().getStudent().getName());
-        EmailPessoal.setText(ButtonCell.getDisplayModel1().getStudent().getEmail());
-        //Turma.setText(ButtonCell.getDisplayModel1().getStudent().getTypeTg());
+    @FXML
+    private Label Problema;
 
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        EmailInstitucional.setText("E-mail Fatec: "+ButtonCell.getDisplayModel1().getStudent().getFatecEmail());
+        NomeCompleto.setText("Nome: " + ButtonCell.getDisplayModel1().getStudent().getName());
+        EmailPessoal.setText("E-mail: "+ButtonCell.getDisplayModel1().getStudent().getEmail());
+        Turma.setText("Turma: "+ButtonCell.getDisplayModel1().getTypeTg());
+        if (ToDoModel.getNoteToDo(ButtonCell.getDisplayModel1().getStudent().getId())!= null){
+            RelatorioNota.setText(ToDoModel.getNoteToDo(ButtonCell.getDisplayModel1().getStudent().getId()));
+        }
+        if (ToDoModel.getFeedBackToDo(ButtonCell.getDisplayModel1().getStudent().getId())!= null){
+            RelatorioFeedback.setText(ToDoModel.getFeedBackToDo(ButtonCell.getDisplayModel1().getStudent().getId()));;
+        }
+        Orientador.setText("Orientador: " + AdvisorModel.filterIdAdvisor(ButtonCell.getDisplayModel1().getStudent().getAdvisorId()).getName());
+        EmailOrientador.setText("E-mail orientador: " + AdvisorModel.filterIdAdvisor(ButtonCell.getDisplayModel1().getStudent().getAdvisorId()).getFatecEmail());
+        Problema.setText("Problema: "+TGModel.getProblemTG(ButtonCell.getDisplayModel1().getStudent().getId()));
     }
 
     @FXML

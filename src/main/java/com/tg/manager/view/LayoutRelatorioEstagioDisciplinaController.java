@@ -1,13 +1,18 @@
 package com.tg.manager.view;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.io.IOException;
+
+import com.tg.manager.model.AdvisorModel;
+import com.tg.manager.model.TGModel;
+import com.tg.manager.model.ToDoModel;
+
+import javafx.fxml.Initializable;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,10 +21,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class LayoutRelatorioDisciplinaController implements Initializable{
-
-    @FXML
-    private Label Disciplina;
+public class LayoutRelatorioEstagioDisciplinaController implements Initializable{
 
     @FXML
     private Label EmailInstitucional;
@@ -31,7 +33,10 @@ public class LayoutRelatorioDisciplinaController implements Initializable{
     private Label NomeCompleto;
 
     @FXML
-    private Label TemaTg;
+    private Label Orientador;
+
+    @FXML
+    private Label EmailOrientador;
 
     @FXML
     private Button RelatorioEntrega;
@@ -57,13 +62,26 @@ public class LayoutRelatorioDisciplinaController implements Initializable{
     @FXML
     private ImageView botaoHome;
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        EmailInstitucional.setText(ButtonCell.getDisplayModel1().getStudent().getFatecEmail());
-        NomeCompleto.setText(ButtonCell.getDisplayModel1().getStudent().getName());
-        EmailPessoal.setText(ButtonCell.getDisplayModel1().getStudent().getEmail());
-        //Turma.setText(ButtonCell.getDisplayModel1().getStudent().getTypeTg());
-    }
+    @FXML
+    private Label disciplinaLabel;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        EmailInstitucional.setText("E-mail Fatec: "+ButtonCell.getDisplayModel1().getStudent().getFatecEmail());
+        NomeCompleto.setText("Nome: "+ButtonCell.getDisplayModel1().getStudent().getName());
+        EmailPessoal.setText("E-mail: "+ButtonCell.getDisplayModel1().getStudent().getEmail());
+        Turma.setText("Turma: "+ButtonCell.getDisplayModel1().getTypeTg());
+        if (ToDoModel.getNoteToDo(ButtonCell.getDisplayModel1().getStudent().getId())!= null){
+            RelatorioNota.setText(ToDoModel.getNoteToDo(ButtonCell.getDisplayModel1().getStudent().getId()));
+        }
+        if (ToDoModel.getFeedBackToDo(ButtonCell.getDisplayModel1().getStudent().getId())!= null){
+            RelatorioFeedback.setText(ToDoModel.getFeedBackToDo(ButtonCell.getDisplayModel1().getStudent().getId()));;
+        }
+        Orientador.setText("Orientador: " + AdvisorModel.filterIdAdvisor(ButtonCell.getDisplayModel1().getStudent().getAdvisorId()).getName());
+        EmailOrientador.setText("E-mail orientador: " + AdvisorModel.filterIdAdvisor(ButtonCell.getDisplayModel1().getStudent().getAdvisorId()).getFatecEmail());
+        disciplinaLabel.setText("Disciplina: "+TGModel.getDisciplineTG(ButtonCell.getDisplayModel1().getStudent().getId()));
+    }
+ 
 
     @FXML
     void goToDeliveryReport(ActionEvent event) {
@@ -72,7 +90,7 @@ public class LayoutRelatorioDisciplinaController implements Initializable{
 
     @FXML
     void goToDeliveryScreen(MouseEvent event) {
-        try {
+                try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("NovaEntregaScreen.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
@@ -81,7 +99,6 @@ public class LayoutRelatorioDisciplinaController implements Initializable{
         } catch (IOException e) {
             e.printStackTrace();
         }    
-
     }
 
     @FXML
@@ -105,6 +122,8 @@ public class LayoutRelatorioDisciplinaController implements Initializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        }
+    }
+
 
 }
+

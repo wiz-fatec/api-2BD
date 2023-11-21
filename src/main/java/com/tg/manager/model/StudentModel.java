@@ -93,6 +93,7 @@ public class StudentModel {
 
     }
 
+
     private static Integer findTeam(String typeTg){
         if(typeTg.contains("TG1") && typeTg.contains("TG2")){
             for(TeamModel teamModel : TeamModel.getSubmit()){
@@ -114,5 +115,6 @@ public class StudentModel {
         }
         throw new RuntimeException("Team does not exist");
     }
+
 
 }

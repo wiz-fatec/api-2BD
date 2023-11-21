@@ -19,6 +19,16 @@ public class DisplayTableModel {
 
    private String typeTg;
 
+   private String feedbackTG;
+
+   private  String noteTG;
+
+   private  String enterpriseTG;
+
+   private  String problemTG;
+
+   private  String disciplineTG;
+
     public static Set<DisplayTableModel> getDataTable(){
         Set<DisplayTableModel> listDataTable = new HashSet<>();
         Set<StudentModel> listStudent = StudentModel.getSubmit();
@@ -115,6 +125,21 @@ public class DisplayTableModel {
 
     private static String typeTG(int idStudent){
        return TGModel.getTypeTg(idStudent);
+    }
+    private static String feedbackTG(int idStudent){
+       return ToDoModel.getFeedBackToDo(idStudent);
+    }
+    private static String noteTG(int idStudent){
+       return ToDoModel.getNoteToDo(idStudent);
+    }
+    private static String enterpriseTG(int idStudent){
+       return TGModel.getEnterpriseTG(idStudent);
+    }
+    private static String problemTG(int idStudent){
+       return TGModel.getProblemTG(idStudent);
+    }
+    private static String disciplineTG(int idStudent){
+       return TGModel.getDisciplineTG(idStudent);
     }
 
 

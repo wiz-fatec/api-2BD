@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.tg.manager.model.AdvisorModel;
+import com.tg.manager.model.ToDoModel;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +32,11 @@ public class LayoutRelatorioPortfolioController implements Initializable{
 
     @FXML
     private Button RelatorioEntrega;
+    @FXML
+    private Label Orientador;
+
+    @FXML
+    private Label EmailOrientador;
 
     @FXML
     private Label RelatorioFeedback;
@@ -52,10 +60,20 @@ public class LayoutRelatorioPortfolioController implements Initializable{
     private ImageView botaoHome;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        EmailInstitucional.setText(ButtonCell.getDisplayModel1().getStudent().getFatecEmail());
-        NomeCompleto.setText(ButtonCell.getDisplayModel1().getStudent().getName());
-        EmailPessoal.setText(ButtonCell.getDisplayModel1().getStudent().getEmail());
-        //Turma.setText(ButtonCell.getDisplayModel1().getStudent().getTypeTg());
+        EmailInstitucional.setText("E-mail fatec: "+ButtonCell.getDisplayModel1().getStudent().getFatecEmail());
+        NomeCompleto.setText("Nome: "+ButtonCell.getDisplayModel1().getStudent().getName());
+        EmailPessoal.setText("E-mail: " +ButtonCell.getDisplayModel1().getStudent().getEmail());
+        Turma.setText("Turma: " + ButtonCell.getDisplayModel1().getTypeTg());
+        if (ToDoModel.getNoteToDo(ButtonCell.getDisplayModel1().getStudent().getId())!= null){
+            RelatorioNota.setText(ToDoModel.getNoteToDo(ButtonCell.getDisplayModel1().getStudent().getId()));
+        }
+        if (ToDoModel.getFeedBackToDo(ButtonCell.getDisplayModel1().getStudent().getId())!= null){
+            RelatorioFeedback.setText(ToDoModel.getFeedBackToDo(ButtonCell.getDisplayModel1().getStudent().getId()));;
+        }
+        Orientador.setText("Orientador: " + AdvisorModel.filterIdAdvisor(ButtonCell.getDisplayModel1().getStudent().getAdvisorId()).getName());
+        EmailOrientador.setText("E-mail orientador: " + AdvisorModel.filterIdAdvisor(ButtonCell.getDisplayModel1().getStudent().getAdvisorId()).getFatecEmail());
+        
+
     }
 
     @FXML
