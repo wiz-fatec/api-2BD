@@ -24,13 +24,14 @@ public class SubmitController {
       Set<SubmitModel> listSubmit = SubmitModel.getSubmit();
       ObservableList<Entrega> list = FXCollections.observableArrayList();
       for(SubmitModel submit : listSubmit){
+         Integer id = submit.getId();
          String description = submit.getDescription();
          SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
          String initialDate = formatter.format( submit.getInitialDate());
          String finalDate = formatter.format( submit.getFinalDate());
          String typeTg = convertForTg(submit.getIdTeam());
          String model = submit.getModel();
-         Entrega entrega = new Entrega(description, typeTg, initialDate, finalDate, model);
+         Entrega entrega = new Entrega(id, description, typeTg, initialDate, finalDate, model);
          list.add(entrega);
       }
       return list;

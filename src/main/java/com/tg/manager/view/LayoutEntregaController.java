@@ -1,18 +1,25 @@
 package com.tg.manager.view;
 
 import com.tg.manager.controller.SubmitController;
+import com.tg.manager.model.SubmitModel;
+
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -66,6 +73,9 @@ public class LayoutEntregaController implements Initializable {
     private TableColumn<Entrega, String> TGModelo;
 
     @FXML
+    private TableColumn<Entrega, Boolean> DeleteDelivery;
+
+    @FXML
     private DatePicker dataFinal;
 
     @FXML
@@ -91,7 +101,9 @@ public class LayoutEntregaController implements Initializable {
 
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {        
+    public void initialize(URL location, ResourceBundle resources) { 
+        ObservableList<Entrega> entregaList = FXCollections.observableArrayList();
+        tabela.setItems(entregaList);       
         tabela.setItems(SubmitController.getDataInDataBase());
         tipoDeTg.getItems().addAll(opcoesChoiceBox);
         ModeloTg.getItems().addAll(opcoesModeloTg);
@@ -154,6 +166,46 @@ public class LayoutEntregaController implements Initializable {
         DataInicial.setCellValueFactory(new PropertyValueFactory<>("dataInicial"));
         TipoTG.setCellValueFactory(new PropertyValueFactory<>("tipoTG"));
         TGModelo.setCellValueFactory(new PropertyValueFactory<>("tgModelo"));
+
+        DeleteDelivery.setCellValueFactory(param -> new SimpleBooleanProperty(true));
+        DeleteDelivery.setCellFactory(col -> createDeleteButtonCell("Excluir"));
+    }
+
+    private TableCell<Entrega, Boolean> createDeleteButtonCell(String buttonLabel) {
+        return new DeleteButtonCell(buttonLabel, tabela);
+    }    
+
+    private class DeleteButtonCell extends TableCell<Entrega, Boolean> {
+        private final Button button;
+        private final TableView<Entrega> tabela;
+    
+        public DeleteButtonCell(String buttonLabel, TableView<Entrega> tabela) {
+            this.button = new Button(buttonLabel);
+            this.tabela = tabela;
+    
+            button.setOnAction(event -> {
+                Entrega entrega = getTableView().getItems().get(getIndex());
+                int entregaId = entrega.getId();
+    
+                // Chame o método deleteSubmit do SubmitModel para excluir o registro
+                SubmitModel.deleteSubmit(entregaId);
+    
+                // Atualize a tabela após excluir o registro
+                tabela.setItems(SubmitController.getDataInDataBase());
+            });
+        }
+
+        @Override
+        protected void updateItem(Boolean item, boolean empty) {
+            super.updateItem(item, empty);
+
+            if (empty || !item) {
+                setGraphic(null);
+            } else {
+                setAlignment(Pos.CENTER);
+                setGraphic(button);
+            }
+        }
     }
 
     private void checkCampos() {
