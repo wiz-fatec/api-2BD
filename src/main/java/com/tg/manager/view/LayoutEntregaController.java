@@ -114,7 +114,7 @@ public class LayoutEntregaController implements Initializable {
             }
         });
 
-        dataFinal.setDisable(true); // Desabilita a data final inicialmente
+        dataFinal.setDisable(true);
 
         dataFinal.setDayCellFactory(new Callback<DatePicker, DateCell>() {
             public DateCell call(final DatePicker datePicker) {
@@ -134,7 +134,7 @@ public class LayoutEntregaController implements Initializable {
             public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
                 if (newValue != null) {
                     final LocalDate selectedDate = newValue;
-                    dataFinal.setDisable(false); // Habilita a data final quando a data inicial é definida
+                    dataFinal.setDisable(false);
                     dataFinal.setDayCellFactory(new Callback<DatePicker, DateCell>() {
                         public DateCell call(final DatePicker datePicker) {
                             return new DateCell() {
@@ -148,8 +148,8 @@ public class LayoutEntregaController implements Initializable {
                         }
                     });
                 } else {
-                    dataFinal.setDisable(true); // Desabilita a data final se a data inicial estiver vazia
-                    dataFinal.setValue(null); // Reseta a data final se a data inicial estiver vazia
+                    dataFinal.setDisable(true);
+                    dataFinal.setValue(null);
                 }
             }
         });
@@ -186,11 +186,9 @@ public class LayoutEntregaController implements Initializable {
             button.setOnAction(event -> {
                 Entrega entrega = getTableView().getItems().get(getIndex());
                 int entregaId = entrega.getId();
-    
-                // Chame o método deleteSubmit do SubmitModel para excluir o registro
+
                 SubmitModel.deleteSubmit(entregaId);
     
-                // Atualize a tabela após excluir o registro
                 tabela.setItems(SubmitController.getDataInDataBase());
             });
         }
@@ -237,7 +235,6 @@ public class LayoutEntregaController implements Initializable {
             Entrega novaEntrega = new Entrega(atividade, tg, inicialData, finalData, modeloDeTg);
             SubmitController.setDataInDataBase(novaEntrega);
             tabela.setItems(SubmitController.getDataInDataBase());
-            // Limpa os campos após adicionar à tabela
             nomeDaAtividade.clear();
             tipoDeTg.getSelectionModel().clearSelection();
             dataInicial.setValue(null);
@@ -248,8 +245,7 @@ public class LayoutEntregaController implements Initializable {
             minhaFinalDataFormatada = null;
             ModeloTg.getSelectionModel().clearSelection();
         } else {
-            // Lógica de tratamento para campos vazios
-            // Por exemplo, exibir uma mensagem de erro ao usuário
+
         }
     }
 
