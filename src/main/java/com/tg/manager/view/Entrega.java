@@ -1,6 +1,12 @@
 package com.tg.manager.view;
 
+import com.tg.manager.controller.SubmitController;
+
+import lombok.Data;
+
+@Data
 public class Entrega {
+    private int id;
     private String atividade;
     private String tipoTG;
     private String dataInicial;
@@ -16,13 +22,21 @@ public class Entrega {
     public String getAtividade() {
         return atividade;
     }
-    public Entrega(String atividade, String tipoTG, String dataInicial, String dataFinal, String tgModelo) {
+    public Entrega(Integer id, String atividade, String tipoTG, String dataInicial, String dataFinal, String tgModelo) {
+        this.id = id;
         this.atividade = atividade;
         this.tipoTG = tipoTG;
         this.dataInicial = dataInicial;
         this.dataFinal = dataFinal;
         this.tgModelo = tgModelo;
     }
+    public Entrega(String atividade, String tipoTG, String dataInicial, String dataFinal, String tgModelo) {
+    this.atividade = atividade;
+    this.tipoTG = tipoTG;
+    this.dataInicial = dataInicial;
+    this.dataFinal = dataFinal;
+    this.tgModelo = tgModelo;
+}
     public void setAtividade(String atividade) {
         this.atividade = atividade;
     }
