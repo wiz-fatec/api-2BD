@@ -187,7 +187,7 @@ public class LayoutEntregaController implements Initializable {
                 Entrega entrega = getTableView().getItems().get(getIndex());
                 int entregaId = entrega.getId();
 
-                SubmitModel.deleteSubmit(entregaId);
+                SubmitModel.deleteInDb(entregaId);
     
                 tabela.setItems(SubmitController.getDataInDataBase());
             });
