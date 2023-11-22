@@ -12,4 +12,13 @@ public class TodoTest {
     public void getToDoNoteFeedback(){
         System.out.println(ToDoModel.filterTodo(16));
     }
+
+    @Test
+    public void updateNoteAndFeed(){
+        try {
+            ToDoModel.toDoValidator(6, 18, 7.0, "test");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

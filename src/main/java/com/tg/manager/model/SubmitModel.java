@@ -90,6 +90,41 @@ public class SubmitModel {
         }
     }
 
+    public static Set<SubmitModel> filterSubmit(int idTeam){
+        try {
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            String query = "SELECT * FROM entrega WHERE idturma = ?";
+            PreparedStatement statementDb = connection.prepareStatement(query);
+            statementDb.setInt(1, idTeam );
+            ResultSet result = statementDb.executeQuery();
+            Set<SubmitModel> listId = new HashSet<>();
+            while (result.next()) {
+                SubmitModel todo = new SubmitModel();
+                Integer id = result.getInt("id");
+                todo.setId(id);
+                String description = result.getString("descricao");
+                todo.setDescription(description);
+                Date date = result.getDate("data_inicial");
+                todo.setInitialDate(date);
+                Date dateFinal = result.getDate("data_final");
+                todo.setFinalDate(dateFinal);
+                Integer idTeamValue = result.getInt("idturma");
+                todo.setIdTeam(idTeamValue);
+                String model = result.getString("modelo");
+                todo.setModel(model);
+                listId.add(todo);
+            }
+            return listId;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        return null;
+
+    }
+
+
     public static void submitValidator(String description, String initialDate, String finalDate, String typeTg, String model){
         String descriptionText = description;
         Date initialDateConvert =  Date.valueOf(convertDate(initialDate));
