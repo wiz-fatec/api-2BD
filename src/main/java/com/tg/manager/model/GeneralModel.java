@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.ibatis.common.jdbc.ScriptRunner;
@@ -12,7 +13,7 @@ import com.ibatis.common.jdbc.ScriptRunner;
 import com.tg.manager.model.connection.ConnectionDataBase;
 
 public class GeneralModel {
-    public void createDatabase() {    
+    public static void createDatabase() {    
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -28,4 +29,17 @@ public class GeneralModel {
             e.printStackTrace();
         }
     }
+
+     public static void dropDatabase(){
+         try {
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            String drop = "drop table aluno, entrega, orientador, tg, turma, valor_entrega CASCADE";
+            PreparedStatement preparedStatement = connection.prepareStatement(drop);
+            preparedStatement.executeQuery();
+            System.out.println("Banco deletado");
+         } catch (SQLException e) {
+            e.printStackTrace();
+         }
+     }
 }
