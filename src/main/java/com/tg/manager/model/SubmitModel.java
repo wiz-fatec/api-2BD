@@ -46,7 +46,7 @@ public class SubmitModel {
         }
     }
 
-    public static String deleteSubmit(Integer idSubmit){
+    private static String deleteSubmit(Integer idSubmit){
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
@@ -113,5 +113,15 @@ public class SubmitModel {
             }
         }
         throw new RuntimeException("Type TG not exist");
+    }
+
+    public static void deleteInDb(Integer idSubmit){
+        if(!(ToDoModel.filterTodoForDelete(idSubmit).isEmpty())){
+            for(Integer idForDelete : ToDoModel.filterTodoForDelete(idSubmit)){
+                ToDoModel.deleteToDo(idForDelete);
+            }
+        }
+        deleteSubmit(idSubmit);
+
     }
 }

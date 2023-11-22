@@ -20,40 +20,31 @@ public class SubmitController {
       SubmitModel.submitValidator(description, initialDate, finalDate, typeTg, model);
    }
 
-   public static ObservableList<Entrega> getDataInDataBase(){
+   public static ObservableList<Entrega> getDataInDataBase() {
       Set<SubmitModel> listSubmit = SubmitModel.getSubmit();
       ObservableList<Entrega> list = FXCollections.observableArrayList();
-      for(SubmitModel submit : listSubmit){
+      for (SubmitModel submit : listSubmit) {
+         Integer id = submit.getId();
          String description = submit.getDescription();
          SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-         String initialDate = formatter.format( submit.getInitialDate());
-         String finalDate = formatter.format( submit.getFinalDate());
+         String initialDate = formatter.format(submit.getInitialDate());
+         String finalDate = formatter.format(submit.getFinalDate());
          String typeTg = convertForTg(submit.getIdTeam());
          String model = submit.getModel();
-         Entrega entrega = new Entrega(description, typeTg, initialDate, finalDate, model);
+         Entrega entrega = new Entrega(id, description, typeTg, initialDate, finalDate, model);
          list.add(entrega);
       }
       return list;
    }
 
-   public static String convertForTg(int idTeam){
-      for(TeamModel team : TeamModel.getSubmit()){
-         if(team.getId().equals(idTeam)){
+   public static String convertForTg(int idTeam) {
+      for (TeamModel team : TeamModel.getSubmit()) {
+         if (team.getId().equals(idTeam)) {
             String typeTg = team.getSemester().equals(1) ? "TG1" : "TG2";
             return typeTg;
          }
       }
       throw new RuntimeException("Id Team not exist");
-
-   }
-
-   public static void deleteInDb(Integer idSubmit){
-      if(!(ToDoModel.filterTodoForDelete(idSubmit).isEmpty())){
-         for(Integer idForDelete : ToDoModel.filterTodoForDelete(idSubmit)){
-            ToDoModel.deleteToDo(idForDelete);
-         }
-      }
-      SubmitModel.deleteSubmit(idSubmit);
 
    }
 }
