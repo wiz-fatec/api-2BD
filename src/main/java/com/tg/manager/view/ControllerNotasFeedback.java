@@ -9,6 +9,7 @@ import javax.crypto.spec.RC2ParameterSpec;
 
 import com.tg.manager.controller.SubmitController;
 import com.tg.manager.controller.ToDoController;
+import com.tg.manager.model.StudentModel;
 import com.tg.manager.model.SubmitModel;
 import com.tg.manager.model.ToDoModel;
 import com.tg.manager.view.NotasFeedbackScreen;
@@ -161,6 +162,7 @@ public class ControllerNotasFeedback implements Initializable {
 
     @FXML
     void goToGeneralReportScreen(MouseEvent event) {
+        StudentModel.getReport();
     }
 
     @FXML

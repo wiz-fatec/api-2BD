@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 import com.tg.manager.model.DisplayTableModel;
+import com.tg.manager.model.StudentModel;
 import com.tg.manager.model.SubmitModel;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -94,7 +95,7 @@ public class HomeScreenWithTableController implements Initializable {
 
     @FXML
     void goToGeneralReportScreenHome(MouseEvent event) {
-
+        StudentModel.getReport();
     }
 
     @Override

@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.tg.manager.model.AdvisorModel;
+import com.tg.manager.model.StudentModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -105,6 +106,7 @@ public class LayoutRelatorioCientificoController implements Initializable{
 
     @FXML
     void goToGeneralReportScreen(MouseEvent event) {
+        StudentModel.getReport();
     }
 
     @FXML
