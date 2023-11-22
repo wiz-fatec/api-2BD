@@ -35,7 +35,7 @@
             <TableColumn fx:id="emailFatecColumn" prefWidth="163.73330688476562" text="Email Institucional" />
             <TableColumn fx:id="typeTgColumn" prefWidth="163.73330688476562" text="Tipo de TG" />
             <TableColumn fx:id="rateAndFeedbackColumn" prefWidth="155.99993896484375" text="Nota e Feedback" />
-            <TableColumn fx:id="aptoColumn" minWidth="0.0" prefWidth="148.2666015625" text="Apto para Apresentar" />
+            <TableColumn fx:id="aptColumn" minWidth="0.0" prefWidth="148.2666015625" text="Apto para Apresentar" />
             <TableColumn fx:id="reportColumn" minWidth="0.0" prefWidth="162.666748046875" text="Relatório" />
             <TableColumn fx:id="profileStudentColumn" minWidth="0.0" prefWidth="178.13336181640625" text="Perfil do Aluno" />
          </columns></TableView>

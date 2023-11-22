@@ -174,19 +174,47 @@ public class ToDoModel {
 
     }
 
+
+    private static void updateToDo(Double note, String feedBack, Integer id) {
+        try {
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            String insercaoSQL = "UPDATE valor_entrega SET nota = ?, feedback = ? WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(insercaoSQL);
+            preparedStatement.setDouble(1, note);
+            preparedStatement.setString(2, feedBack);
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            System.out.println("Dados atualizados com sucesso!");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public static void toDoValidator(Integer idIssue, Integer idStudent, Double note, String feedback) throws Exception{
         Integer idIssueToDo = idIssue;
         Integer idStudentToDo =  idStudent;
         String feedbackToDo = feedback;
         Double notaTratada = note;
+        if(!NoteAndFeedBackExist(idIssueToDo, idStudentToDo, notaTratada, feedbackToDo)) {
+            if (notaTratada >= 0 && notaTratada <= 10) {
 
-        if (notaTratada >= 0 && notaTratada <= 10) {
+                addToDo(feedbackToDo, notaTratada, idStudentToDo, idIssueToDo);
 
-            addToDo(feedbackToDo,notaTratada,idStudentToDo,idIssueToDo);
-
-        }else {
-            throw new Exception("Note is invalid");
+            } else {
+                throw new RuntimeException("Note is invalid");
+            }
         }
-
+    }
+    public static boolean NoteAndFeedBackExist(Integer idSubmit, Integer idStudent, Double note, String feedback){
+        for(ToDoModel todo : ToDoModel.filterTodo(idStudent)){
+            if(todo.getIdIssue().equals(idSubmit)){
+                ToDoModel.updateToDo(note, feedback, todo.getId());
+                return true;
+            }
+        }
+        return false;
     }
 }
