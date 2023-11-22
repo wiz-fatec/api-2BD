@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="716.0" prefWidth="1248.0" style="-fx-background-color: #303236;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tg.manager.view.LayoutPerfilAlunoController">
+   <children>
+      <HBox alignment="CENTER" layoutY="641.0" prefHeight="75.0" prefWidth="1248.0" style="-fx-background-color: #2e2e2e;">
+         <children>
+            <ImageView fx:id="botaoHome" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" onMouseClicked="#goToHomeScreen" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-home-60.png" />
+               </image>
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="botaoClipboard" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" onMouseClicked="#goToGeneralReportScreen" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-clipboard-60.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="botaoCalendar" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" onMouseClicked="#goToDeliveryScreen" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-edit-calendar-60.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+      <Label layoutX="88.0" layoutY="65.0" prefHeight="35.0" prefWidth="405.0" text="PERFIL DO ALUNO" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="NomeCompleto" layoutX="88.0" layoutY="117.0" prefHeight="32.0" prefWidth="351.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Nome Completo" textFill="WHITE" />
+      <Label fx:id="EmailPessoal" layoutX="475.0" layoutY="117.0" prefHeight="32.0" prefWidth="337.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Email De Comunicação" textFill="WHITE" />
+      <Label fx:id="EmailInstitucional" layoutX="844.0" layoutY="117.0" prefHeight="32.0" prefWidth="259.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Email Institucional" textFill="WHITE" />
+      <Label fx:id="Orientador1" layoutX="88.0" layoutY="217.0" prefHeight="32.0" prefWidth="351.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Professor Orientador" textFill="WHITE" />
+      <Label fx:id="Turma1" layoutX="474.0" layoutY="217.0" prefHeight="32.0" prefWidth="337.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Turma Matrículada" textFill="WHITE" />
+      <Label fx:id="EmailOrientador1" layoutX="88.0" layoutY="288.0" prefHeight="32.0" prefWidth="351.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Email Orientador" textFill="WHITE" />
+      <Label fx:id="Complemento" layoutX="475.0" layoutY="292.0" prefHeight="32.0" prefWidth="337.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Complemento" textFill="WHITE" />
+   </children>
+</AnchorPane>

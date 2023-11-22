@@ -143,6 +143,8 @@ class ButtonCell extends TableCell<DisplayTableModel, Boolean> {
     }
 
     private static DisplayTableModel  displayModel1;
+    private static DisplayTableModel  displayModel2;
+
     public ButtonCell(String buttonLabel) {
         button = new Button(buttonLabel);
         button.setAlignment(Pos.CENTER);
@@ -180,8 +182,18 @@ class ButtonCell extends TableCell<DisplayTableModel, Boolean> {
                     }
                     break;
                 case "Visualizar Perfil":
-                    // Lógica para "Visualizar Perfil" com base no email
-                    break;
+                    Stage currentStage2 = (Stage) button.getScene().getWindow();
+                    currentStage2.close();
+                    displayModel2 = tableView.getItems().get(index);
+                    System.out.println(displayModel2);
+                    PerfilAlunoScreen PerfilAlunoScreen = new PerfilAlunoScreen(displayModel2);
+                    try {
+                        PerfilAlunoScreen.start(new Stage());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                break;
             }
         }
     });
@@ -203,4 +215,9 @@ class ButtonCell extends TableCell<DisplayTableModel, Boolean> {
         return displayModel1;
     }
     
+        public static DisplayTableModel getDisplayModel2() {
+        return displayModel2;
+    }
+
+
 }
