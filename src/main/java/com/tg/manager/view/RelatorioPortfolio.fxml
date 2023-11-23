@@ -27,8 +27,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="RelatorioEntrega" layoutX="880.0" layoutY="452.0" mnemonicParsing="false" onAction="#goToDeliveryReport" prefHeight="40.0" prefWidth="136.0" style="-fx-background-color: #31efb8;" text="Relatório de Entrega" />
-      <Button fx:id="RelatorioGeral" layoutX="880.0" layoutY="553.0" mnemonicParsing="false" onAction="#goToGeneralReport" prefHeight="40.0" prefWidth="136.0" style="-fx-background-color: #31efb8;" text="Relatório Geral" />
+      <Button fx:id="RelatorioEntrega" layoutX="880.0" layoutY="553.0" mnemonicParsing="false" onAction="#goToDeliveryReport" prefHeight="40.0" prefWidth="136.0" style="-fx-background-color: #31efb8;" text="Relatório de Entregas" />
       <Label fx:id="RelatorioNota" layoutX="880.0" layoutY="353.0" prefHeight="40.0" prefWidth="136.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #ffffff;" text="Nota" textFill="WHITE">
          <font>
             <Font size="18.0" />

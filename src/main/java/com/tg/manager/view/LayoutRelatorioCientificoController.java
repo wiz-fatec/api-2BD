@@ -44,9 +44,6 @@ public class LayoutRelatorioCientificoController implements Initializable{
     private Label RelatorioFeedback;
 
     @FXML
-    private Button RelatorioGeral;
-
-    @FXML
     private Label RelatorioNota;
 
     @FXML
@@ -99,10 +96,6 @@ public class LayoutRelatorioCientificoController implements Initializable{
 
     }
 
-    @FXML
-    void goToGeneralReport(ActionEvent event) {
-
-    }
 
     @FXML
     void goToGeneralReportScreen(MouseEvent event) {

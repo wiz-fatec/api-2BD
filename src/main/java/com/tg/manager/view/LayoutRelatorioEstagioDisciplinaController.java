@@ -46,9 +46,6 @@ public class LayoutRelatorioEstagioDisciplinaController implements Initializable
     private Label RelatorioFeedback;
 
     @FXML
-    private Button RelatorioGeral;
-
-    @FXML
     private Label RelatorioNota;
 
     @FXML
@@ -100,11 +97,6 @@ public class LayoutRelatorioEstagioDisciplinaController implements Initializable
         } catch (IOException e) {
             e.printStackTrace();
         }    
-    }
-
-    @FXML
-    void goToGeneralReport(ActionEvent event) {
-
     }
 
     @FXML
