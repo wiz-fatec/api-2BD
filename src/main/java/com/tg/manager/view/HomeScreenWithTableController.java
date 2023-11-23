@@ -34,7 +34,10 @@ public class HomeScreenWithTableController implements Initializable {
     private Button ButtonUploadCSV;
 
     @FXML
-    private Button ButtonUploadCertificate;
+    private Button ButtonDownloadCertificate;
+
+    @FXML
+    private Button ButtonStudentEligible;
 
     @FXML
     private ImageView deliveryScreenHome;
@@ -70,6 +73,18 @@ public class HomeScreenWithTableController implements Initializable {
     private TableView<DisplayTableModel> table;
 
     @FXML
+    void UploadNewCSV(ActionEvent event) {
+    }
+
+    @FXML
+    void DownloadCertificate(ActionEvent event) {
+    }
+
+    @FXML
+    void DownloadStudentEligible(ActionEvent event) {
+    }
+
+    @FXML
     void filterStudentTG(ActionEvent event) {
         String selectedTypeTg = filterTG.getValue();
 
@@ -99,6 +114,7 @@ public class HomeScreenWithTableController implements Initializable {
     @FXML
     void goToGeneralReportScreenHome(MouseEvent event) {
         StudentModel.getReport();
+        GeneralReportAlert.showInformationAlert();
     }
 
     @Override
