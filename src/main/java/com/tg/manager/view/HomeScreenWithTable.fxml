@@ -14,9 +14,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #303236;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tg.manager.view.HomeScreenWithTableController">
    <children>
-      <Text fill="WHITE" layoutX="126.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OLÁ, PROFESSOR">
+      <Text fill="WHITE" layoutX="133.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OLÁ, PROFESSOR">
          <font>
             <Font size="32.0" />
+         </font>
+      </Text>
+      <Text fill="#ffffff" layoutX="135.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtrar por tipo de TG">
+         <font>
+            <Font size="18.0" />
          </font>
       </Text>
       <Button fx:id="ButtonUploadCSV" layoutX="1065.0" layoutY="59.0" mnemonicParsing="false" onAction="#UploadNewCSV" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: #31efb8;" text="Carregar CSV">
@@ -69,6 +74,6 @@
             </ImageView>
          </children>
       </HBox>
-      <ComboBox fx:id="filterTG" layoutX="133.0" layoutY="203.0" onAction="#filterStudentTG" prefHeight="28.0" prefWidth="220.0" />
+      <ComboBox fx:id="filterTG" layoutX="135.0" layoutY="203.0" onAction="#filterStudentTG" prefHeight="28.0" prefWidth="220.0" />
    </children>
 </AnchorPane>
