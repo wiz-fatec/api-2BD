@@ -1,6 +1,7 @@
 package com.tg.manager.model;
 import com.tg.manager.model.connection.ConnectionDataBase;
 import com.tg.manager.utils.EmailValidator;
+import com.tg.manager.utils.ReportPdf;
 import lombok.Data;
 import lombok.ToString;
 import java.sql.*;
@@ -96,6 +97,24 @@ public class AdvisorModel {
            }
        }
        return false;
+    }
+
+    public static Set<StudentModel> studentApt(Integer idAdvisor){
+        Set<StudentModel> studentList = new HashSet<>();
+        for(StudentModel student : StudentModel.getSubmit()){
+            if(student.getAdvisorId().equals(idAdvisor)){
+                if(!student.getTodo(student.getId()).isEmpty()){
+                    studentList.add(student);
+                }
+
+            }
+        }
+        return studentList;
+
+    }
+
+    public static void reportCertified(){
+        ReportPdf.reportCertified(AdvisorModel.getSubmit());
     }
 
 }
