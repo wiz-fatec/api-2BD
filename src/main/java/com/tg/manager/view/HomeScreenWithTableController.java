@@ -82,6 +82,8 @@ public class HomeScreenWithTableController implements Initializable {
 
     @FXML
     void DownloadStudentEligible(ActionEvent event) {
+        DisplayTableModel.reportIsApt();
+        GeneralReportAlert.showInformationAlert();
     }
 
     @FXML

@@ -14,9 +14,9 @@ public class GeneralReportAlert extends Application {
 
     public static void showInformationAlert() {
         Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Relatório Geral");
+        alert.setTitle("Relatório");
         alert.setHeaderText(null);
-        alert.setContentText("Relatório Geral Gerado com Sucesso!");
+        alert.setContentText("Relatório Gerado com Sucesso!");
 
         alert.getDialogPane().setStyle(
                 "-fx-background-color: #303236; " +
