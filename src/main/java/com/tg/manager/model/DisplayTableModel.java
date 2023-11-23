@@ -1,6 +1,7 @@
 package com.tg.manager.model;
 
 import com.tg.manager.utils.ModelTGEnum;
+import com.tg.manager.utils.ReportPdf;
 import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
@@ -183,6 +184,10 @@ public class DisplayTableModel {
     public boolean getIsApt(){
         return this.apt;
 
+    }
+
+    public static void reportIsApt(){
+        ReportPdf.reportIsAptPdf(DisplayTableModel.getDataTable());
     }
 
 }
