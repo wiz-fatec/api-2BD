@@ -64,6 +64,9 @@ public class HomeScreenWithTableController implements Initializable {
     private TableColumn<DisplayTableModel, String> nameColumn;
 
     @FXML
+    private TableColumn<DisplayTableModel, String> aptColumn;
+
+    @FXML
     private TableView<DisplayTableModel> table;
 
     @FXML
@@ -103,6 +106,7 @@ public class HomeScreenWithTableController implements Initializable {
         nameColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getStudent().getName()));
         emailFatecColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getStudent().getFatecEmail()));
         typeTgColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTypeTg()));
+        aptColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getIsApt() ? "APTO" : "NÃO APTO"));
         profileStudentColumn.setCellFactory(col -> createButtonCell("Visualizar Perfil"));
         rateAndFeedbackColumn.setCellFactory(col -> createButtonCell("Atribuir Nota"));
         reportColumn.setCellFactory(col -> createButtonCell("Visualizar Relatório"));
