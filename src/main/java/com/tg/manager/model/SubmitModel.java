@@ -90,13 +90,35 @@ public class SubmitModel {
         }
     }
 
+    public  static String getSubmitId(Integer submit)  {
+        try {
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            String query = "SELECT descricao FROM entrega WHERE id = ?";
+            PreparedStatement statementDb = connection.prepareStatement(query);
+            statementDb.setInt(1, submit);
+            ResultSet result = statementDb.executeQuery();
+            while (result.next()) {
+                String description= result.getString("descricao");
+                return description;
+            }
+            result.close();
+            statementDb.close();
+            connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        return null;
+    }
+
     public static Set<SubmitModel> filterSubmit(int idTeam){
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
             String query = "SELECT * FROM entrega WHERE idturma = ?";
             PreparedStatement statementDb = connection.prepareStatement(query);
-            statementDb.setInt(1, idTeam );
+            statementDb.setInt(1, idTeam);
             ResultSet result = statementDb.executeQuery();
             Set<SubmitModel> listId = new HashSet<>();
             while (result.next()) {
@@ -121,9 +143,7 @@ public class SubmitModel {
 
         }
         return null;
-
     }
-
 
     public static void submitValidator(String description, String initialDate, String finalDate, String typeTg, String model){
         String descriptionText = description;

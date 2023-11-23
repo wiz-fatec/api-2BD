@@ -1,6 +1,7 @@
 package com.tg.manager.view;
 
 import com.tg.manager.controller.SubmitController;
+import com.tg.manager.model.StudentModel;
 import com.tg.manager.model.SubmitModel;
 
 import javafx.beans.property.SimpleBooleanProperty;
@@ -282,7 +283,7 @@ public class LayoutEntregaController implements Initializable {
 
     @FXML
     void goToGeneralReportScreen(MouseEvent event) {
-        
+        StudentModel.getReport();
     }
 
     @FXML

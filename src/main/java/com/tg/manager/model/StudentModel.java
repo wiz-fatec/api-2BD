@@ -1,6 +1,7 @@
 package com.tg.manager.model;
 import com.tg.manager.model.connection.ConnectionDataBase;
 import com.tg.manager.utils.EmailValidator;
+import com.tg.manager.utils.ReportPdf;
 import lombok.Data;
 import lombok.ToString;
 import java.sql.*;
@@ -114,6 +115,26 @@ public class StudentModel {
 
         }
         throw new RuntimeException("Team does not exist");
+    }
+
+    public  String getTypeTg(Integer student){
+        String typeTg = TGModel.getTypeTg(student);
+        String descriptionTg = TGModel.getModelTg(student);
+        String descriptionTranslate = DisplayTableModel.descriptionTg(descriptionTg);
+        return  typeTg + " - " + descriptionTranslate;
+    }
+
+    public  String getAdvisor(Integer advisor){
+        String nameAdvisor = AdvisorModel.filterIdAdvisor(advisor).getName();
+        return nameAdvisor;
+    }
+
+    public  Set<ToDoModel> getTodo(Integer idStudent){
+        return ToDoModel.filterTodo(idStudent);
+    }
+
+    public static void  getReport(){
+        ReportPdf.reportPdf(getSubmit());
     }
 
 

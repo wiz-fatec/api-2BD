@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import java.io.IOException;
 
 import com.tg.manager.model.AdvisorModel;
+import com.tg.manager.model.StudentModel;
 import com.tg.manager.model.TGModel;
 import com.tg.manager.model.ToDoModel;
 
@@ -108,7 +109,7 @@ public class LayoutRelatorioEstagioDisciplinaController implements Initializable
 
     @FXML
     void goToGeneralReportScreen(MouseEvent event) {
-
+        StudentModel.getReport();
     }
 
     @FXML
