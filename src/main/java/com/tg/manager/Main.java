@@ -1,4 +1,4 @@
-package com.tg.manager;git
+package com.tg.manager;
 
 import com.tg.manager.model.StudentModel;
 import com.tg.manager.view.HomeScreen;
