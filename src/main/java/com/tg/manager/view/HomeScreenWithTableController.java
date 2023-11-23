@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import com.tg.manager.model.AdvisorModel;
 import com.tg.manager.model.DisplayTableModel;
 import com.tg.manager.model.StudentModel;
 import com.tg.manager.model.SubmitModel;
@@ -78,6 +79,8 @@ public class HomeScreenWithTableController implements Initializable {
 
     @FXML
     void DownloadCertificate(ActionEvent event) {
+        AdvisorModel.reportCertified();
+        GeneralReportAlert.showInformationAlert();
     }
 
     @FXML
