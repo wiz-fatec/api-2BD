@@ -1,14 +1,18 @@
 package com.tg.manager.view;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import com.tg.manager.controller.CSVHandler;
 import com.tg.manager.model.AdvisorModel;
 import com.tg.manager.model.DisplayTableModel;
 import com.tg.manager.model.StudentModel;
 import com.tg.manager.model.SubmitModel;
+import com.tg.manager.utils.CSVProcessor;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -25,6 +29,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -75,6 +80,23 @@ public class HomeScreenWithTableController implements Initializable {
 
     @FXML
     void UploadNewCSV(ActionEvent event) {
+        File file = escolherArquivoCSV();
+        if (file != null) {
+            System.out.println("Arquivo selecionado: " + file.getAbsolutePath());
+
+            List<List<String>> csvData = CSVProcessor.readCSVToListOfLists(file.getAbsolutePath());
+
+            CSVHandler.populateDataBase(csvData);
+        }
+    }
+
+    private File escolherArquivoCSV() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        fileChooser.setTitle("Selecionar arquivo CSV");
+
+        Stage stage = (Stage) ButtonUploadCSV.getScene().getWindow();
+        return fileChooser.showOpenDialog(stage);
     }
 
     @FXML
