@@ -107,6 +107,7 @@ public class LayoutRelatorioCientificoController implements Initializable{
     @FXML
     void goToGeneralReportScreen(MouseEvent event) {
         StudentModel.getReport();
+        GeneralReportAlert.showInformationAlert();
     }
 
     @FXML
