@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.tg.manager.model.AdvisorModel;
+import com.tg.manager.model.StudentModel;
 import com.tg.manager.model.ToDoModel;
 
 import javafx.event.ActionEvent;
@@ -102,7 +103,7 @@ public class LayoutRelatorioPortfolioController implements Initializable{
 
     @FXML
     void goToGeneralReportScreen(MouseEvent event) {
-
+        StudentModel.getReport();
     }
 
     @FXML

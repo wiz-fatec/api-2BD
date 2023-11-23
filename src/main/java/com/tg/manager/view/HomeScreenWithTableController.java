@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import java.util.Set;
 
 import com.tg.manager.model.DisplayTableModel;
+import com.tg.manager.model.StudentModel;
 import com.tg.manager.model.SubmitModel;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -63,6 +64,9 @@ public class HomeScreenWithTableController implements Initializable {
     private TableColumn<DisplayTableModel, String> nameColumn;
 
     @FXML
+    private TableColumn<DisplayTableModel, String> aptColumn;
+
+    @FXML
     private TableView<DisplayTableModel> table;
 
     @FXML
@@ -94,7 +98,7 @@ public class HomeScreenWithTableController implements Initializable {
 
     @FXML
     void goToGeneralReportScreenHome(MouseEvent event) {
-
+        StudentModel.getReport();
     }
 
     @Override
@@ -102,6 +106,7 @@ public class HomeScreenWithTableController implements Initializable {
         nameColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getStudent().getName()));
         emailFatecColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getStudent().getFatecEmail()));
         typeTgColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTypeTg()));
+        aptColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getIsApt() ? "APTO" : "NÃO APTO"));
         profileStudentColumn.setCellFactory(col -> createButtonCell("Visualizar Perfil"));
         rateAndFeedbackColumn.setCellFactory(col -> createButtonCell("Atribuir Nota"));
         reportColumn.setCellFactory(col -> createButtonCell("Visualizar Relatório"));
@@ -143,6 +148,8 @@ class ButtonCell extends TableCell<DisplayTableModel, Boolean> {
     }
 
     private static DisplayTableModel  displayModel1;
+    private static DisplayTableModel  displayModel2;
+
     public ButtonCell(String buttonLabel) {
         button = new Button(buttonLabel);
         button.setAlignment(Pos.CENTER);
@@ -180,8 +187,18 @@ class ButtonCell extends TableCell<DisplayTableModel, Boolean> {
                     }
                     break;
                 case "Visualizar Perfil":
-                    // Lógica para "Visualizar Perfil" com base no email
-                    break;
+                    Stage currentStage2 = (Stage) button.getScene().getWindow();
+                    currentStage2.close();
+                    displayModel2 = tableView.getItems().get(index);
+                    System.out.println(displayModel2);
+                    PerfilAlunoScreen PerfilAlunoScreen = new PerfilAlunoScreen(displayModel2);
+                    try {
+                        PerfilAlunoScreen.start(new Stage());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                break;
             }
         }
     });
@@ -203,4 +220,9 @@ class ButtonCell extends TableCell<DisplayTableModel, Boolean> {
         return displayModel1;
     }
     
+        public static DisplayTableModel getDisplayModel2() {
+        return displayModel2;
+    }
+
+
 }

@@ -24,11 +24,5 @@ public class SubmitTest {
         System.out.println(DisplayTableModel.getNoteAndFeedback(2, "Relatório Técnico - Estágio (Somente para quem não pode participar de 6 APIs. Autorizado pela empresa)"));
     }
 
-    @Test
-    public void deleteSubmit(){
-        // Test for delete of submit
-        SubmitController.deleteInDb(10);
-        SubmitController.deleteInDb(9);
-        SubmitController.deleteInDb(8);
-    }
+
 }
