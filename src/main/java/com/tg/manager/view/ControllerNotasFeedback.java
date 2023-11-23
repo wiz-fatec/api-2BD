@@ -64,6 +64,12 @@ public class ControllerNotasFeedback implements Initializable {
     @FXML
     private Label statusEntrega;
 
+    @FXML
+    private Label nomeAluno;
+
+    @FXML
+    private Label LabelTg;
+
     private Map<String, String> feedbackMap = new HashMap<>();
     private Map<String, String> notaMap = new HashMap<>();
     Set<String> listaTG1 ;
@@ -72,6 +78,8 @@ public class ControllerNotasFeedback implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        LabelTg.setText(ButtonCell.getDisplayModel().getTypeTg());
+        nomeAluno.setText("Nome: " + ButtonCell.getDisplayModel().getStudent().getName());
         listaTG1 = new HashSet<>();
         listaTG2 = new HashSet<>();
         for(SubmitModel submit :NotasFeedbackScreen.toDo){

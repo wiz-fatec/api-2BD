@@ -146,7 +146,7 @@ class ButtonCell extends TableCell<DisplayTableModel, Boolean> {
     public Button getButton() {
         return button;
     }
-
+    private static DisplayTableModel  displayModel;
     private static DisplayTableModel  displayModel1;
     private static DisplayTableModel  displayModel2;
 
@@ -164,7 +164,7 @@ class ButtonCell extends TableCell<DisplayTableModel, Boolean> {
                 case "Atribuir Nota":
                     Stage currentStage = (Stage) button.getScene().getWindow();
                     currentStage.close();
-                    DisplayTableModel displayModel = tableView.getItems().get(index);
+                    displayModel = tableView.getItems().get(index);
                     Set <SubmitModel> toDo = displayModel.getValuesFeedbacks();
 //                    System.out.println(displayModel);
                     NotasFeedbackScreen notasFeedbackScreen = new NotasFeedbackScreen(toDo,displayModel);
@@ -220,9 +220,12 @@ class ButtonCell extends TableCell<DisplayTableModel, Boolean> {
         return displayModel1;
     }
     
-        public static DisplayTableModel getDisplayModel2() {
+    public static DisplayTableModel getDisplayModel2() {
         return displayModel2;
     }
 
+    public static DisplayTableModel getDisplayModel() {
+        return displayModel;
+    }
 
 }
