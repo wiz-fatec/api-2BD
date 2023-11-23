@@ -1,6 +1,5 @@
 package com.tg.manager.view;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
@@ -29,7 +28,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class ControllerNotasFeedback implements Initializable {
-
 
     @FXML
     private Button Botao;
@@ -66,27 +64,26 @@ public class ControllerNotasFeedback implements Initializable {
 
     private Map<String, String> feedbackMap = new HashMap<>();
     private Map<String, String> notaMap = new HashMap<>();
-    Set<String> listaTG1 ;
-    Set<String> listaTG2 ;
-    String[] opcoesTG = LayoutEntregaController.getOpcoesChoiceBox();
+    private Set<String> listaTG1;
+    private Set<String> listaTG2;
+    private String[] opcoesTG = LayoutEntregaController.getOpcoesChoiceBox();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         listaTG1 = new HashSet<>();
         listaTG2 = new HashSet<>();
-        for(SubmitModel submit :NotasFeedbackScreen.toDo){
-            if(SubmitController.convertForTg(submit.getIdTeam()).equals("TG1")){
+        for (SubmitModel submit : NotasFeedbackScreen.toDo) {
+            if (SubmitController.convertForTg(submit.getIdTeam()).equals("TG1")) {
                 listaTG1.add(submit.getDescription());
-            }else {
+            } else {
                 listaTG2.add(submit.getDescription());
             }
-
         }
 
         escolherTG.getItems().addAll(opcoesTG);
         escolherTG.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                escolhaDeEntrega.getItems().clear(); // Limpar as opções atuais na ChoiceBox
+                escolhaDeEntrega.getItems().clear();
 
                 if (newValue.equals("TG1")) {
                     escolhaDeEntrega.getItems().addAll(listaTG1);
@@ -94,13 +91,10 @@ public class ControllerNotasFeedback implements Initializable {
                     escolhaDeEntrega.getItems().addAll(listaTG2);
                 }
             }
-
         });
-
 
         escolhaDeEntrega.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                // Exibir as notas e feedbacks correspondentes se já existirem
                 if (feedbackMap.containsKey(newValue)) {
                     Feedback.setText(feedbackMap.get(newValue));
                     FeedbackLabel.setText("Feedback: " + feedbackMap.get(newValue));
@@ -124,64 +118,74 @@ public class ControllerNotasFeedback implements Initializable {
 
     @FXML
     void BotaoEnviar(ActionEvent event) {
-         System.out.print(NotasFeedbackScreen.toDo);
-         System.out.println(NotasFeedbackScreen.display);
-         System.out.println(escolhaDeEntrega.getValue());
-         System.out.println(NotasFeedbackScreen.display.getStudent().getId());
-         String entregaSelecionada = escolhaDeEntrega.getValue();
+        System.out.print(NotasFeedbackScreen.toDo);
+        System.out.println(NotasFeedbackScreen.display);
+        System.out.println(escolhaDeEntrega.getValue());
+        System.out.println(NotasFeedbackScreen.display.getStudent().getId());
+        String entregaSelecionada = escolhaDeEntrega.getValue();
         if (entregaSelecionada != null) {
-            try{
-            feedbackMap.put(entregaSelecionada, Feedback.getText());
-            notaMap.put(entregaSelecionada, Nota.getText());
-            ToDoController.sendDataForDataBase(Feedback.getText(), Nota.getText(), entregaSelecionada, NotasFeedbackScreen.display);
-            if (notaMap.containsKey(entregaSelecionada) && !notaMap.get(entregaSelecionada).isEmpty()) {
-                atualizarStatusEntrega(entregaSelecionada);
-            } else {
-                statusEntrega.setText("SEM NOTA");
-                statusEntrega.setStyle("-fx-text-fill: red;");
-            }} catch (Exception e){
+            try {
+                String textFeedback = String.valueOf(Feedback.getText());
+                double valorNota = Double.parseDouble(Nota.getText());
+                if (valorNota < 0 || valorNota > 10) {
+                    GradeAndFeedbackAlert.showWarningAlert();
+                    return;
+                } else if (textFeedback.isEmpty()) {
+                    GradeAndFeedbackAlert.showCommentWarningAlert();
+                    return;
+                }
 
+                feedbackMap.put(entregaSelecionada, Feedback.getText());
+                notaMap.put(entregaSelecionada, Nota.getText());
+                ToDoController.sendDataForDataBase(Feedback.getText(), Nota.getText(), entregaSelecionada,
+                        NotasFeedbackScreen.display);
+
+                if (notaMap.containsKey(entregaSelecionada) && !notaMap.get(entregaSelecionada).isEmpty()) {
+                    atualizarStatusEntrega(entregaSelecionada);
+                } else {
+                    statusEntrega.setText("SEM NOTA");
+                    statusEntrega.setStyle("-fx-text-fill: red;");
+                }
+            } catch (Exception e) {
             }
         }
-
-
     }
 
     @FXML
     void goToDeliveryScreen(MouseEvent event) {
-            try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("NovaEntregaScreen.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) botaoCalendar.getScene().getWindow();
-        stage.setScene(scene);
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("NovaEntregaScreen.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) botaoCalendar.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void goToGeneralReportScreen(MouseEvent event) {
         StudentModel.getReport();
+        GeneralReportAlert.showInformationAlert();
     }
 
     @FXML
     void goToHomeScreen(MouseEvent event) {
         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("HomeScreenWithTable.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = (Stage) botaoCalendar.getScene().getWindow();
-        stage.setScene(scene);
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("HomeScreenWithTable.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) botaoCalendar.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setStatusEntrega(Label statusEntrega) {
         this.statusEntrega = statusEntrega;
     }
-
 
     private void atualizarStatusEntrega(String entrega) {
         if (notaMap.containsKey(entrega) && !notaMap.get(entrega).isEmpty()) {
@@ -189,5 +193,4 @@ public class ControllerNotasFeedback implements Initializable {
             statusEntrega.setStyle("-fx-text-fill: #31efb8;");
         }
     }
-
-} 
+}

@@ -19,12 +19,17 @@
             <Font size="32.0" />
          </font>
       </Text>
-      <Button fx:id="ButtonUploadCSV" layoutX="1065.0" layoutY="59.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: #31efb8;" text="Carregar CSV">
+      <Button fx:id="ButtonUploadCSV" layoutX="1065.0" layoutY="59.0" mnemonicParsing="false" onAction="#UploadNewCSV" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: #31efb8;" text="Carregar CSV">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonUploadCertificate" disable="true" layoutX="870.0" layoutY="59.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: #31efb8;" text="Certificados">
+      <Button fx:id="ButtonDownloadCertificate" layoutX="870.0" layoutY="59.0" mnemonicParsing="false" onAction="#DownloadCertificate" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: #31efb8;" text="Certificados">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="ButtonStudentEligible" layoutX="675.0" layoutY="59.0" mnemonicParsing="false" onAction="#DownloadStudentEligible" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: #31efb8;" text="Alunos Aptos">
          <font>
             <Font size="16.0" />
          </font>

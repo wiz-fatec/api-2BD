@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.tg.manager.model.AdvisorModel;
+import com.tg.manager.model.StudentModel;
 import com.tg.manager.model.TGModel;
 
 import javafx.fxml.Initializable;
@@ -96,7 +97,8 @@ public class LayoutPerfilAlunoController implements Initializable{
 
     @FXML
     void goToGeneralReportScreen(MouseEvent event) {
-
+        StudentModel.getReport();
+        GeneralReportAlert.showInformationAlert();
     }
 
     @FXML

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import com.tg.manager.model.AdvisorModel;
 import com.tg.manager.model.DisplayTableModel;
 import com.tg.manager.model.StudentModel;
 import com.tg.manager.model.SubmitModel;
@@ -34,7 +35,10 @@ public class HomeScreenWithTableController implements Initializable {
     private Button ButtonUploadCSV;
 
     @FXML
-    private Button ButtonUploadCertificate;
+    private Button ButtonDownloadCertificate;
+
+    @FXML
+    private Button ButtonStudentEligible;
 
     @FXML
     private ImageView deliveryScreenHome;
@@ -70,6 +74,22 @@ public class HomeScreenWithTableController implements Initializable {
     private TableView<DisplayTableModel> table;
 
     @FXML
+    void UploadNewCSV(ActionEvent event) {
+    }
+
+    @FXML
+    void DownloadCertificate(ActionEvent event) {
+        AdvisorModel.reportCertified();
+        GeneralReportAlert.showInformationAlert();
+    }
+
+    @FXML
+    void DownloadStudentEligible(ActionEvent event) {
+        DisplayTableModel.reportIsApt();
+        GeneralReportAlert.showInformationAlert();
+    }
+
+    @FXML
     void filterStudentTG(ActionEvent event) {
         String selectedTypeTg = filterTG.getValue();
 
@@ -99,6 +119,7 @@ public class HomeScreenWithTableController implements Initializable {
     @FXML
     void goToGeneralReportScreenHome(MouseEvent event) {
         StudentModel.getReport();
+        GeneralReportAlert.showInformationAlert();
     }
 
     @Override

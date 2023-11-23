@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "GradeAndFeedbackAlert",
+            "request": "launch",
+            "mainClass": "com.tg.manager.view.GradeAndFeedbackAlert",
+            "projectName": "tg-manager"
+        },
+        {
+            "type": "java",
+            "name": "AlertReport",
+            "request": "launch",
+            "mainClass": "com.tg.manager.view.AlertReport",
+            "projectName": "tg-manager"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
@@ -22,6 +36,7 @@
             "name": "Main(1)",
             "request": "launch",
             "mainClass": "com.tg.manager.view.Main",
-            "projectName": "tg-manager"        }
+            "projectName": "tg-manager"
+        }
     ]
 }
