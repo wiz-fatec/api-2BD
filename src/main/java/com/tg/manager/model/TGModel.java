@@ -85,7 +85,7 @@ public class TGModel {
             }
             result.close();
             statementDb.close();
-            connection.close();
+            // connection.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
 
@@ -107,7 +107,7 @@ public class TGModel {
             }
             result.close();
             statementDb.close();
-            connection.close();
+            // connection.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
 
@@ -181,7 +181,7 @@ public class TGModel {
         }
         result.close();
         statementDb.close();
-        connection.close();
+        // connection.close();
     } catch (SQLException ex) {
         ex.printStackTrace();
     }
@@ -203,7 +203,7 @@ public class TGModel {
         }
         result.close();
         statementDb.close();
-        connection.close();
+        // connection.close();
     } catch (SQLException ex) {
         ex.printStackTrace();
     }
@@ -225,7 +225,7 @@ public class TGModel {
         }
         result.close();
         statementDb.close();
-        connection.close();
+        // connection.close();
     } catch (SQLException ex) {
         ex.printStackTrace();
     }
