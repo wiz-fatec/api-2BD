@@ -21,4 +21,14 @@ public class TodoTest {
             throw new RuntimeException(e);
         }
     }
+
+    @Test
+    public  void filterTodo(){
+        System.out.println(ToDoModel.filterTodo(18, 8));
+    }
+
+    @Test
+    public void searchNoteAndFeedback(){
+        System.out.println(ToDoModel.searchNoteAndFeedback(18, "Paulinho dor de Dente", 1 ));
+    }
 }
