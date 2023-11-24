@@ -67,11 +67,11 @@
       <ChoiceBox fx:id="escolherTG" layoutX="202.0" layoutY="262.0" prefHeight="42.0" prefWidth="102.0" style="-fx-border-color: #31efb8;" />
       <Label fx:id="NotaLabel" layoutX="777.0" layoutY="262.0" prefHeight="42.4" prefWidth="99.75" style="-fx-border-color: #31efb8;" text="  Nota recente" textFill="#31efb8" />
       <Label fx:id="FeedbackLabel" alignment="TOP_LEFT" layoutX="778.0" layoutY="321.0" prefHeight="250.0" prefWidth="364.0" style="-fx-border-color: #31efb8;" text="  Feedback recente" textAlignment="CENTER" textFill="#31efb8" textOverrun="CENTER_ELLIPSIS" />
-      <Label fx:id="nomeAluno" layoutX="586.0" layoutY="128.0" prefHeight="40.0" prefWidth="273.0" style="-fx-border-color: #31efb8; -fx-border-style: hidden hidden solid hidden;" text="Nome" textAlignment="CENTER" textFill="#31efb8">
+      <Label fx:id="nomeAluno" layoutX="545.0" layoutY="128.0" prefHeight="40.0" prefWidth="273.0" style="-fx-border-color: #31efb8; -fx-border-style: hidden hidden solid hidden;" text="Nome" textAlignment="CENTER" textFill="#31efb8">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label fx:id="LabelTg" layoutX="907.0" layoutY="128.0" prefHeight="40.0" prefWidth="237.0" style="-fx-border-color: #31efb8; -fx-border-style: hidden hidden solid hidden;" text="TG" textAlignment="CENTER" textFill="#31efb8">
+      <Label fx:id="LabelTg" layoutX="866.0" layoutY="128.0" prefHeight="40.0" prefWidth="274.0" style="-fx-border-color: #31efb8; -fx-border-style: hidden hidden solid hidden;" text="TG" textAlignment="CENTER" textFill="#31efb8">
          <font>
             <Font size="18.0" />
          </font></Label>
