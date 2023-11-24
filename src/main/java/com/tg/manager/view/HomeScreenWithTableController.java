@@ -87,6 +87,17 @@ public class HomeScreenWithTableController implements Initializable {
             List<List<String>> csvData = CSVProcessor.readCSVToListOfLists(file.getAbsolutePath());
 
             CSVHandler.populateDataBase(csvData);
+            abrirTelaHomeScreenWithTable();
+        }
+    }
+
+    private void abrirTelaHomeScreenWithTable() {
+        HomeScreenWithTable homeScreenWithTable = new HomeScreenWithTable();
+        try {
+            homeScreenWithTable.start(new Stage());
+            ((Stage) ButtonUploadCSV.getScene().getWindow()).close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

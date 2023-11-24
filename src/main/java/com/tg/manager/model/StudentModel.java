@@ -18,8 +18,6 @@ public class StudentModel {
     private Integer advisorId;
     private Integer teamId;
 
-    private static Set<String> listEmails = new HashSet<>();
-
     private static void addStudent(String name, String email, String fatecEmail, Integer advisorId, Integer teamId ) {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
@@ -69,14 +67,74 @@ public class StudentModel {
         }
     }
     public static void validator(String email, String emailFatec, String nameStudent, String emailAdvisor, String typeTg){
-
+        
         EmailValidator.validatorEmail(email);
         EmailValidator.validatorEmail(emailFatec);
         EmailValidator.validatorEmail(emailAdvisor);
         Integer idAdvisordb = findIdAdvisor(emailAdvisor);
         Integer idTeamdb = findTeam(typeTg);
-        if(!(listEmails.contains(emailFatec)) && (idAdvisordb!= -1)){
-            listEmails.add(emailFatec);
+
+        Set<StudentModel> studentList = getSubmit();
+        for (StudentModel student : studentList) {
+            if(student.getFatecEmail().equals(emailFatec)) {
+                try {
+                    ConnectionDataBase connectionDb = new ConnectionDataBase();
+                    Connection connection = connectionDb.getConexao();
+                    PreparedStatement psTgId = connection.prepareCall("SELECT tg.id AS id FROM tg INNER JOIN aluno ON aluno.id = tg.idALUNO WHERE aluno.email_fatec = ?");
+
+                    psTgId.setString(1, emailFatec);
+                    ResultSet tgResult = psTgId.executeQuery();
+                    Set<Integer> tgIdList = new HashSet<>();
+
+                    try {
+                        while(tgResult.next()) {
+                            tgIdList.add(tgResult.getInt("id"));
+                        }
+
+                    } catch(SQLException err) {
+                        err.printStackTrace();
+                    }
+
+                    PreparedStatement psSubmitId = connection.prepareCall("SELECT valor_entrega.id AS id FROM valor_entrega INNER JOIN aluno ON aluno.id = valor_entrega.idALUNO WHERE aluno.email_fatec = ?");
+
+                    psSubmitId.setString(1, emailFatec);
+                    ResultSet psResult = psTgId.executeQuery();
+                    Set<Integer> submitIdList = new HashSet<>();
+
+                    try {
+                        while(psResult.next()) {
+                            submitIdList.add(psResult.getInt("id"));
+                        }
+
+                    } catch (SQLException err) {
+                        err.printStackTrace();
+                    }
+
+                    for (Integer tgId : tgIdList) {
+                        PreparedStatement ps = connection.prepareStatement("DELETE FROM tg WHERE id = ?");
+                        ps.setInt(1, tgId);
+                        ps.executeUpdate();
+                    }
+                    for (Integer submitId : submitIdList) {
+                        PreparedStatement ps = connection.prepareStatement("DELETE FROM valor_entrega WHERE id = ?");
+                        ps.setInt(1, submitId);
+                        ps.executeUpdate();
+                    }
+
+                    PreparedStatement ps = connection.prepareStatement("DELETE FROM aluno WHERE id = ?");
+                    ps.setInt(1, student.getId());
+                    ps.executeUpdate();
+
+                    System.out.println("Done!");
+
+                    // connection.close();
+
+                } catch (SQLException err) {
+                    err.printStackTrace();
+                }
+            }
+        }
+        if((idAdvisordb!= -1)) {
             addStudent(nameStudent, email, emailFatec, idAdvisordb, idTeamdb);
         }
     }

@@ -104,7 +104,7 @@ public class SubmitModel {
             }
             result.close();
             statementDb.close();
-            connection.close();
+            // connection.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
 
