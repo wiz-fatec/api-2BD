@@ -174,6 +174,37 @@ public class ToDoModel {
 
     }
 
+    public static ToDoModel filterTodo(int idStudent, int idSubmit){
+        try {
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            String query = "SELECT * FROM valor_entrega WHERE idaluno = ? AND identrega = ?";
+            PreparedStatement statementDb = connection.prepareStatement(query);
+            statementDb.setInt(1, idStudent );
+            statementDb.setInt(2, idSubmit);
+            ResultSet result = statementDb.executeQuery();
+            while (result.next()) {
+                ToDoModel todo = new ToDoModel();
+                Integer id = result.getInt("id");
+                todo.setId(id);
+                Double note = result.getDouble("nota");
+                todo.setNote(note);
+                String feedBack = result.getString("feedback");
+                todo.setFeedback(feedBack);
+                Integer idStudentTodo = result.getInt("idaluno");
+                todo.setIdStudent(idStudentTodo);
+                Integer idIssue= result.getInt("identrega");
+                todo.setIdIssue(idIssue);
+                return todo;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        return null;
+
+    }
+
 
     private static void updateToDo(Double note, String feedBack, Integer id) {
         try {
@@ -216,5 +247,13 @@ public class ToDoModel {
             }
         }
         return false;
+    }
+
+    public static  ToDoModel searchNoteAndFeedback(Integer idStudent, String nameSubmit, Integer idTeam){
+        SubmitModel submit = SubmitModel.filterSubmitForName(nameSubmit);
+        if(submit.getIdTeam().equals(idTeam)){
+             return ToDoModel.filterTodo(idStudent, submit.getId());
+        }
+        return null;
     }
 }
