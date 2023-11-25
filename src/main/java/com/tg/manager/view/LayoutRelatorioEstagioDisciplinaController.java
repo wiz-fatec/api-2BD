@@ -8,6 +8,7 @@ import com.tg.manager.model.AdvisorModel;
 import com.tg.manager.model.StudentModel;
 import com.tg.manager.model.TGModel;
 import com.tg.manager.model.ToDoModel;
+import com.tg.manager.utils.ReportPdf;
 
 import javafx.fxml.Initializable;
 
@@ -83,7 +84,7 @@ public class LayoutRelatorioEstagioDisciplinaController implements Initializable
 
     @FXML
     void goToDeliveryReport(ActionEvent event) {
-
+        ReportPdf.reportSpecificPdf(ButtonCell.getDisplayModel1().getStudent());
     }
 
     @FXML

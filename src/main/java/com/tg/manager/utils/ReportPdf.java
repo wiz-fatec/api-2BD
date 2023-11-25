@@ -54,7 +54,7 @@ public class ReportPdf {
                         documentpdf.add(paragraphTest5);
                     }
                 }
-                Paragraph paragraphTestHast2 = new Paragraph("==============================================");
+                Paragraph paragraphTestHast2 = new Paragraph("______________________________________________________________________________");
                 paragraphTestHast2.setSpacingBefore(40);
                 paragraphTestHast2.setSpacingAfter(50);
                 documentpdf.add(paragraphTestHast2);
@@ -87,7 +87,7 @@ public class ReportPdf {
                     Paragraph paragraphTest2 = new Paragraph("Email aluno: " + student.getStudent().getFatecEmail(), font2);
                     paragraphTest2.setSpacingAfter(10);
                     documentpdf.add(paragraphTest2);
-                    Paragraph paragraphTestHast2 = new Paragraph("==============================================");
+                    Paragraph paragraphTestHast2 = new Paragraph("______________________________________________________________________________");
                     paragraphTestHast2.setSpacingBefore(40);
                     paragraphTestHast2.setSpacingAfter(50);
                     documentpdf.add(paragraphTestHast2);
@@ -98,6 +98,78 @@ public class ReportPdf {
         }
         documentpdf.close();
     }
+
+
+    public static void reportSpecificPdf(StudentModel student){
+        Document documentpdf = new Document();
+        try {
+            Font font = FontFactory.getFont(FontFactory.TIMES, 32, Font.NORMAL, Color.BLUE);
+            String filePath = System.getProperty("user.home") + "/Downloads/relatorioentregas.pdf";
+            PdfWriter.getInstance(documentpdf, new FileOutputStream(filePath));
+            documentpdf.open();
+            Paragraph paragraphTest = new Paragraph("RELÁTORIO DE ENTREGAS DO ALUNO", font);
+            paragraphTest.setAlignment(Element.ALIGN_CENTER);
+            paragraphTest.setSpacingAfter(50);
+            documentpdf.add(paragraphTest);     
+            Font font2 = FontFactory.getFont(FontFactory.TIMES, 20, Font.NORMAL, Color.BLACK);
+            Paragraph paragraphTestTitle1 = new Paragraph("Dados do Aluno", font2);
+            paragraphTestTitle1.setSpacingBefore(20);
+            paragraphTestTitle1.setSpacingAfter(20);
+            documentpdf.add(paragraphTestTitle1);
+            Paragraph paragraphTest1 = new Paragraph("Nome aluno: " + student.getName() );
+            paragraphTest1.setSpacingAfter(10);
+            documentpdf.add(paragraphTest1);
+            Paragraph paragraphTest2 = new Paragraph("Turma: " + student.getTypeTg(student.getId()));
+            paragraphTest2.setSpacingAfter(10);
+            documentpdf.add(paragraphTest2);
+            Paragraph paragraphTest4 = new Paragraph("Orientador: " + student.getAdvisor(student.getAdvisorId()));
+            paragraphTest4.setSpacingAfter(10);
+            documentpdf.add(paragraphTest4);
+            Paragraph paragraphTest5 = new Paragraph("Email Orientador: " + student.getAdvisorFatecEmail(student.getAdvisorId()));
+            paragraphTest5.setSpacingAfter(10);
+            documentpdf.add(paragraphTest5);
+            if (student.getTypeTg(student.getId()).contains("Disciplina")) {
+                Paragraph paragraphTest6 = new Paragraph("Disciplina: " + TGModel.getDisciplineTG(student.getId()));
+                paragraphTest6.setSpacingAfter(10);
+                documentpdf.add(paragraphTest6);
+            } else if (student.getTypeTg(student.getId()).contains("Estágio")) {
+                Paragraph paragraphTest7 = new Paragraph("Empresa: " + TGModel.getEnterpriseTG(student.getId()));
+                System.out.println("ESTAGIO MIL GRAU!!!");
+                System.out.println(TGModel.getEnterpriseTG(student.getId()));
+                paragraphTest7.setSpacingAfter(10);
+                documentpdf.add(paragraphTest7);
+            } else if (student.getTypeTg(student.getId()).contains("Científico")) {
+                Paragraph paragraphTest8 = new Paragraph("Problema: " + TGModel.getProblemTG(student.getId()));
+                paragraphTest8.setSpacingAfter(10);
+                documentpdf.add(paragraphTest8);
+            }                
+            if(!student.getTodo(student.getId()).isEmpty()) {
+                Paragraph paragraphTestTitle2 = new Paragraph("Entregas", font2);
+                paragraphTestTitle2.setSpacingBefore(20);
+                paragraphTestTitle2.setSpacingAfter(20);
+                documentpdf.add(paragraphTestTitle2);
+                for(ToDoModel todo : student.getTodo(student.getId())) {
+                    Paragraph paragraphTest9 = new Paragraph("Entrega: " + SubmitModel.getSubmitId(todo.getIdIssue()));
+                    paragraphTest9.setSpacingAfter(10);
+                    documentpdf.add(paragraphTest9);
+                    Paragraph paragraphTest10 = new Paragraph("Nota: " + todo.getNote());
+                    paragraphTest10.setSpacingAfter(10);
+                    documentpdf.add(paragraphTest10);
+                    Paragraph paragraphTest11 = new Paragraph("Feedback: " + todo.getFeedBackToDo(student.getId()));
+                    documentpdf.add(paragraphTest11);
+                    Paragraph paragraphTestHast2 = new Paragraph("______________________________________________________________________________");
+                    paragraphTestHast2.setSpacingBefore(10);
+                    paragraphTestHast2.setSpacingAfter(10);
+                    documentpdf.add(paragraphTestHast2);
+                }
+                
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        documentpdf.close();
+    }
+
 
     public static void reportCertified(Set<AdvisorModel> listAdivisor){
         Document documentpdf = new Document();
@@ -115,7 +187,7 @@ public class ReportPdf {
                 Paragraph paragraphTest1 = new Paragraph("Nome do Orientador: " + advisorModel.getName(), font2);
                 paragraphTest1.setSpacingAfter(10);
                 documentpdf.add(paragraphTest1);
-                Paragraph paragraphTestHast1 = new Paragraph("==============================================");
+                Paragraph paragraphTestHast1 = new Paragraph("______________________________________________________________________________");
                 paragraphTestHast1.setSpacingBefore(40);
                 paragraphTestHast1.setSpacingAfter(30);
                 documentpdf.add(paragraphTestHast1);
@@ -132,7 +204,7 @@ public class ReportPdf {
                         documentpdf.add(paragraphTest4);
                     }
                 }
-                Paragraph paragraphTestHast2 = new Paragraph("==============================================");
+                Paragraph paragraphTestHast2 = new Paragraph("______________________________________________________________________________");
                 paragraphTestHast2.setSpacingBefore(40);
                 paragraphTestHast2.setSpacingAfter(50);
                 documentpdf.add(paragraphTestHast2);
