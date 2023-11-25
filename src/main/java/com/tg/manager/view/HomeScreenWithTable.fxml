@@ -29,12 +29,12 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonDownloadCertificate" layoutX="870.0" layoutY="59.0" mnemonicParsing="false" onAction="#DownloadCertificate" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: #31efb8;" text="Certificados">
+      <Button fx:id="ButtonDownloadCertificate" layoutX="826.0" layoutY="198.0" mnemonicParsing="false" onAction="#DownloadCertificate" prefHeight="30.0" prefWidth="194.0" style="-fx-background-color: #ffffff;" text="Relatório Certificados">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonStudentEligible" layoutX="675.0" layoutY="59.0" mnemonicParsing="false" onAction="#DownloadStudentEligible" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: #31efb8;" text="Alunos Aptos">
+      <Button fx:id="ButtonStudentEligible" layoutX="1065.0" layoutY="198.0" mnemonicParsing="false" onAction="#DownloadStudentEligible" prefHeight="30.0" prefWidth="149.0" style="-fx-background-color: #ffffff;" text="Alunos Aptos">
          <font>
             <Font size="16.0" />
          </font>
@@ -74,6 +74,11 @@
             </ImageView>
          </children>
       </HBox>
-      <ComboBox fx:id="filterTG" layoutX="135.0" layoutY="203.0" onAction="#filterStudentTG" prefHeight="28.0" prefWidth="220.0" />
+      <ComboBox fx:id="filterTG" layoutX="135.0" layoutY="203.0" onAction="#filterStudentTG" prefHeight="30.0" prefWidth="220.0" />
+      <Button fx:id="ButtonDownloadDeliveryGrade" layoutX="586.0" layoutY="198.0" mnemonicParsing="false" onAction="#DownloadDeliveryGrade" prefHeight="30.0" prefWidth="194.0" style="-fx-background-color: #ffffff;" text="Transporte de Notas">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

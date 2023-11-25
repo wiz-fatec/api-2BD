@@ -46,6 +46,9 @@ public class HomeScreenWithTableController implements Initializable {
     private Button ButtonStudentEligible;
 
     @FXML
+    private Button ButtonDownloadDeliveryGrade;
+
+    @FXML
     private ImageView deliveryScreenHome;
 
     @FXML
@@ -77,6 +80,11 @@ public class HomeScreenWithTableController implements Initializable {
 
     @FXML
     private TableView<DisplayTableModel> table;
+
+    @FXML
+    void DownloadDeliveryGrade(ActionEvent event) {
+
+    }
 
     @FXML
     void UploadNewCSV(ActionEvent event) {
