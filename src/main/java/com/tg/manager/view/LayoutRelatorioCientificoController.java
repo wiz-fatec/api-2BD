@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 
 import com.tg.manager.model.TGModel;
 import com.tg.manager.model.ToDoModel;
+import com.tg.manager.utils.ReportPdf;
 
 public class LayoutRelatorioCientificoController implements Initializable{
 
@@ -79,7 +80,7 @@ public class LayoutRelatorioCientificoController implements Initializable{
 
     @FXML
     void goToDeliveryReport(ActionEvent event) {
-
+        ReportPdf.reportSpecificPdf(ButtonCell.getDisplayModel1().getStudent());
     }
 
     @FXML

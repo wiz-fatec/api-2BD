@@ -8,6 +8,7 @@ import com.tg.manager.model.AdvisorModel;
 import com.tg.manager.model.StudentModel;
 import com.tg.manager.model.TGModel;
 import com.tg.manager.model.ToDoModel;
+import com.tg.manager.utils.ReportPdf;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -80,7 +81,7 @@ public class LayoutRelatorioTecnicoController implements Initializable{
 
     @FXML
     void goToDeliveryReport(ActionEvent event) {
-
+        ReportPdf.reportSpecificPdf(ButtonCell.getDisplayModel1().getStudent());
     }
 
     @FXML

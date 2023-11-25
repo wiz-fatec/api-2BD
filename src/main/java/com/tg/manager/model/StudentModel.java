@@ -187,6 +187,12 @@ public class StudentModel {
         return nameAdvisor;
     }
 
+
+    public  String getAdvisorFatecEmail(Integer advisor){
+        String advisorFatecEmail = AdvisorModel.filterIdAdvisor(advisor).getFatecEmail();
+        return advisorFatecEmail;
+    }
+
     public  Set<ToDoModel> getTodo(Integer idStudent){
         return ToDoModel.filterTodo(idStudent);
     }
