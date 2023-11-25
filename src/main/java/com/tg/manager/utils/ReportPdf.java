@@ -107,7 +107,7 @@ public class ReportPdf {
             String filePath = System.getProperty("user.home") + "/Downloads/relatorioentregas.pdf";
             PdfWriter.getInstance(documentpdf, new FileOutputStream(filePath));
             documentpdf.open();
-            Paragraph paragraphTest = new Paragraph("RELÁTORIO DE ENTREGAS DO ALUNO", font);
+            Paragraph paragraphTest = new Paragraph("RELATÓRIO DE ENTREGAS DO ALUNO", font);
             paragraphTest.setAlignment(Element.ALIGN_CENTER);
             paragraphTest.setSpacingAfter(50);
             documentpdf.add(paragraphTest);     
@@ -134,8 +134,6 @@ public class ReportPdf {
                 documentpdf.add(paragraphTest6);
             } else if (student.getTypeTg(student.getId()).contains("Estágio")) {
                 Paragraph paragraphTest7 = new Paragraph("Empresa: " + TGModel.getEnterpriseTG(student.getId()));
-                System.out.println("ESTAGIO MIL GRAU!!!");
-                System.out.println(TGModel.getEnterpriseTG(student.getId()));
                 paragraphTest7.setSpacingAfter(10);
                 documentpdf.add(paragraphTest7);
             } else if (student.getTypeTg(student.getId()).contains("Científico")) {
