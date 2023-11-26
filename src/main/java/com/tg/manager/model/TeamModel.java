@@ -18,7 +18,7 @@ public class TeamModel {
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
-            String insercaoSQL = "INSERT INTO turma (semestre, ano) VALUES (?, ?)";
+            String insercaoSQL = "INSERT INTO turma (semestre, ano) VALUES (?, ?) ON CONFLICT DO NOTHING";
             PreparedStatement preparedStatement = connection.prepareStatement(insercaoSQL);
             preparedStatement.setInt(1, semester);
             preparedStatement.setInt(2, year);

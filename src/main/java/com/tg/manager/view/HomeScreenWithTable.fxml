@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -13,27 +14,38 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #303236;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tg.manager.view.HomeScreenWithTableController">
    <children>
-      <Text fill="WHITE" layoutX="138.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OLÁ, PROFESSOR">
+      <Text fill="WHITE" layoutX="133.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OLÁ, PROFESSOR">
          <font>
             <Font size="32.0" />
          </font>
       </Text>
-      <Button fx:id="ButtonUploadCSV" layoutX="1065.0" layoutY="59.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: #31efb8;" text="Carregar CSV">
+      <Text fill="#ffffff" layoutX="135.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filtrar por tipo de TG">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="ButtonUploadCSV" layoutX="1065.0" layoutY="59.0" mnemonicParsing="false" onAction="#UploadNewCSV" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: #31efb8;" text="Carregar CSV">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonUploadCertificate" disable="true" layoutX="870.0" layoutY="59.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="149.0" style="-fx-background-color: #31efb8;" text="Certificados">
+      <Button fx:id="ButtonDownloadCertificate" layoutX="826.0" layoutY="198.0" mnemonicParsing="false" onAction="#DownloadCertificate" prefHeight="30.0" prefWidth="194.0" style="-fx-background-color: #ffffff;" text="Relatório Certificados">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <TableView fx:id="table" layoutX="218.0" layoutY="241.0" prefHeight="338.0" prefWidth="935.0">
+      <Button fx:id="ButtonStudentEligible" layoutX="1065.0" layoutY="198.0" mnemonicParsing="false" onAction="#DownloadStudentEligible" prefHeight="30.0" prefWidth="149.0" style="-fx-background-color: #ffffff;" text="Alunos Aptos">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <TableView fx:id="table" layoutX="135.0" layoutY="283.0" prefHeight="338.0" prefWidth="1086.0">
          <columns>
             <TableColumn fx:id="nameColumn" prefWidth="124.26663208007812" text="Estudante" />
             <TableColumn fx:id="emailFatecColumn" prefWidth="163.73330688476562" text="Email Institucional" />
+            <TableColumn fx:id="typeTgColumn" prefWidth="163.73330688476562" text="Tipo de TG" />
             <TableColumn fx:id="rateAndFeedbackColumn" prefWidth="155.99993896484375" text="Nota e Feedback" />
-            <TableColumn fx:id="aptoColumn" minWidth="0.0" prefWidth="148.2666015625" text="Apto para Apresentar" />
+            <TableColumn fx:id="aptColumn" minWidth="0.0" prefWidth="148.2666015625" text="Apto para Apresentar" />
             <TableColumn fx:id="reportColumn" minWidth="0.0" prefWidth="162.666748046875" text="Relatório" />
             <TableColumn fx:id="profileStudentColumn" minWidth="0.0" prefWidth="178.13336181640625" text="Perfil do Aluno" />
          </columns></TableView>
@@ -62,5 +74,11 @@
             </ImageView>
          </children>
       </HBox>
+      <ComboBox fx:id="filterTG" layoutX="135.0" layoutY="203.0" onAction="#filterStudentTG" prefHeight="30.0" prefWidth="220.0" />
+      <Button fx:id="ButtonDownloadDeliveryGrade" layoutX="586.0" layoutY="198.0" mnemonicParsing="false" onAction="#DownloadDeliveryGrade" prefHeight="30.0" prefWidth="194.0" style="-fx-background-color: #ffffff;" text="Transporte de Notas">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

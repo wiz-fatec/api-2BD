@@ -1,6 +1,7 @@
 package com.tg.manager.model;
 import com.tg.manager.model.connection.ConnectionDataBase;
 import com.tg.manager.utils.EmailValidator;
+import com.tg.manager.utils.ReportPdf;
 import lombok.Data;
 import lombok.ToString;
 import java.sql.*;
@@ -57,6 +58,32 @@ public class AdvisorModel {
         }
     }
 
+    public static AdvisorModel filterIdAdvisor(Integer idAdvisor){
+        try {
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            String query = "SELECT * FROM orientador WHERE id = ?";
+            PreparedStatement statementDb = connection.prepareStatement(query);
+            statementDb.setInt(1, idAdvisor);
+            ResultSet result = statementDb.executeQuery();
+            while (result.next()) {
+                AdvisorModel advisor = new AdvisorModel();
+                Integer id = result.getInt("id");
+                advisor.setId(id);
+                String emailFatac = result.getString("email_fatec");
+                advisor.setFatecEmail(emailFatac);
+                String name = result.getString("nome");
+                advisor.setName(name);
+                return advisor;
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+
+    }
+
     public static  void validatorAdvisor(String name, String fatecEmail){
         EmailValidator.validatorEmail(fatecEmail);
         addAdvisor(name, fatecEmail);
@@ -70,6 +97,24 @@ public class AdvisorModel {
            }
        }
        return false;
+    }
+
+    public static Set<StudentModel> studentApt(Integer idAdvisor){
+        Set<StudentModel> studentList = new HashSet<>();
+        for(StudentModel student : StudentModel.getSubmit()){
+            if(student.getAdvisorId().equals(idAdvisor)){
+                if(!student.getTodo(student.getId()).isEmpty()){
+                    studentList.add(student);
+                }
+
+            }
+        }
+        return studentList;
+
+    }
+
+    public static void reportCertified(){
+        ReportPdf.reportCertified(AdvisorModel.getSubmit());
     }
 
 }

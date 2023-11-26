@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="669.0" prefWidth="1366.0" style="-fx-background-color: #303236;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tg.manager.view.LayoutRelatorioTecnicoController">
+   <children>
+      <Label layoutX="170.0" layoutY="54.0" text="RELATÓRIO DO ESTÁGIO TÉCNICO" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="NomeCompleto" layoutX="170.0" layoutY="107.0" prefHeight="32.0" prefWidth="408.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Nome Completo" textFill="WHITE" />
+      <Label fx:id="EmailPessoal" layoutX="170.0" layoutY="165.0" prefHeight="32.0" prefWidth="408.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Email De Comunicação" textFill="WHITE" />
+      <Label fx:id="EmailInstitucional" layoutX="170.0" layoutY="222.0" prefHeight="32.0" prefWidth="408.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Email Institucional" textFill="WHITE" />
+      <Label fx:id="Turma" layoutX="664.0" layoutY="107.0" prefHeight="32.0" prefWidth="352.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Turma Matrículada" textFill="WHITE" />
+      <Label fx:id="Empresa" layoutX="664.0" layoutY="165.0" prefHeight="32.0" prefWidth="352.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Empresa envolvida" textFill="WHITE" />
+      <Label fx:id="Orientador" layoutX="664.0" layoutY="223.0" prefHeight="32.0" prefWidth="408.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Orientador" textFill="WHITE" />
+      <Label fx:id="EmailOrientador" layoutX="664.0" layoutY="281.0" prefHeight="32.0" prefWidth="408.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Email Orientador" textFill="WHITE" />
+      <Label layoutX="170.0" layoutY="300.0" text="NOTA E FEEDBACK" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="RelatorioEntrega" layoutX="880.0" layoutY="553.0" mnemonicParsing="false" onAction="#goToDeliveryReport" prefHeight="40.0" prefWidth="136.0" style="-fx-background-color: #31efb8;" text="Relatório de Entregas" />
+      <Label fx:id="RelatorioNota" layoutX="880.0" layoutY="353.0" prefHeight="40.0" prefWidth="136.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #ffffff;" text="Nota" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="RelatorioFeedback" alignment="TOP_LEFT" layoutX="170.0" layoutY="349.0" prefHeight="244.0" prefWidth="658.0" style="-fx-border-color: #ffffff;" text="Feedback" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <HBox alignment="CENTER" layoutX="-5.0" layoutY="594.0" prefHeight="75.0" prefWidth="1372.0" style="-fx-background-color: #2e2e2e;">
+         <children>
+            <ImageView fx:id="botaoHome" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" onMouseClicked="#goToHomeScreen" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-home-60.png" />
+               </image>
+               <HBox.margin>
+                  <Insets right="40.0" />
+               </HBox.margin>
+            </ImageView>
+            <ImageView fx:id="botaoClipboard" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" onMouseClicked="#goToGeneralReportScreen" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-clipboard-60.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="botaoCalendar" fitHeight="60.0" fitWidth="60.0" nodeOrientation="INHERIT" onMouseClicked="#goToDeliveryScreen" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/icons8-edit-calendar-60.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

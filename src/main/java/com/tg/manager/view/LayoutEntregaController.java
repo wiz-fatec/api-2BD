@@ -1,8 +1,10 @@
 package com.tg.manager.view;
 
 import com.tg.manager.controller.SubmitController;
+import com.tg.manager.model.StudentModel;
 import com.tg.manager.model.SubmitModel;
-import com.tg.manager.model.TeamModel;
+
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -11,12 +13,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -33,7 +37,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 public class LayoutEntregaController implements Initializable {
     String minhaInicialDataFormatada;
@@ -68,6 +71,12 @@ public class LayoutEntregaController implements Initializable {
     private TableColumn<Entrega, String> TipoTG;
 
     @FXML
+    private TableColumn<Entrega, String> TGModelo;
+
+    @FXML
+    private TableColumn<Entrega, Boolean> DeleteDelivery;
+
+    @FXML
     private DatePicker dataFinal;
 
     @FXML
@@ -82,19 +91,23 @@ public class LayoutEntregaController implements Initializable {
     @FXML
     private ChoiceBox<String> tipoDeTg;
 
+    @FXML
+    private ChoiceBox<String> ModeloTg;
+
     private static String[] opcoesChoiceBox = {"TG1", "TG2"};
-    
+    private static String[] opcoesModeloTg = {"Estágio - Técnico", "Técnico - Disciplina", "Científico", "Portfólio"};
     public static String[] getOpcoesChoiceBox() {
         return opcoesChoiceBox;
     }
 
-    private ObservableList<Entrega> list = FXCollections.observableArrayList();
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {        
+    public void initialize(URL location, ResourceBundle resources) { 
+        ObservableList<Entrega> entregaList = FXCollections.observableArrayList();
+        tabela.setItems(entregaList);       
         tabela.setItems(SubmitController.getDataInDataBase());
         tipoDeTg.getItems().addAll(opcoesChoiceBox);
-
+        ModeloTg.getItems().addAll(opcoesModeloTg);
         dataInicial.setDayCellFactory(picker -> new DateCell() {
             public void updateItem(LocalDate date, boolean empty) {
                 super.updateItem(date, empty);
@@ -102,7 +115,7 @@ public class LayoutEntregaController implements Initializable {
             }
         });
 
-        dataFinal.setDisable(true); // Desabilita a data final inicialmente
+        dataFinal.setDisable(true);
 
         dataFinal.setDayCellFactory(new Callback<DatePicker, DateCell>() {
             public DateCell call(final DatePicker datePicker) {
@@ -122,7 +135,7 @@ public class LayoutEntregaController implements Initializable {
             public void changed(ObservableValue<? extends LocalDate> observable, LocalDate oldValue, LocalDate newValue) {
                 if (newValue != null) {
                     final LocalDate selectedDate = newValue;
-                    dataFinal.setDisable(false); // Habilita a data final quando a data inicial é definida
+                    dataFinal.setDisable(false);
                     dataFinal.setDayCellFactory(new Callback<DatePicker, DateCell>() {
                         public DateCell call(final DatePicker datePicker) {
                             return new DateCell() {
@@ -136,8 +149,8 @@ public class LayoutEntregaController implements Initializable {
                         }
                     });
                 } else {
-                    dataFinal.setDisable(true); // Desabilita a data final se a data inicial estiver vazia
-                    dataFinal.setValue(null); // Reseta a data final se a data inicial estiver vazia
+                    dataFinal.setDisable(true);
+                    dataFinal.setValue(null);
                 }
             }
         });
@@ -148,21 +161,62 @@ public class LayoutEntregaController implements Initializable {
         tipoDeTg.valueProperty().addListener((observable, oldValue, newValue) -> checkCampos());
         dataInicial.valueProperty().addListener((observable, oldValue, newValue) -> checkCampos());
         dataFinal.valueProperty().addListener((observable, oldValue, newValue) -> checkCampos());
-
+        ModeloTg.valueProperty().addListener((observable, oldValue, newValue) -> checkCampos());
         Atividade.setCellValueFactory(new PropertyValueFactory<>("atividade"));
         DataFinal.setCellValueFactory(new PropertyValueFactory<>("dataFinal"));
         DataInicial.setCellValueFactory(new PropertyValueFactory<>("dataInicial"));
         TipoTG.setCellValueFactory(new PropertyValueFactory<>("tipoTG"));
+        TGModelo.setCellValueFactory(new PropertyValueFactory<>("tgModelo"));
+
+        DeleteDelivery.setCellValueFactory(param -> new SimpleBooleanProperty(true));
+        DeleteDelivery.setCellFactory(col -> createDeleteButtonCell("Excluir"));
+    }
+
+    private TableCell<Entrega, Boolean> createDeleteButtonCell(String buttonLabel) {
+        return new DeleteButtonCell(buttonLabel, tabela);
+    }    
+
+    private class DeleteButtonCell extends TableCell<Entrega, Boolean> {
+        private final Button button;
+        private final TableView<Entrega> tabela;
+    
+        public DeleteButtonCell(String buttonLabel, TableView<Entrega> tabela) {
+            this.button = new Button(buttonLabel);
+            this.tabela = tabela;
+    
+            button.setOnAction(event -> {
+                Entrega entrega = getTableView().getItems().get(getIndex());
+                int entregaId = entrega.getId();
+
+                SubmitModel.deleteInDb(entregaId);
+    
+                tabela.setItems(SubmitController.getDataInDataBase());
+            });
+        }
+
+        @Override
+        protected void updateItem(Boolean item, boolean empty) {
+            super.updateItem(item, empty);
+
+            if (empty || !item) {
+                setGraphic(null);
+            } else {
+                setAlignment(Pos.CENTER);
+                setGraphic(button);
+            }
+        }
     }
 
     private void checkCampos() {
         String atividade = nomeDaAtividade.getText();
         String tg = tipoDeTg.getValue();
+        String modelo = ModeloTg.getValue();
         LocalDate dataInicialValue = dataInicial.getValue();
         LocalDate dataFinalValue = dataFinal.getValue();
 
         boolean camposPreenchidos = atividade != null && !atividade.isEmpty() &&
                 tg != null &&
+                modelo != null &&
                 dataInicialValue != null &&
                 dataFinalValue != null;
 
@@ -176,13 +230,12 @@ public class LayoutEntregaController implements Initializable {
             String tg = tipoDeTg.getValue().toString();
             String inicialData = minhaInicialDataFormatada;
             String finalData = minhaFinalDataFormatada;
-            
+            String modeloDeTg = ModeloTg.getValue();
 
 
-            Entrega novaEntrega = new Entrega(atividade, tg, inicialData, finalData);
+            Entrega novaEntrega = new Entrega(atividade, tg, inicialData, finalData, modeloDeTg);
             SubmitController.setDataInDataBase(novaEntrega);
             tabela.setItems(SubmitController.getDataInDataBase());
-            // Limpa os campos após adicionar à tabela
             nomeDaAtividade.clear();
             tipoDeTg.getSelectionModel().clearSelection();
             dataInicial.setValue(null);
@@ -191,9 +244,9 @@ public class LayoutEntregaController implements Initializable {
             dataFinal.setDisable(true);
             minhaInicialDataFormatada = null;
             minhaFinalDataFormatada = null;
+            ModeloTg.getSelectionModel().clearSelection();
         } else {
-            // Lógica de tratamento para campos vazios
-            // Por exemplo, exibir uma mensagem de erro ao usuário
+
         }
     }
 
@@ -203,7 +256,8 @@ public class LayoutEntregaController implements Initializable {
                 dataInicial.getValue() != null &&
                 dataFinal.getValue() != null &&
                 minhaInicialDataFormatada != null &&
-                minhaFinalDataFormatada != null;
+                minhaFinalDataFormatada != null &&
+                ModeloTg.getValue() != null;
     }
 
     @FXML
@@ -229,7 +283,8 @@ public class LayoutEntregaController implements Initializable {
 
     @FXML
     void goToGeneralReportScreen(MouseEvent event) {
-        
+        StudentModel.getReport();
+        GeneralReportAlert.showInformationAlert();
     }
 
     @FXML
