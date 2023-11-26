@@ -83,4 +83,19 @@ ALTER TABLE VALOR_ENTREGA ADD FOREIGN KEY (idENTREGA) REFERENCES ENTREGA (id);
 ```
 
 # Utilização
+O primeiro contato com o programa, existira apenas a opção de fazer o upload do CSV. Após o upload, irá aparecer uma tabela com as informações dos alunos.
+
+## Tela basica de informações
+Essa tela irá exibir as seguintes informações:
+- Nome do estudante;
+- Email institucional do estudante;
+- Tipo de TG do estudante;
+- Apto ou não a apresentar.
+
+Fora isso, terá as seguintes opções:
+- Atribuir nota ao aluno;
+- Visualizar relatório;
+- Visualizar perfil.
+
+Por ultimo, poderá fazer o transporte de notas, relatório Certificados e gerar uma lista de alunos aptos. Essas informações serão salvas em PDF na pasta Download do sistema operacional.
 
