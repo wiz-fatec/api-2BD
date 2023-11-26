@@ -19,7 +19,7 @@ ALTER USER tgmanager WITH SUPERUSER;
 
 ### Criar tabelas do banco
 Após a configuração do usuario, deve-se criar as tabelas do sistema. Segue o script:
-``psql
+```psql
 CREATE TABLE TURMA (
 id SERIAL PRIMARY KEY,
 semestre INT NOT NULL,
