@@ -1,5 +1,6 @@
 package com.tg.manager.model;
 
+
 import com.tg.manager.model.connection.ConnectionDataBase;
 import lombok.Data;
 import lombok.ToString;
@@ -10,6 +11,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.print.DocFlavor.STRING;
+
+import java.util.List;
+import java.util.ArrayList;
+
+
 
 @Data
 @ToString
@@ -164,6 +172,57 @@ public class ToDoModel {
                 Integer idIssue= result.getInt("identrega");
                 todo.setIdIssue(idIssue);
                 listId.add(todo);
+            }
+            return listId;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        return null;
+
+    }
+
+    public static boolean averegeNotesValidator(List<Double> noteList){
+        Double sumNotes = 0.0;
+        for(Double nota : noteList){
+            sumNotes = sumNotes + nota;
+        }
+        Double averageNote = sumNotes/(noteList.size());
+        if(averageNote >= 6){
+
+            return true;
+
+        }
+         return false;
+
+        }
+
+        public static String averegeNote(List<Double> noteList){
+        if (noteList == null || noteList.isEmpty()) {
+            return null;
+        }
+
+        Double sumNotes = 0.0;
+        for(Double nota : noteList){
+            sumNotes = sumNotes + nota;
+        }
+
+        Double averageNote = sumNotes/(noteList.size());
+
+        return String.format("%.2f", averageNote);
+    }
+    public static List<Double> allNotesStudent(int idStudent){
+        try {
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            String query = "SELECT nota FROM valor_entrega WHERE idaluno = ?";
+            PreparedStatement statementDb = connection.prepareStatement(query);
+            statementDb.setInt(1, idStudent );
+            ResultSet result = statementDb.executeQuery();
+            List<Double> listId = new ArrayList<>();
+            while (result.next()) {
+                Double note = result.getDouble("nota");
+                listId.add(note);
             }
             return listId;
         } catch (SQLException ex) {
