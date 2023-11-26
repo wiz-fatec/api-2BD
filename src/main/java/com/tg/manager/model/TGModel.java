@@ -114,6 +114,29 @@ public class TGModel {
         }
         return null;
     }
+
+    public static String getDescriptionTg(Integer idStudent){
+        try {
+            ConnectionDataBase connectionDb = new ConnectionDataBase();
+            Connection connection = connectionDb.getConexao();
+            String query = "SELECT descricao FROM tg WHERE idaluno = ?";
+            PreparedStatement statementDb = connection.prepareStatement(query);
+            statementDb.setInt(1, idStudent);
+            ResultSet result = statementDb.executeQuery();
+            while (result.next()) {
+                String type= result.getString("descricao");
+                return type;
+            }
+            result.close();
+            statementDb.close();
+            // connection.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        return null;
+    }
+
     public static TGModel getStudentDuplicated(Integer idStudent){
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();

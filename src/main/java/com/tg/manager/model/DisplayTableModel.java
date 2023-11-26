@@ -71,7 +71,7 @@ public class DisplayTableModel {
 
     }
 
-    private static boolean isApt(Integer idTeam, Integer idStudent) {
+    public static boolean isApt(Integer idTeam, Integer idStudent) {
         Integer quantityTodoStudent = quantitySubmit(idTeam);
         Integer quantitySubmitStudent = quantityTodo(idStudent);
         if(quantityTodoStudent != null && quantitySubmitStudent != null) {
