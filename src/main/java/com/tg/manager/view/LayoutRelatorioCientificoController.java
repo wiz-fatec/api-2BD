@@ -81,6 +81,7 @@ public class LayoutRelatorioCientificoController implements Initializable{
     @FXML
     void goToDeliveryReport(ActionEvent event) {
         ReportPdf.reportSpecificPdf(ButtonCell.getDisplayModel1().getStudent());
+        GeneralReportAlert.showInformationAlert();
     }
 
     @FXML

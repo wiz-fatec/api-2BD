@@ -11,30 +11,30 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #333434;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tg.manager.view.ControllerNotasFeedback">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #333434;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.tg.manager.view.ControllerNotasFeedback">
    <children>
-      <Label layoutX="494.0" layoutY="144.25" text="NOTAS E FEEDBACKS" textFill="#31efb8">
+      <Label layoutX="202.0" layoutY="128.0" text="NOTAS E FEEDBACKS" textFill="WHITE">
          <font>
             <Font size="32.0" />
          </font>
       </Label>
-      <TextField fx:id="Nota" layoutX="494.0" layoutY="210.75" prefHeight="33.0" prefWidth="99.75" promptText="Nota" style="-fx-border-color: #31efb8;">
+      <TextField fx:id="Nota" layoutX="202.0" layoutY="322.0" prefHeight="33.0" prefWidth="99.75" promptText="Nota" style="-fx-border-color: #31efb8;">
          <font>
             <Font size="19.0" />
          </font>
       </TextField>
-      <TextField fx:id="Feedback" alignment="TOP_LEFT" layoutX="494.0" layoutY="274.0" prefHeight="250.0" prefWidth="364.0" promptText="Feedback" style="-fx-border-color: #31efb8;">
+      <TextField fx:id="Feedback" accessibleRole="TEXT_AREA" alignment="TOP_LEFT" layoutX="331.0" layoutY="322.0" prefHeight="250.0" prefWidth="364.0" promptText="Feedback" style="-fx-border-color: #31efb8;">
          <font>
             <Font size="19.0" />
          </font>
       </TextField>
-      <Button fx:id="Botao" layoutX="722.0" layoutY="562.0" mnemonicParsing="false" onAction="#BotaoEnviar" prefHeight="32.0" prefWidth="136.0" style="-fx-background-color: #31efb8;" text="Enviar" textAlignment="CENTER">
+      <Button fx:id="Botao" layoutX="561.0" layoutY="592.0" mnemonicParsing="false" onAction="#BotaoEnviar" prefHeight="32.0" prefWidth="136.0" style="-fx-background-color: #31efb8;" text="Enviar" textAlignment="CENTER">
          <font>
             <Font size="19.0" />
          </font>
       </Button>
-      <ChoiceBox fx:id="escolhaDeEntrega" layoutX="143.0" layoutY="274.0" prefHeight="42.0" prefWidth="322.0" style="-fx-border-color: #31efb8;" />
-      <Label fx:id="statusEntrega" alignment="CENTER" layoutX="622.0" layoutY="212.0" prefHeight="40.0" prefWidth="236.0" style="-fx-border-color: #31efb8;" text="Status" textAlignment="CENTER" textFill="#31efb8">
+      <ChoiceBox fx:id="escolhaDeEntrega" layoutX="331.0" layoutY="262.0" prefHeight="42.0" prefWidth="365.0" style="-fx-border-color: #31efb8;" />
+      <Label fx:id="statusEntrega" alignment="CENTER" layoutX="897.0" layoutY="260.0" prefHeight="42.0" prefWidth="247.0" style="-fx-border-color: #31efb8;" text="Status" textAlignment="CENTER" textFill="#31efb8">
          <font>
             <Font size="19.0" />
          </font>
@@ -64,10 +64,26 @@
             </ImageView>
          </children>
       </HBox>
-      <ChoiceBox fx:id="escolherTG" layoutX="40.0" layoutY="274.0" prefHeight="42.0" prefWidth="92.0" style="-fx-border-color: #31efb8;" />
-      <Label fx:id="NotaLabel" layoutX="898.0" layoutY="211.0" prefHeight="33.0" prefWidth="99.75" style="-fx-border-color: #31efb8;" text="Nota recente" textFill="#31efb8" />
-      <Label fx:id="FeedbackLabel" alignment="TOP_LEFT" layoutX="898.0" layoutY="274.0" prefHeight="250.0" prefWidth="364.0" style="-fx-border-color: #31efb8;" text="Feedback recente" textFill="#31efb8" textOverrun="CENTER_ELLIPSIS" />
-      <Label fx:id="nomeAluno" layoutX="40.0" layoutY="212.0" prefHeight="40.0" prefWidth="236.0" style="-fx-border-color: #31efb8; -fx-border-style: hidden hidden solid hidden;" text="Nome" textAlignment="CENTER" textFill="#31efb8" />
-      <Label fx:id="LabelTg" layoutX="284.0" layoutY="212.0" prefHeight="40.0" prefWidth="181.0" style="-fx-border-color: #31efb8; -fx-border-style: hidden hidden solid hidden;" text="TG" textAlignment="CENTER" textFill="#31efb8" />
+      <ChoiceBox fx:id="escolherTG" layoutX="202.0" layoutY="262.0" prefHeight="42.0" prefWidth="102.0" style="-fx-border-color: #31efb8;" />
+      <Label fx:id="NotaLabel" layoutX="777.0" layoutY="262.0" prefHeight="42.4" prefWidth="99.75" style="-fx-border-color: #31efb8;" text="  Nota recente" textFill="#31efb8" />
+      <Label fx:id="FeedbackLabel" alignment="TOP_LEFT" layoutX="778.0" layoutY="321.0" prefHeight="250.0" prefWidth="364.0" style="-fx-border-color: #31efb8;" text="  Feedback recente" textAlignment="CENTER" textFill="#31efb8" textOverrun="CENTER_ELLIPSIS" />
+      <Label fx:id="nomeAluno" layoutX="545.0" layoutY="128.0" prefHeight="40.0" prefWidth="273.0" style="-fx-border-color: #31efb8; -fx-border-style: hidden hidden solid hidden;" text="Nome" textAlignment="CENTER" textFill="#31efb8">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label fx:id="LabelTg" layoutX="866.0" layoutY="128.0" prefHeight="40.0" prefWidth="274.0" style="-fx-border-color: #31efb8; -fx-border-style: hidden hidden solid hidden;" text="TG" textAlignment="CENTER" textFill="#31efb8">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="202.0" layoutY="230.0" prefHeight="20.0" prefWidth="102.0" text="Selecione o TG" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="331.0" layoutY="230.0" prefHeight="20.0" prefWidth="129.0" text="Selecione a Entrega" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

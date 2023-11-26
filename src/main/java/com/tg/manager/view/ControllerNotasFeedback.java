@@ -29,6 +29,8 @@ import javafx.stage.Stage;
 
 public class ControllerNotasFeedback implements Initializable {
 
+    private Integer idTeam;
+
     @FXML
     private Button Botao;
 
@@ -98,23 +100,28 @@ public class ControllerNotasFeedback implements Initializable {
                 } else if (newValue.equals("TG2")) {
                     escolhaDeEntrega.getItems().addAll(listaTG2);
                 }
+
+                atualizarLabels();
             }
         });
 
         escolhaDeEntrega.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                if (feedbackMap.containsKey(newValue)) {
-                    Feedback.setText(feedbackMap.get(newValue));
-                    FeedbackLabel.setText("Feedback: " + feedbackMap.get(newValue));
+                Integer idStudent = NotasFeedbackScreen.display.getStudent().getId();
+                Integer idTeam = NotasFeedbackScreen.display.getStudent().getTeamId();
+
+                ToDoModel noteAndFeedback = ToDoModel.searchNoteAndFeedback(idStudent, newValue, idTeam);
+
+                if (noteAndFeedback != null) {
+                    Feedback.setText(noteAndFeedback.getFeedback());
+                    FeedbackLabel.setText("Feedback: " + noteAndFeedback.getFeedback());
+
+                    Nota.setText(String.valueOf(noteAndFeedback.getNote()));
+                    NotaLabel.setText("Nota: " + noteAndFeedback.getNote());
+                    atualizarStatusEntrega(newValue);
                 } else {
                     Feedback.setText("");
                     FeedbackLabel.setText("Feedback: ");
-                }
-                if (notaMap.containsKey(newValue)) {
-                    Nota.setText(notaMap.get(newValue));
-                    NotaLabel.setText("Nota: " + notaMap.get(newValue));
-                    atualizarStatusEntrega(newValue);
-                } else {
                     Nota.setText("");
                     NotaLabel.setText("Nota: ");
                     statusEntrega.setText("SEM NOTA");
@@ -122,14 +129,48 @@ public class ControllerNotasFeedback implements Initializable {
                 }
             }
         });
+
+        atualizarLabels();
+    }
+
+    private void limparLabels() {
+        Feedback.setText("");
+        FeedbackLabel.setText("Feedback: ");
+        Nota.setText("");
+        NotaLabel.setText("Nota: ");
+        statusEntrega.setText("SEM NOTA");
+        statusEntrega.setStyle("-fx-text-fill: red;");
+    }
+
+    private void atualizarLabels() {
+        String entregaSelecionada = escolhaDeEntrega.getValue();
+        String tgSelecionado = escolherTG.getValue();
+
+        if (entregaSelecionada != null && tgSelecionado != null) {
+            Integer idStudent = NotasFeedbackScreen.display.getStudent().getId();
+
+            ToDoModel noteAndFeedback = ToDoModel.searchNoteAndFeedback(idStudent, entregaSelecionada, idTeam);
+
+            if (noteAndFeedback != null) {
+                feedbackMap.put(entregaSelecionada, noteAndFeedback.getFeedback());
+                notaMap.put(entregaSelecionada, String.valueOf(noteAndFeedback.getNote()));
+
+                FeedbackLabel.setText("Feedback: " + noteAndFeedback.getFeedback());
+                NotaLabel.setText("Nota: " + noteAndFeedback.getNote());
+
+                atualizarStatusEntrega(entregaSelecionada);
+            } else {
+                limparLabels();
+            }
+        }
     }
 
     @FXML
     void BotaoEnviar(ActionEvent event) {
-        System.out.print(NotasFeedbackScreen.toDo);
-        System.out.println(NotasFeedbackScreen.display);
-        System.out.println(escolhaDeEntrega.getValue());
-        System.out.println(NotasFeedbackScreen.display.getStudent().getId());
+        // System.out.print(NotasFeedbackScreen.toDo);
+        // System.out.println(NotasFeedbackScreen.display);
+        // System.out.println(escolhaDeEntrega.getValue());
+        // System.out.println(NotasFeedbackScreen.display.getStudent().getId());
         String entregaSelecionada = escolhaDeEntrega.getValue();
         if (entregaSelecionada != null) {
             try {
@@ -143,10 +184,19 @@ public class ControllerNotasFeedback implements Initializable {
                     return;
                 }
 
+                Integer idStudent = NotasFeedbackScreen.display.getStudent().getId();
+                Integer idTeam = NotasFeedbackScreen.display.getStudent().getTeamId();
+                ToDoModel noteAndFeedback = ToDoModel.searchNoteAndFeedback(idStudent, entregaSelecionada, idTeam);
+
+                if (noteAndFeedback != null) {
+
+                    feedbackMap.put(entregaSelecionada, noteAndFeedback.getFeedback());
+                    notaMap.put(entregaSelecionada, String.valueOf(noteAndFeedback.getNote()));
+                }
+
                 feedbackMap.put(entregaSelecionada, Feedback.getText());
                 notaMap.put(entregaSelecionada, Nota.getText());
-                ToDoController.sendDataForDataBase(Feedback.getText(), Nota.getText(), entregaSelecionada,
-                        NotasFeedbackScreen.display);
+                ToDoController.sendDataForDataBase(Feedback.getText(), Nota.getText(), entregaSelecionada, NotasFeedbackScreen.display);
 
                 if (notaMap.containsKey(entregaSelecionada) && !notaMap.get(entregaSelecionada).isEmpty()) {
                     atualizarStatusEntrega(entregaSelecionada);
@@ -155,6 +205,7 @@ public class ControllerNotasFeedback implements Initializable {
                     statusEntrega.setStyle("-fx-text-fill: red;");
                 }
             } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
