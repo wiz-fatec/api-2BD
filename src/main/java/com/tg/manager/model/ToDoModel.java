@@ -251,9 +251,6 @@ public class ToDoModel {
 
     public static  ToDoModel searchNoteAndFeedback(Integer idStudent, String nameSubmit, Integer idTeam){
         SubmitModel submit = SubmitModel.filterSubmitForName(nameSubmit);
-        if(submit.getIdTeam().equals(idTeam)){
-             return ToDoModel.filterTodo(idStudent, submit.getId());
-        }
-        return null;
+        return ToDoModel.filterTodo(idStudent, submit.getId());
     }
 }
