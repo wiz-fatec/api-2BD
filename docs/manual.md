@@ -83,6 +83,7 @@ ALTER TABLE VALOR_ENTREGA ADD FOREIGN KEY (idENTREGA) REFERENCES ENTREGA (id);
 ```
 
 # Utilização
+Baixar executavel java.jar em: [Releases](https://github.com/wizards-of-api/api-2BD/releases)
 O primeiro contato com o programa, existira apenas a opção de fazer o upload do CSV. Após o upload, irá aparecer uma tabela com as informações dos alunos.
 
 ## Tela basica de informações
@@ -97,5 +98,5 @@ Fora isso, terá as seguintes opções:
 - Visualizar relatório;
 - Visualizar perfil.
 
-Por ultimo, poderá fazer o transporte de notas, relatório Certificados e gerar uma lista de alunos aptos. Essas informações serão salvas em PDF na pasta Download do sistema operacional.
+Também poderá fazer o transporte de notas, relatório Certificados e gerar uma lista de alunos aptos. Essas informações serão salvas em PDF na pasta Download do sistema operacional.
 

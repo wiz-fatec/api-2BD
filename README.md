@@ -1,5 +1,6 @@
 # api-2BD
 Repositório dedicado ao versionamento do projeto de API do segundo semestre de Banco de Dados.
+[Manual do usuário](https://github.com/wizards-of-api/api-2BD/blob/main/docs/manual.md)
 
 # Membros da equipe
 
@@ -51,5 +52,3 @@ Os objetivos da aplicação são: carregar o arquivo ".csv" para trazer uma maio
 |**Tecnologia**|**Logo**|
 | :----------: | :------: |
 |Java|![java-logo-vert-blk](https://github.com/wizards-of-api/api-2BD/assets/126925449/f59c11d9-1ada-421f-b7b8-124078553703)|
-
-
