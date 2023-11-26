@@ -86,6 +86,7 @@ public class HomeScreenWithTableController implements Initializable {
     void DownloadDeliveryGrade(ActionEvent event) {
 
         ReportPdf.reportReuseNotes(StudentModel.getSubmit());
+        GeneralReportAlert.showInformationAlert();
 
     }
 
