@@ -18,8 +18,12 @@ ALTER USER tgmanager WITH SUPERUSER;
 ```
 
 ### Criar tabelas do banco
-Após a configuração do usuario, deve-se criar as tabelas do sistema. Segue o script:
+Após a configuração do usuario, conectar ao banco `tgmanager` e criar as tabelas do sistema. Segue o script:
 ```psql
+-- Conectar
+\c tgmanager;
+
+-- Script das tabelas
 CREATE TABLE TURMA (
 id SERIAL PRIMARY KEY,
 semestre INT NOT NULL,
@@ -77,3 +81,6 @@ ALTER TABLE ALUNO ADD FOREIGN KEY (idTURMA) REFERENCES TURMA (id);
 ALTER TABLE VALOR_ENTREGA ADD FOREIGN KEY (idALUNO) REFERENCES ALUNO (id);
 ALTER TABLE VALOR_ENTREGA ADD FOREIGN KEY (idENTREGA) REFERENCES ENTREGA (id);
 ```
+
+# Utilização
+
