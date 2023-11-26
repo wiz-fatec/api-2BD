@@ -13,6 +13,7 @@ import com.tg.manager.model.DisplayTableModel;
 import com.tg.manager.model.StudentModel;
 import com.tg.manager.model.SubmitModel;
 import com.tg.manager.utils.CSVProcessor;
+import com.tg.manager.utils.ReportPdf;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -83,6 +84,8 @@ public class HomeScreenWithTableController implements Initializable {
 
     @FXML
     void DownloadDeliveryGrade(ActionEvent event) {
+
+        ReportPdf.reportReuseNotes(StudentModel.getSubmit());
 
     }
 
