@@ -10,7 +10,7 @@ Criar usuario `tgmanager` com a senha `tgmanager` para acesso do programa a base
 
 ```psql
 -- Criar database
-CREATE DATABASE tgmananger;
+CREATE DATABASE tgmanager;
 
 -- Criar usuario
 CREATE USER tgmanager WITH PASSWORD 'tgmanager';
