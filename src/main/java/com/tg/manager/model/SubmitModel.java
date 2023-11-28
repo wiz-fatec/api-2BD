@@ -112,13 +112,14 @@ public class SubmitModel {
         return null;
     }
 
-    public static Set<SubmitModel> filterSubmit(int idTeam){
+    public static Set<SubmitModel> filterSubmit(int idTeam, String modelAct){
         try {
             ConnectionDataBase connectionDb = new ConnectionDataBase();
             Connection connection = connectionDb.getConexao();
-            String query = "SELECT * FROM entrega WHERE idturma = ?";
+            String query = "SELECT * FROM entrega WHERE idturma = ? AND modelo = ?";
             PreparedStatement statementDb = connection.prepareStatement(query);
             statementDb.setInt(1, idTeam);
+            statementDb.setString(2, modelAct);
             ResultSet result = statementDb.executeQuery();
             Set<SubmitModel> listId = new HashSet<>();
             while (result.next()) {
@@ -210,4 +211,5 @@ public class SubmitModel {
         deleteSubmit(idSubmit);
 
     }
+
 }

@@ -1,4 +1,5 @@
 import com.tg.manager.model.DisplayTableModel;
+import com.tg.manager.model.SubmitModel;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -33,6 +34,11 @@ public class DisplayTableTest {
         System.out.println(DisplayTableModel.filterTable("Estágio - Técnico").size());
         System.out.println(DisplayTableModel.filterTable("Técnico - Disciplina").size());
         System.out.println(DisplayTableModel.filterTable("Científico").size());
+    }
+
+    @Test
+    public void isApto(){
+     DisplayTableModel.isApt(1, 18);
     }
 
 
