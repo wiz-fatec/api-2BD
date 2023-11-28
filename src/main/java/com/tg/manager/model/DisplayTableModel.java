@@ -72,8 +72,10 @@ public class DisplayTableModel {
     }
 
     public static boolean isApt(Integer idTeam, Integer idStudent) {
-        Integer quantityTodoStudent = quantitySubmit(idTeam);
-        Integer quantitySubmitStudent = quantityTodo(idStudent);
+        String descriptionTg = TGModel.getDescriptionTg(idStudent);
+        String translateDescription = DisplayTableModel.translateTg2(descriptionTg);
+        Integer quantitySubmitStudent = quantitySubmit(idTeam, translateDescription);
+        Integer quantityTodoStudent = quantityTodo(idStudent);
         if(quantityTodoStudent != null && quantitySubmitStudent != null) {
             var calcIsApt = quantityTodoStudent / quantitySubmitStudent;
             return calcIsApt == 1;
@@ -90,8 +92,8 @@ public class DisplayTableModel {
 
     }
 
-    private static Integer quantitySubmit(Integer idTeam){
-        Set<SubmitModel> submitList = SubmitModel.filterSubmit(idTeam);
+    private static Integer quantitySubmit(Integer idTeam, String model){
+        Set<SubmitModel> submitList = SubmitModel.filterSubmit(idTeam, model);
         if(!submitList.isEmpty()) {
             return submitList.size();
         }
@@ -165,6 +167,20 @@ public class DisplayTableModel {
             default:
                 throw new RuntimeException("Description not exist");
         }
+
+    }
+
+    private static String translateTg2(String description){
+        if(ModelTGEnum.INTERNSHIP.getDescription().equals(description)){
+            return "Estágio - Técnico";
+        } else if (ModelTGEnum.DISCIPLINE.getDescription().equals(description)) {
+            return "Técnico - Disciplina";
+        } else if (ModelTGEnum.ARTICLE.getDescription().equals(description)) {
+            return "Científico";
+        } else if (ModelTGEnum.PORTIFOLIO.getDescription().equals(description)) {
+            return "Portfólio";
+        }
+        return null;
 
     }
 
