@@ -9,6 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -29,12 +30,12 @@
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonDownloadCertificate" layoutX="826.0" layoutY="198.0" mnemonicParsing="false" onAction="#DownloadCertificate" prefHeight="30.0" prefWidth="194.0" style="-fx-background-color: #ffffff;" text="Relatório Certificados">
+      <Button fx:id="ButtonDownloadCertificate" layoutX="862.0" layoutY="202.0" mnemonicParsing="false" onAction="#DownloadCertificate" prefHeight="30.0" prefWidth="158.0" style="-fx-background-color: #ffffff;" text="Certificados">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonStudentEligible" layoutX="1065.0" layoutY="198.0" mnemonicParsing="false" onAction="#DownloadStudentEligible" prefHeight="30.0" prefWidth="149.0" style="-fx-background-color: #ffffff;" text="Alunos Aptos">
+      <Button fx:id="ButtonStudentEligible" layoutX="1065.0" layoutY="202.0" mnemonicParsing="false" onAction="#DownloadStudentEligible" prefHeight="30.0" prefWidth="149.0" style="-fx-background-color: #ffffff;" text="Alunos Aptos">
          <font>
             <Font size="16.0" />
          </font>
@@ -75,10 +76,16 @@
          </children>
       </HBox>
       <ComboBox fx:id="filterTG" layoutX="135.0" layoutY="203.0" onAction="#filterStudentTG" prefHeight="30.0" prefWidth="220.0" />
-      <Button fx:id="ButtonDownloadDeliveryGrade" layoutX="586.0" layoutY="198.0" mnemonicParsing="false" onAction="#DownloadDeliveryGrade" prefHeight="30.0" prefWidth="194.0" style="-fx-background-color: #ffffff;" text="Transporte de Notas">
+      <Button fx:id="ButtonDownloadDeliveryGrade" layoutX="621.0" layoutY="202.0" mnemonicParsing="false" onAction="#DownloadDeliveryGrade" prefHeight="30.0" prefWidth="194.0" style="-fx-background-color: #ffffff;" text="Transporte de Notas">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
+      <Text fill="#ffffff" layoutX="620.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gerar Relatórios">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Line endX="525.0" layoutX="688.0" layoutY="197.0" startX="-67.0" stroke="WHITE" />
    </children>
 </AnchorPane>

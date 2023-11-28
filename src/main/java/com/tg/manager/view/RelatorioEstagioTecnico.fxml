@@ -19,8 +19,8 @@
       <Label fx:id="NomeCompleto" layoutX="170.0" layoutY="107.0" prefHeight="32.0" prefWidth="408.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Nome Completo" textFill="WHITE" />
       <Label fx:id="EmailPessoal" layoutX="170.0" layoutY="165.0" prefHeight="32.0" prefWidth="408.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Email De Comunicação" textFill="WHITE" />
       <Label fx:id="EmailInstitucional" layoutX="170.0" layoutY="222.0" prefHeight="32.0" prefWidth="408.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Email Institucional" textFill="WHITE" />
-      <Label fx:id="Turma" layoutX="664.0" layoutY="107.0" prefHeight="32.0" prefWidth="352.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Turma Matrículada" textFill="WHITE" />
-      <Label fx:id="Empresa" layoutX="664.0" layoutY="165.0" prefHeight="32.0" prefWidth="352.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Empresa envolvida" textFill="WHITE" />
+      <Label fx:id="Turma" layoutX="664.0" layoutY="107.0" prefHeight="32.0" prefWidth="408.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Turma Matrículada" textFill="WHITE" />
+      <Label fx:id="Empresa" layoutX="664.0" layoutY="165.0" prefHeight="32.0" prefWidth="408.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Empresa envolvida" textFill="WHITE" />
       <Label fx:id="Orientador" layoutX="664.0" layoutY="223.0" prefHeight="32.0" prefWidth="408.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Orientador" textFill="WHITE" />
       <Label fx:id="EmailOrientador" layoutX="664.0" layoutY="281.0" prefHeight="32.0" prefWidth="408.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #31efb8;" text="Email Orientador" textFill="WHITE" />
       <Label layoutX="170.0" layoutY="300.0" text="NOTA E FEEDBACK" textFill="WHITE">
@@ -28,7 +28,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="RelatorioEntrega" layoutX="880.0" layoutY="553.0" mnemonicParsing="false" onAction="#goToDeliveryReport" prefHeight="40.0" prefWidth="136.0" style="-fx-background-color: #31efb8;" text="Relatório de Entregas" />
+      <Button fx:id="RelatorioEntrega" layoutX="880.0" layoutY="553.0" mnemonicParsing="false" onAction="#goToDeliveryReport" prefHeight="40.0" prefWidth="190.0" style="-fx-background-color: #31efb8;" text="Relatório de Entregas" />
       <Label fx:id="RelatorioNota" layoutX="880.0" layoutY="353.0" prefHeight="40.0" prefWidth="136.0" style="-fx-border-style: hidden hidden solid hidden; -fx-border-color: #ffffff;" text="Nota" textFill="WHITE">
          <font>
             <Font size="18.0" />
