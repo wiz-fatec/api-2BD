@@ -82,7 +82,7 @@ public class ReportPdf {
             for(StudentModel student : listStudent){
                 if ((TGModel.getTypeTg(student.getId()).equals("TG1")) && 
                 (TGModel.getDescriptionTg(student.getId()).contains("Científico") || TGModel.getDescriptionTg(student.getId()).contains("Técnico")) && 
-                ToDoModel.averegeNotesValidator(ToDoModel.allNotesStudent(student.getId())) && DisplayTableModel.isApt(student.getTeamId(), student.getId())) {
+                ToDoModel.averegeNotesValidator(ToDoModel.allNotesStudent(student.getId())) && DisplayTableModel.isAptSpecific(student.getTeamId(), student.getId())) {
                     Font font2 = FontFactory.getFont(FontFactory.TIMES, 20, Font.NORMAL, Color.BLACK);
                     Paragraph paragraphTestTitle1 = new Paragraph("Dados do Aluno", font2);
                     paragraphTestTitle1.setSpacingBefore(20);

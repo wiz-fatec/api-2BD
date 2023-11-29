@@ -74,12 +74,27 @@ public class DisplayTableModel {
     public static boolean isApt(Integer idTeam, Integer idStudent) {
         String descriptionTg = TGModel.getDescriptionTg(idStudent);
         String translateDescription = DisplayTableModel.translateTg2(descriptionTg);
+        if(!translateDescription.equals("Científico")) {
+            Integer quantitySubmitStudent = quantitySubmit(idTeam, translateDescription);
+            Integer quantityTodoStudent = quantityTodo(idStudent);
+            if (quantityTodoStudent != null && quantitySubmitStudent != null) {
+                var calcIsApt = quantityTodoStudent / quantitySubmitStudent;
+                return calcIsApt == 1;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isAptSpecific(Integer idTeam, Integer idStudent) {
+        String descriptionTg = TGModel.getDescriptionTg(idStudent);
+        String translateDescription = DisplayTableModel.translateTg2(descriptionTg);
         Integer quantitySubmitStudent = quantitySubmit(idTeam, translateDescription);
         Integer quantityTodoStudent = quantityTodo(idStudent);
-        if(quantityTodoStudent != null && quantitySubmitStudent != null) {
-            var calcIsApt = quantityTodoStudent / quantitySubmitStudent;
-            return calcIsApt == 1;
-        }
+            if (quantityTodoStudent != null && quantitySubmitStudent != null) {
+                var calcIsApt = quantityTodoStudent / quantitySubmitStudent;
+                return calcIsApt == 1;
+            }
+
         return false;
     }
 
